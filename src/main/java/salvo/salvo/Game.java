@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class Game {
@@ -12,29 +13,27 @@ public class Game {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
 
-    private String fechaVar;
+    private Date fechaVar;
 
 
 
     public Game() { }
 
-    public Game(String fechaArg) {
+    public Game(Date fechaArg) {
         this.fechaVar = fechaArg;
 
     }
 
 
-    public String getFechaVar() {
+    public Date getFechaVar() {
         return fechaVar;
     }
 
-    public void setFechaVar(String fechaVar) {
+    public void setFechaVar(Date fechaVar) {
         this.fechaVar = fechaVar;
     }
 
 
-    public String toString() {
-        return fechaVar;
-    }
+
 
 }

@@ -27,15 +27,31 @@ public class SalvoApplication {
 //    }
 
     @Bean
-    public CommandLineRunner initData(GameRepository repository) {
+    public CommandLineRunner initData(PlayerRepository playerRepository,
+                                      GameRepository gameRepository) {
         return (args) -> {
 
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            String date = sdf.format(new Date());
+
+            playerRepository.save(new Player("kim_bauer@gmail.com"));
+            playerRepository.save(new Player("t.almeida@ctu.gov"));
+
+
+            //SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            //String date = sdf.format(new Date());
+
+            Date d1 = new Date();
+            Date d2 = Date.from(d1.toInstant().plusSeconds(3600));
+            Date d3 = Date.from(d1.toInstant().plusSeconds(7200));
+
 //            System.out.println(date); //15/10/2013
 //            String horaSinSubstring = sdf.format(new Date());
-            repository.save(new Game(date));
-            repository.save(new Game(date));
+            Game g1 = new Game(d1);
+            Game g2 = new Game(d2);
+            Game g3 = new Game(d3);
+            gameRepository.save(g1);
+            gameRepository.save(new Game(d2));
+            gameRepository.save(g3);
+
 //            repository.save(new Game(horaSinSubstring));
 
         };
