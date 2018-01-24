@@ -30,7 +30,7 @@ public class SalvoApplication {
     public CommandLineRunner initData(GameRepository repository) {
         return (args) -> {
 
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             String date = sdf.format(new Date());
 //            System.out.println(date); //15/10/2013
 //            String horaSinSubstring = sdf.format(new Date());
