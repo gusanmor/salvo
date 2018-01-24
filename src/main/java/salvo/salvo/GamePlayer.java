@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class GamePlayer_ {
+public class GamePlayer {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -15,9 +15,9 @@ public class GamePlayer_ {
     private String GamePlayerUserName;
 
 
-    public GamePlayer_() { }
+    public GamePlayer() { }
 
-    public GamePlayer_(String argGamePlayerUserName) {
+    public GamePlayer(String argGamePlayerUserName) {
         GamePlayerUserName = argGamePlayerUserName;
 
     }
