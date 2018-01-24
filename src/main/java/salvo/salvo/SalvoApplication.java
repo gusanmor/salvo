@@ -32,7 +32,7 @@ public class SalvoApplication {
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
             String date = sdf.format(new Date());
-            System.out.println(date); //15/10/2013
+//            System.out.println(date); //15/10/2013
 //            String horaSinSubstring = sdf.format(new Date());
             repository.save(new Game(date));
             repository.save(new Game(date));
