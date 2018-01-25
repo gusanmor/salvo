@@ -15,30 +15,36 @@ public class GamePlayer {
 
     @ManyToOne
     @JoinColumn(name="IDGame")
-    private Game gameEnGameplayer;
-
-
-//    private Player gamePlayerUserName;
-
+    private Game gameEnGamePlayer;
 
     public GamePlayer() { }
 
-    public GamePlayer(Player argGamePlayerUserName) {
+    public GamePlayer(Player argGamePlayerUserName,
+                      Game argGameGamePlayer) {
         this.playerEnGameplayer = argGamePlayerUserName;
-
+        this.gameEnGamePlayer = argGameGamePlayer;
     }
 
     public Player getGamePlayerUserName() {
         return playerEnGameplayer;
     }
-
     public void setGamePlayerUserName(Player gamePlayerUserName) {
-
         this.playerEnGameplayer = gamePlayerUserName;
     }
 
+    public Game getGameEnGamePlayer() {
+        return gameEnGamePlayer;
+    }
 
-//    public GamePlayer toString() {
-//        return gamePlayerUserName;
-////    }
+    public void setGameEnGamePlayer(Game argGameNiIdea) {
+        this.gameEnGamePlayer = argGameNiIdea;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String toString() {
+        return "" + gameEnGamePlayer+playerEnGameplayer;
+    }
 }

@@ -10,13 +10,10 @@ public class Game {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
+    public Date fechaVar;
 
-    @OneToMany(mappedBy="gameEnGameplayer", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="gameEnGamePlayer", fetch=FetchType.EAGER)
     Set<GamePlayer> gamePlayers;
-
-    private Date fechaVar;
-
-
 
     public Game() { }
 
@@ -25,6 +22,9 @@ public class Game {
 
     }
 
+    public long getId() {
+        return id;
+    }
 
     public Date getFechaVar() {
         return fechaVar;
@@ -34,7 +34,7 @@ public class Game {
         this.fechaVar = fechaVar;
     }
 
-
-
-
+    public String toString() {
+        return ""+fechaVar;
+    }
 }
