@@ -23,20 +23,32 @@ public class SalvoApplication {
         return (args) -> {
 
 
+            playerRepository.save(new Player("j.bauer@ctu.gov"));
+            playerRepository.save(new Player("c.obrian@ctu.gov"));
             playerRepository.save(new Player("kim_bauer@gmail.com"));
             playerRepository.save(new Player("t.almeida@ctu.gov"));
 
 
-            Date d1 = new Date();
-            Date d2 = Date.from(d1.toInstant().plusSeconds(3600));
-            Date d3 = Date.from(d1.toInstant().plusSeconds(7200));
+            Date fecha1Var = new Date();
+            Date fecha2Var = Date.from(fecha1Var.toInstant().plusSeconds(3600));
+            Date fecha3Var = Date.from(fecha1Var.toInstant().plusSeconds(7200));
+            Date fecha4Var = Date.from(fecha1Var.toInstant().plusSeconds(10800));
+            Date fecha5Var = Date.from(fecha1Var.toInstant().plusSeconds(14400));
+            Date fecha6Var = Date.from(fecha1Var.toInstant().plusSeconds(18000));
 
-            Game g1 = new Game(d1);
-            Game g2 = new Game(d2);
-            Game g3 = new Game(d3);
-            gameRepository.save(g1);
-            gameRepository.save(new Game(d2));
-            gameRepository.save(g3);
+            Game partida1Var = new Game(fecha1Var);
+            Game partida2Var = new Game(fecha2Var);
+            Game partida3Var = new Game(fecha3Var);
+            Game partida4Var = new Game(fecha4Var);
+            Game partida5Var = new Game(fecha5Var);
+            Game partida6Var = new Game(fecha6Var);
+
+            gameRepository.save(partida1Var);
+            gameRepository.save(new Game(fecha2Var));
+            gameRepository.save(partida3Var);
+            gameRepository.save(partida4Var);
+            gameRepository.save(partida5Var);
+            gameRepository.save(partida6Var);
 
             gamePlayerRepository.save(new GamePlayer("hola"));
 
