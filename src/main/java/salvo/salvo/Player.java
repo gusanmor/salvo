@@ -11,7 +11,7 @@ public class Player {
     private long id;
 
     @OneToMany(mappedBy="playerEnGameplayer", fetch=FetchType.EAGER)
-    Set<GamePlayer> gamePlayerfffffs;
+    Set<GamePlayer> gamePlayers;
 
     private String userName;
 
