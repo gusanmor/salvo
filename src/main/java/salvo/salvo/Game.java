@@ -11,8 +11,8 @@ public class Game {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
 
-//    @OneToMany(mappedBy="userName", fetch=FetchType.EAGER)
-//    Set<GamePlayer> GamePlayerUserName;
+    @OneToMany(mappedBy="gameEnGameplayer", fetch=FetchType.EAGER)
+    Set<GamePlayer> gamePlayers;
 
     private Date fechaVar;
 

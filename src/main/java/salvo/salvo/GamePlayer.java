@@ -9,8 +9,13 @@ public class GamePlayer {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name="gamePlayerUserName")
+    @ManyToOne
+    @JoinColumn(name="IDPlayer")
+    private Player playerEnGameplayer;
+
+    @ManyToOne
+    @JoinColumn(name="IDGame")
+    private Player gameEnGameplayer;
 
 
     private String gamePlayerUserName;

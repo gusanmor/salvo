@@ -10,8 +10,8 @@ public class Player {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
 
-//        @OneToMany(mappedBy="userName", fetch=FetchType.EAGER)
-//        Set<GamePlayer> gamePlayerUserName;
+    @OneToMany(mappedBy="playerEnGameplayer", fetch=FetchType.EAGER)
+    Set<GamePlayer> gamePlayers;
 
     private String userName;
 
