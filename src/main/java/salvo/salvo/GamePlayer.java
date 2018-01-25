@@ -10,29 +10,29 @@ public class GamePlayer {
     private long id;
 
 //    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name="GamePlayerUserName")
+//    @JoinColumn(name="gamePlayerUserName")
 
 
-    private String GamePlayerUserName;
+    private String gamePlayerUserName;
 
 
     public GamePlayer() { }
 
     public GamePlayer(String argGamePlayerUserName) {
-        GamePlayerUserName = argGamePlayerUserName;
+        gamePlayerUserName = argGamePlayerUserName;
 
     }
 
     public String getGamePlayerUserName() {
-        return GamePlayerUserName;
+        return gamePlayerUserName;
     }
 
     public void setGamePlayerUserName(String gamePlayerUserName) {
-        this.GamePlayerUserName = gamePlayerUserName;
+        this.gamePlayerUserName = gamePlayerUserName;
     }
 
 
     public String toString() {
-        return GamePlayerUserName;
+        return gamePlayerUserName;
     }
 }

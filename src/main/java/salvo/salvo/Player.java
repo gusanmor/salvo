@@ -1,9 +1,7 @@
 package salvo.salvo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Player {
@@ -11,6 +9,9 @@ public class Player {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
+
+//        @OneToMany(mappedBy="userName", fetch=FetchType.EAGER)
+//        Set<GamePlayer> gamePlayerUserName;
 
     private String userName;
 
