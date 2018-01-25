@@ -22,11 +22,16 @@ public class SalvoApplication {
 
         return (args) -> {
 
+            Player jugador1Var = new Player("j.bauer@ctu.gov");
+            Player jugador2Var = new Player("c.obrian@ctu.gov");
+            Player jugador3Var = new Player("kim_bauer@gmail.com");
+            Player jugador4Var = new Player("t.almeida@ctu.gov");
 
-            playerRepository.save(new Player("j.bauer@ctu.gov"));
-            playerRepository.save(new Player("c.obrian@ctu.gov"));
-            playerRepository.save(new Player("kim_bauer@gmail.com"));
-            playerRepository.save(new Player("t.almeida@ctu.gov"));
+
+            playerRepository.save(jugador1Var);
+            playerRepository.save(jugador2Var);
+            playerRepository.save(jugador3Var);
+            playerRepository.save(jugador4Var);
 
 
             Date fecha1Var = new Date();
@@ -50,7 +55,7 @@ public class SalvoApplication {
             gameRepository.save(partida5Var);
             gameRepository.save(partida6Var);
 
-            gamePlayerRepository.save(new GamePlayer("hola"));
+            gamePlayerRepository.save(new GamePlayer(jugador1Var));
 
         };
     }

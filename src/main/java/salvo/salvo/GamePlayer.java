@@ -18,26 +18,26 @@ public class GamePlayer {
     private Player gameEnGameplayer;
 
 
-    private String gamePlayerUserName;
+    private Player gamePlayerUserName;
 
 
     public GamePlayer() { }
 
-    public GamePlayer(String argGamePlayerUserName) {
+    public GamePlayer(Player argGamePlayerUserName) {
         gamePlayerUserName = argGamePlayerUserName;
 
     }
 
-    public String getGamePlayerUserName() {
+    public Player getGamePlayerUserName() {
         return gamePlayerUserName;
     }
 
-    public void setGamePlayerUserName(String gamePlayerUserName) {
+    public void setGamePlayerUserName(Player gamePlayerUserName) {
         this.gamePlayerUserName = gamePlayerUserName;
     }
 
 
-    public String toString() {
-        return gamePlayerUserName;
-    }
+//    public GamePlayer toString() {
+//        return gamePlayerUserName;
+//    }
 }
