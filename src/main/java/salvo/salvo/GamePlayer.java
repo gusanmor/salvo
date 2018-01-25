@@ -13,31 +13,32 @@ public class GamePlayer {
     @JoinColumn(name="IDPlayer")
     private Player playerEnGameplayer;
 
-    @ManyToOne
-    @JoinColumn(name="IDGame")
-    private Player gameEnGameplayer;
+//    @ManyToOne
+//    @JoinColumn(name="IDGame")
+//    private Game gameEnGameplayer;
 
 
-    private Player gamePlayerUserName;
+//    private Player gamePlayerUserName;
 
 
     public GamePlayer() { }
 
     public GamePlayer(Player argGamePlayerUserName) {
-        gamePlayerUserName = argGamePlayerUserName;
+        this.playerEnGameplayer = argGamePlayerUserName;
 
     }
 
     public Player getGamePlayerUserName() {
-        return gamePlayerUserName;
+        return playerEnGameplayer;
     }
 
     public void setGamePlayerUserName(Player gamePlayerUserName) {
-        this.gamePlayerUserName = gamePlayerUserName;
+
+        this.playerEnGameplayer = gamePlayerUserName;
     }
 
 
 //    public GamePlayer toString() {
 //        return gamePlayerUserName;
-//    }
+////    }
 }
