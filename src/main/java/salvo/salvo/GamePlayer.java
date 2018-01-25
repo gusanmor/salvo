@@ -13,9 +13,9 @@ public class GamePlayer {
     @JoinColumn(name="IDPlayer")
     private Player playerEnGameplayer;
 
-//    @ManyToOne
-//    @JoinColumn(name="IDGame")
-//    private Game gameEnGameplayer;
+    @ManyToOne
+    @JoinColumn(name="IDGame")
+    private Game gameEnGameplayer;
 
 
 //    private Player gamePlayerUserName;
