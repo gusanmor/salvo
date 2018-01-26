@@ -32,11 +32,11 @@ public class GamePlayer {
         this.playerEnGameplayer = gamePlayerUserName;
     }
 
-    public Game getGameEnGamePlayer() {
+    public Game getGameEnGamePlayers() {
         return gameEnGamePlayer;
     }
 
-    public void setGameEnGamePlayer(Game argGameNiIdea) {
+    public void setGameEnGamePlayers(Game argGameNiIdea) {
         this.gameEnGamePlayer = argGameNiIdea;
     }
 
