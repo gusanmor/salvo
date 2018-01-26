@@ -15,7 +15,8 @@ public class SalvoController {
 
     @RequestMapping("api/games")
     public List<Game> getGames() {
-//        System.out.println(repo);
+//        System.out.println("Repogames"+repoGames.findAll());
         return repoGames.findAll();
+
     }
 }
