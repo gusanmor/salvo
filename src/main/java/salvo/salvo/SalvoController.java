@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class SalvoController {
@@ -16,11 +18,21 @@ public class SalvoController {
     private GameRepository repoGames;
 
     @RequestMapping("api/games")
-    public ArrayList metodoCogerGamesIds() {
-        ArrayList IDsGamesArr = new ArrayList<>();
+    public ArrayList IDyCreatedMetodo() {
+        ArrayList IDyCreatedList = new ArrayList();
+
         for(int i = 0; i<repoGames.findAll().size(); i++){
-            IDsGamesArr.add(repoGames.findAll().get(i).getId());
+            Map<String, Object> IDyCreatedMap = new HashMap<String, Object>();
+            IDyCreatedMap.put("ID", repoGames.findAll().get(i).getId());
+            IDyCreatedMap.put("Created", repoGames.findAll().get(i).getFechaVar());
+            IDyCreatedList.add(IDyCreatedMap);
         }
-        return IDsGamesArr;
+        return IDyCreatedList;
+
+//        ArrayList IDsGamesArr = new ArrayList<>();
+//        for(int i = 0; i<repoGames.findAll().size(); i++){
+//            IDsGamesArr.add(repoGames.findAll().get(i).getId());
+//        }
+//        return IDsGamesArr;
     }
 }
