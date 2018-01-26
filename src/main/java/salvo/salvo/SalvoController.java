@@ -11,11 +11,11 @@ import java.util.List;
 public class SalvoController {
 
     @Autowired
-    private GameRepository repo;
+    private GameRepository repoGames;
 
     @RequestMapping("api/games")
     public List<Game> getGames() {
 //        System.out.println(repo);
-        return repo.findAll();
+        return repoGames.findAll();
     }
 }
