@@ -62,9 +62,9 @@ public class SalvoApplication {
             gamePlayerRepository.save(gamePlayer2Var);
 
 
-            System.out.println(jugador1Var);
-            System.out.println(partida1Var);
-            System.out.println(gamePlayer1Var);
+//            System.out.println(jugador1Var);
+//            System.out.println(partida1Var);
+//            System.out.println(gamePlayer1Var);
 
         };
     }

@@ -27,6 +27,7 @@ public class SalvoController {
             IDyCreatedMap.put("Created", repoGames.findAll().get(i).getFechaVar());
             IDyCreatedList.add(IDyCreatedMap);
         }
+        System.out.println(repoGames.findAll());
         return IDyCreatedList;
 
 //        ArrayList IDsGamesArr = new ArrayList<>();
