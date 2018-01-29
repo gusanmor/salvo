@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -45,33 +44,33 @@ public class SalvoController {
         return repoGames.findAll()
                 .stream()
 
-                .map(game -> gameIDS(game))
+                .map(gamePor -> gameMetodo(gamePor))
 
                 .collect(Collectors.toList());
 
     }
 
-    public Map<String,Object> gameIDS(Game game){
+    public Map<String,Object> gameMetodo(Game gameParam){
     Map<String,Object> gameMap = new LinkedHashMap<>();
-    gameMap.put("id", game.getId());
-    gameMap.put("date", game.getFechaVar());
-    gameMap.put("gamePlayers", game.getGamePlayers().stream()
+    gameMap.put("id", gameParam.getId());
+    gameMap.put("date", gameParam.getFechaVar());
+    gameMap.put("gamePlayers", gameParam.getGamePlayers().stream()
                                     .map(gamePlayer -> getGPlayers(gamePlayer) )                                            .collect(Collectors.toList()));
         return gameMap;
     }
 
-    public Map<String, Object> getGPlayers (GamePlayer gamePlayer) {
+    public Map<String, Object> getGPlayers (GamePlayer gamePlayerParam) {
         Map<String,Object> gamePlayersMap = new LinkedHashMap<>();
 
-        gamePlayersMap.put("id", gamePlayer.getId());
-        gamePlayersMap.put("players", playersInfo(gamePlayer.getGamePlayerUserName()));
+        gamePlayersMap.put("id", gamePlayerParam.getId());
+        gamePlayersMap.put("players", playersInfo(gamePlayerParam.getGamePlayerUserName()));
         return gamePlayersMap;
     }
 
-    public Map<String, Object> playersInfo (Player player) {
+    public Map<String, Object> playersInfo (Player playerParam) {
         Map<String, Object> playerMap = new LinkedHashMap<>();
-        playerMap.put("id", player.getId());
-        playerMap.put("email", player.getUserName());
+        playerMap.put("id", playerParam.getId());
+        playerMap.put("email", playerParam.getUserName());
 
         return playerMap;
     }
