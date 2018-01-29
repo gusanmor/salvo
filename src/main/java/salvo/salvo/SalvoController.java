@@ -39,28 +39,28 @@ public class SalvoController {
     }
 
     @RequestMapping("api/gustavo")
-    public List<Object> giveMeTheIDS(){
+    public List<Object> arrayObjGeneral(){
 
         return repoGames.findAll()
                 .stream()
 
-                .map(gamePor -> gameMetodo(gamePor))
+                .map(gameNoEntiendo -> gameMetodo(gameNoEntiendo))
 
                 .collect(Collectors.toList());
 
     }
 
     public Map<String,Object> gameMetodo(Game gameParam){
-    Map<String,Object> gameMap = new LinkedHashMap<>();
+    Map<String,Object> gameMap = new HashMap<>();
     gameMap.put("id", gameParam.getId());
     gameMap.put("date", gameParam.getFechaVar());
     gameMap.put("gamePlayers", gameParam.getGamePlayers().stream()
-                                    .map(gamePlayer -> getGPlayers(gamePlayer) )                                            .collect(Collectors.toList()));
+                                    .map(gamePlayer -> gamePlayerMetodo(gamePlayer) )                                            .collect(Collectors.toList()));
         return gameMap;
     }
 
-    public Map<String, Object> getGPlayers (GamePlayer gamePlayerParam) {
-        Map<String,Object> gamePlayersMap = new LinkedHashMap<>();
+    public Map<String, Object> gamePlayerMetodo(GamePlayer gamePlayerParam) {
+        Map<String,Object> gamePlayersMap = new HashMap<>();
 
         gamePlayersMap.put("id", gamePlayerParam.getId());
         gamePlayersMap.put("players", playersInfo(gamePlayerParam.getGamePlayerUserName()));
@@ -68,7 +68,7 @@ public class SalvoController {
     }
 
     public Map<String, Object> playersInfo (Player playerParam) {
-        Map<String, Object> playerMap = new LinkedHashMap<>();
+        Map<String, Object> playerMap = new HashMap<>();
         playerMap.put("id", playerParam.getId());
         playerMap.put("email", playerParam.getUserName());
 
