@@ -1,5 +1,7 @@
 package salvo.salvo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +14,7 @@ public class GamePlayer {
     @ManyToOne
     @JoinColumn(name="IDPlayer")
     private Player playerEnGameplayer;
+
 
     @ManyToOne
     @JoinColumn(name="IDGame")

@@ -1,5 +1,7 @@
 package salvo.salvo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -12,6 +14,7 @@ public class Game {
     private long id;
     public Date fechaVar;
 
+    @JsonIgnore
     @OneToMany(mappedBy="gameEnGamePlayer", fetch=FetchType.EAGER)
     Set<GamePlayer> gamePlayers;
 
@@ -28,6 +31,10 @@ public class Game {
 
     public Date getFechaVar() {
         return fechaVar;
+    }
+
+    public Set<GamePlayer> getGamePlayers() {
+        return gamePlayers;
     }
 
     public void setFechaVar(Date fechaVar) {

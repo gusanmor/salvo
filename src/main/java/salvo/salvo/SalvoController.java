@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 public class SalvoController {
@@ -25,9 +26,11 @@ public class SalvoController {
             Map<String, Object> IDyCreatedMap = new HashMap<String, Object>();
             IDyCreatedMap.put("ID", repoGames.findAll().get(i).getId());
             IDyCreatedMap.put("Created", repoGames.findAll().get(i).getFechaVar());
+            IDyCreatedMap.put("gamePlayers", repoGames.findAll().get(i).getGamePlayers());
             IDyCreatedList.add(IDyCreatedMap);
         }
-        System.out.println(repoGames.findAll());
+
+
         return IDyCreatedList;
 
 //        ArrayList IDsGamesArr = new ArrayList<>();
@@ -36,4 +39,22 @@ public class SalvoController {
 //        }
 //        return IDsGamesArr;
     }
+
+    @RequestMapping("api/gustavo")
+    public List<Long> giveMeTheIDS(){
+
+        return repoGames.findAll()
+                .stream()
+
+                .map(game -> gameIDS(game))
+
+                .collect(Collectors.toList());
+
+    }
+
+    public Long gameIDS(Game game){
+
+        return game.getId();
+    }
+
 }
