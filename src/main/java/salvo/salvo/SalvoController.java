@@ -24,7 +24,10 @@ public class SalvoController {
             Map<String, Object> IDyCreatedMap = new HashMap<String, Object>();
             IDyCreatedMap.put("ID", repoGames.findAll().get(i).getId());
             IDyCreatedMap.put("Created", repoGames.findAll().get(i).getFechaVar());
-            IDyCreatedMap.put("gamePlayers", repoGames.findAll().get(i).getGamePlayers());
+            IDyCreatedMap.put("gamePlayers", repoGames.findAll().get(i).getGamePlayers().stream()
+                    .map(gameNoEntiendo -> gamePlayerMetodo(gameNoEntiendo))
+                    .collect(Collectors.toList()));
+
             IDyCreatedList.add(IDyCreatedMap);
         }
 
@@ -38,26 +41,26 @@ public class SalvoController {
 //        return IDsGamesArr;
     }
 
-    @RequestMapping("api/gustavo")
-    public List<Object> arrayObjGeneral(){
+//    @RequestMapping("api/gustavo")
+//    public List<Object> arrayObjGeneral(){
+//
+//        return repoGames.findAll()
+//                .stream()
+//
+//                .map(gameNoEntiendo -> gameMetodo(gameNoEntiendo))
+//
+//                .collect(Collectors.toList());
+//
+//    }
 
-        return repoGames.findAll()
-                .stream()
-
-                .map(gameNoEntiendo -> gameMetodo(gameNoEntiendo))
-
-                .collect(Collectors.toList());
-
-    }
-
-    public Map<String,Object> gameMetodo(Game gameParam){
-    Map<String,Object> gameMap = new HashMap<>();
-    gameMap.put("id", gameParam.getId());
-    gameMap.put("date", gameParam.getFechaVar());
-    gameMap.put("gamePlayers", gameParam.getGamePlayers().stream()
-                                    .map(gamePlayer -> gamePlayerMetodo(gamePlayer) )                                            .collect(Collectors.toList()));
-        return gameMap;
-    }
+//    public Map<String,Object> gameMetodo(Game gameParam){
+//    Map<String,Object> gameMap = new HashMap<>();
+//    gameMap.put("id", gameParam.getId());
+//    gameMap.put("date", gameParam.getFechaVar());
+//    gameMap.put("gamePlayers", gameParam.getGamePlayers().stream()
+//                                    .map(gamePlayer -> gamePlayerMetodo(gamePlayer) )                                            .collect(Collectors.toList()));
+//        return gameMap;
+//    }
 
     public Map<String, Object> gamePlayerMetodo(GamePlayer gamePlayerParam) {
         Map<String,Object> gamePlayersMap = new HashMap<>();
