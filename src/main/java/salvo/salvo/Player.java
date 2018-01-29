@@ -23,6 +23,10 @@ public class Player {
 
     }
 
+    public long getId() {
+        return id;
+    }
+
     public String getUserName() {
         return userName;
     }

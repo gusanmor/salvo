@@ -6,10 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -19,8 +16,10 @@ public class SalvoController {
     private GameRepository repoGames;
 
     @RequestMapping("api/games")
-    public ArrayList IDyCreatedMetodo() {
+    public ArrayList IDyCreatedMetodo(Game game) {
         ArrayList IDyCreatedList = new ArrayList();
+
+        Set<GamePlayer> gamePlayers = game.getGamePlayers();
 
         for(int i = 0; i<repoGames.findAll().size(); i++){
             Map<String, Object> IDyCreatedMap = new HashMap<String, Object>();
@@ -41,7 +40,7 @@ public class SalvoController {
     }
 
     @RequestMapping("api/gustavo")
-    public List<Long> giveMeTheIDS(){
+    public List<Object> giveMeTheIDS(){
 
         return repoGames.findAll()
                 .stream()
@@ -52,9 +51,28 @@ public class SalvoController {
 
     }
 
-    public Long gameIDS(Game game){
-
-        return game.getId();
+    public Map<String,Object> gameIDS(Game game){
+    Map<String,Object> gameMap = new LinkedHashMap<>();
+    gameMap.put("id", game.getId());
+    gameMap.put("date", game.getFechaVar());
+    gameMap.put("gamePlayers", game.getGamePlayers().stream()
+                                    .map(gamePlayer -> getGPlayers(gamePlayer) )                                            .collect(Collectors.toList()));
+        return gameMap;
     }
 
+    public Map<String, Object> getGPlayers (GamePlayer gamePlayer) {
+        Map<String,Object> gamePlayersMap = new LinkedHashMap<>();
+
+        gamePlayersMap.put("id", gamePlayer.getId());
+        gamePlayersMap.put("players", playersInfo(gamePlayer.getGamePlayerUserName()));
+        return gamePlayersMap;
+    }
+
+    public Map<String, Object> playersInfo (Player player) {
+        Map<String, Object> playerMap = new LinkedHashMap<>();
+        playerMap.put("id", player.getId());
+        playerMap.put("email", player.getUserName());
+
+        return playerMap;
+    }
 }
