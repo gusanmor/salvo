@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="shortcut icon" sizes="196x196" href="nysl_logo.png">
+    <title>Futbol Movil</title>
+    <!--	estilo Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <!-- CSS FANCYBOX-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" />
+
+    <!--	estilo principal-->
+    <link rel="stylesheet" href="style.css">
+    <!----------también bootsrap--------------->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <!--	---------------mustache----------------------->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js" integrity="sha256-XDU6Po3hKjdQXJHRrKrWlIF/E6y6BBgV5eiqZSYePpo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    
+    <header>
+    <H1>Salvo!</H1>
+    </header>
+    
+    <div id="futbolMobileID"></div>
+
+
+    <!--		------JQUERY------------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!---------------------bootstrap------------------->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+    <!--------------ISOTOPE------------->
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+
+    <!--	-----------FANCYBOX--------------->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+
+
+    <script src="futbolMobile.js">
+    </script>
+
+
+    <!--	---------FIREBASE------------>
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDGcTmZ1jYriy11gJhYUwk7_Xb_kwArr_k",
+            authDomain: "gustavomobilefubol.firebaseapp.com",
+            databaseURL: "https://gustavomobilefubol.firebaseio.com",
+            projectId: "gustavomobilefubol",
+            storageBucket: "gustavomobilefubol.appspot.com",
+            messagingSenderId: "743227189640"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+</body>
+
+</html>

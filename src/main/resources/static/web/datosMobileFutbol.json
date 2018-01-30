@@ -1,0 +1,12 @@
+{
+  "equipo": [
+    {
+      "nombre": "Villarreal B",
+      "estadio": "Estadio Villarreal"
+    },
+    {
+      "nombre": "Elche",
+      "estadio": "Estadio Elche"
+    }
+  ]
+}
