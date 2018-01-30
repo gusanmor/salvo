@@ -8,10 +8,17 @@ $.getJSON("http://localhost:8080/api/games", function (data) {
 function crearFutbolMobile(data) {
 
 console.log(data);
-
-    var contenidoFutbolMobile = '<ul>PARTIDA'+
-        '<li>' + 'Creado: '+ data["0"].Created + '</li>'+
-        '<li>'+'ID: '+data["0"].ID+'<li>'+
+    
+    var contenidoFutbolMobile = {};
+    
+    for (var i=0; i<data.length; i++) {
+    var fecha2 = new Date(data[i].Created);
+    var fecha3 = fecha2.toString();
+    
+    contenidoFutbolMobile += '<div class="fotarIzquierda">'+
+        '<ul>PARTIDA'+
+        '<li>' + 'Creado: '+ fecha3 + '</li>'+
+        '<li>'+'ID: '+data[i].ID+'<li>'+
         '<ul>GAMEPLAYER'+
         '<li>ID: '+data["0"].gamePlayers["0"].id+'</li>'+
         '<ul>JUGADOR'+
@@ -23,10 +30,11 @@ console.log(data);
         '<ul>JUGADOR'+
         '<li>MAIL: '+data["0"].gamePlayers["1"].players.email+'</li>'+
         '<li>ID: '+data["0"].gamePlayers["1"].players.id+'</li>'
-        '</ul>'+'</ul>'
-        ;
+        '</ul>'+'</ul>'+'</div>';
+        
+    }
 
-    console.log(contenidoFutbolMobile);
+//    console.log(contenidoFutbolMobile);
 
     document.getElementById("futbolMobileID").innerHTML = contenidoFutbolMobile;
 

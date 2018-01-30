@@ -51,9 +51,9 @@ public class SalvoApplication {
             gameRepository.save(partida1Var);
             gameRepository.save(partida2Var);
             gameRepository.save(partida3Var);
-            gameRepository.save(partida4Var);
-            gameRepository.save(partida5Var);
-            gameRepository.save(partida6Var);
+//            gameRepository.save(partida4Var);
+//            gameRepository.save(partida5Var);
+//            gameRepository.save(partida6Var);
 
             GamePlayer gamePlayer1Var = new GamePlayer(jugador1Var, partida1Var);
             GamePlayer gamePlayer2Var = new GamePlayer(jugador2Var, partida1Var);
