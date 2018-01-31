@@ -17,16 +17,16 @@ public class SalvoController {
     @RequestMapping("api/games")
     public ArrayList IDyCreatedMetodo(Game game) {
         ArrayList IDyCreatedList = new ArrayList();
-        List<Game> games = repoGames.findAll();
+        List<Game> repoGamesfindAll = repoGames.findAll();
 
         Set<GamePlayer> gamePlayers = game.getGamePlayers();
 
-        for(int i = 0; i<games.size(); i++){
+        for(int i = 0; i<repoGamesfindAll.size(); i++){
             Map<String, Object> IDyCreatedMap = new HashMap<String, Object>();
-            IDyCreatedMap.put("ID", games.get(i).getId());
-            IDyCreatedMap.put("Created", games.get(i).getFechaVar());
+            IDyCreatedMap.put("ID", repoGamesfindAll.get(i).getId());
+            IDyCreatedMap.put("Created", repoGamesfindAll.get(i).getFechaVar());
 
-            Set<GamePlayer> input = games.get(i).getGamePlayers();
+            Set<GamePlayer> input = repoGamesfindAll.get(i).getGamePlayers();
             List<Map<String, Object>> output = new ArrayList<>();
 
             // Option 1
@@ -57,6 +57,22 @@ public class SalvoController {
 //            IDsGamesArr.add(repoGames.findAll().get(i).getId());
 //        }
 //        return IDsGamesArr;
+    }
+    @RequestMapping("api/prueba")
+    public String prueba5() {
+        int prueba6 = repoGames.findAll().size();
+        List prueba7 = repoGames.findAll();
+        long prueba8 = repoGames.findAll().get(1).getId();
+        Set<GamePlayer> prueba9 = repoGames.findAll().get(1).getGamePlayers();
+//        List prueba10 = repoGames.findAll().get(1).getGamePlayers().stream().map(gamePlayer -> gamePlayer.getId()).collect(Collectors.toList());
+//        List prueba11 = repoGames.findAll().get(1).getGamePlayers().stream().map(gamePlayer -> gamePlayer.getGamePlayerUserName()).collect(Collectors.toList());
+        String playerName = "";
+
+        for (GamePlayer gp : prueba9) {
+            playerName = gp.getGamePlayerUserName().getUserName();
+        }
+
+        return playerName;
     }
 
 //    @RequestMapping("api/gustavo")

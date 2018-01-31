@@ -7,7 +7,7 @@ $.getJSON("http://localhost:8080/api/games", function (data) {
 
 function crearFutbolMobile(data) {
 
-console.log(data);
+//console.log(data);
     
     var contenidoFutbolMobile = {};
     
@@ -15,22 +15,23 @@ console.log(data);
     var fecha2 = new Date(data[i].Created);
     var fecha3 = fecha2.toString();
     
-    contenidoFutbolMobile += '<div class="fotarIzquierda">'+
+    contenidoFutbolMobile += '<div>_</div>'+
+        '<div class="fotarIzquierda">'+
         '<ul>PARTIDA'+
+        '<li>'+'ID: '+data[i].ID+'</li>'+
         '<li>' + 'Creado: '+ fecha3 + '</li>'+
-        '<li>'+'ID: '+data[i].ID+'<li>'+
         '<ul>GAMEPLAYER'+
-        '<li>ID: '+data["0"].gamePlayers["0"].id+'</li>'+
-        '<ul>JUGADOR'+
-        '<li>MAIL: '+data["0"].gamePlayers["0"].players.email+'</li>'+
-        '<li>ID: '+data["0"].gamePlayers["0"].players.id+'</li>'+
-        '</ul>'+'</ul>'+
+        '<li>ID: '+data[i].gamePlayers["0"].id+'</li>'+
+        '<div>JUGADOR</div>'+
+        '<li>ID: '+data[i].gamePlayers["0"].players.id+'</li>'+
+        '<li>MAIL: '+data[i].gamePlayers["0"].players.email+'</li>'+
+        '</ul>'+
         '<ul>GAMEPLAYER'+
-        '<li>ID: '+data["0"].gamePlayers["1"].id+'</li>'+
-        '<ul>JUGADOR'+
-        '<li>MAIL: '+data["0"].gamePlayers["1"].players.email+'</li>'+
-        '<li>ID: '+data["0"].gamePlayers["1"].players.id+'</li>'
-        '</ul>'+'</ul>'+'</div>';
+        '<li>ID: '+data[i].gamePlayers["1"].id+'</li>'+
+        '<div>JUGADOR</div>'+
+        '<li>ID: '+data[i].gamePlayers["1"].players.id+'</li>'+
+        '<li>MAIL: '+data[i].gamePlayers["1"].players.email+'</li>'+
+        '</ul>'+'</div>';
         
     }
 
