@@ -15,10 +15,13 @@ public class GamePlayer {
     @JoinColumn(name="IDPlayer")
     private Player playerEnGameplayer;
 
-
     @ManyToOne
     @JoinColumn(name="IDGame")
     private Game gameEnGamePlayer;
+
+    @ManyToOne
+    @JoinColumn(name="IDShip")
+    private Ship shipEnGamePlayer;
 
     public GamePlayer() { }
 
