@@ -5,7 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @SpringBootApplication
 public class SalvoApplication {
@@ -18,7 +21,8 @@ public class SalvoApplication {
     @Bean
     public CommandLineRunner initData(PlayerRepository playerRepository,
                                       GameRepository gameRepository,
-                                      GamePlayerRepository gamePlayerRepository) {
+                                      GamePlayerRepository gamePlayerRepository,
+                                      ShipRepository shipRepository) {
 
         return (args) -> {
 
@@ -70,9 +74,15 @@ public class SalvoApplication {
             gamePlayerRepository.save(gamePlayer6Var);
 
 
-//            System.out.println(jugador1Var);
-//            System.out.println(partida1Var);
-//            System.out.println(gamePlayer1Var);
+            ArrayList<String> localBarco1 = new ArrayList<String>(Arrays.asList("A1", "A2", "A3"));
+            ArrayList<String> localBarco2 = new ArrayList<String>(Arrays.asList("E1", "F1", "G1"));
+
+            Ship ship1 = new Ship("Destroyer", localBarco1);
+            Ship ship2 = new Ship("Submarine", localBarco2);
+
+            shipRepository.save(ship1);
+            shipRepository.save(ship2);
+
 
         };
     }
