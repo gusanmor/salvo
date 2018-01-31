@@ -59,17 +59,19 @@ public class SalvoController {
 //        return IDsGamesArr;
     }
     @RequestMapping("api/prueba")
-    public String prueba5() {
+    public ArrayList prueba5() {
         int prueba6 = repoGames.findAll().size();
         List prueba7 = repoGames.findAll();
         long prueba8 = repoGames.findAll().get(1).getId();
         Set<GamePlayer> prueba9 = repoGames.findAll().get(1).getGamePlayers();
 //        List prueba10 = repoGames.findAll().get(1).getGamePlayers().stream().map(gamePlayer -> gamePlayer.getId()).collect(Collectors.toList());
 //        List prueba11 = repoGames.findAll().get(1).getGamePlayers().stream().map(gamePlayer -> gamePlayer.getGamePlayerUserName()).collect(Collectors.toList());
-        String playerName = "";
+        ArrayList playerName = new ArrayList();
+//        String VarInterm = "";
 
         for (GamePlayer gp : prueba9) {
-            playerName = gp.getGamePlayerUserName().getUserName();
+//            VarInterm = gp.getGamePlayerUserName().getUserName();
+            playerName.add(gp.getGamePlayerUserName().getUserName());
         }
 
         return playerName;
