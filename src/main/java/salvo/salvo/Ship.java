@@ -38,7 +38,11 @@ public class Ship {
         return locBarcoV;
     }
 
-//    public void addSubscription(Ship parAñadirBarcos) {
+    public void setShipEnGamePlayer(GamePlayer shipEnGamePlayer) {
+        this.shipEnGamePlayer = shipEnGamePlayer;
+    }
+
+    //    public void addSubscription(Ship parAñadirBarcos) {
 //        parAñadirBarcos.setGameplayer(this);
 //        subscriptions.add(parAñadirBarcos);
 //    }
