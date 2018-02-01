@@ -2,6 +2,7 @@ package salvo.salvo;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +14,12 @@ public class SalvoController {
 
     @Autowired
     private GameRepository repoGames;
+
+    @Autowired
+    private PlayerRepository repoPlayers;
+
+    @Autowired
+    private GamePlayerRepository repoGamePlayer;
 
     @RequestMapping("api/games")
     public ArrayList IDyCreatedMetodo(Game game) {
@@ -97,6 +104,19 @@ public class SalvoController {
 //                                    .map(gamePlayer -> gamePlayerMetodo(gamePlayer) )                                            .collect(Collectors.toList()));
 //        return gameMap;
 //    }
+    public Map<String, Object> getFullGame (GamePlayer gamePlayer) {
+
+        Map<String,Object> myMap = new LinkedHashMap<>();
+        myMap.put("game_id", gamePlayer.getGameEnGamePlayers().getId());
+        myMap.put("creation_date", gamePlayer.getGameEnGamePlayers().getFechaVar());
+        myMap.put("gameplayers", gamePlayer.getGameEnGamePlayers().getGamePlayers().stream()
+                                                                    .map(gp -> gamePlayerMetodo(gp)).collect(Collectors.toList()));
+
+
+        return myMap;
+
+
+    }
 
     public Map<String, Object> gamePlayerMetodo(GamePlayer gamePlayerParam) {
         Map<String,Object> gamePlayersMap = new HashMap<>();
@@ -114,9 +134,9 @@ public class SalvoController {
         return playerMap;
     }
 
-    @RequestMapping("api/game_view/1")
-    public String pruebaGameView() {
-        String pruebaGameView1 = "GAME VIEW";
-        return pruebaGameView1;
+    @RequestMapping("api/game_view/{gamePlayerId}")
+    public Map<String, Object> gameViewInfo (@PathVariable Long gamePlayerId) {
+        Map<String,Object> gameViewMap = getFullGame(repoGamePlayer.getOne(gamePlayerId));
+        return  gameViewMap;
     }
 }
