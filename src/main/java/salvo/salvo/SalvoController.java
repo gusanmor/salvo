@@ -113,4 +113,10 @@ public class SalvoController {
 
         return playerMap;
     }
+
+    @RequestMapping("api/game_view/1")
+    public String pruebaGameView() {
+        String pruebaGameView1 = "GAME VIEW";
+        return pruebaGameView1;
+    }
 }
