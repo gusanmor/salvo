@@ -37,5 +37,8 @@ public class Ship {
         return locBarcoV;
     }
 
-
+//    public void addSubscription(Ship parAñadirBarcos) {
+//        parAñadirBarcos.setGameplayer(this);
+//        subscriptions.add(parAñadirBarcos);
+//    }
 }
