@@ -11,8 +11,9 @@ public class Ship {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
 
-    @OneToMany(mappedBy="shipEnGamePlayer", fetch=FetchType.EAGER)
-    Set<GamePlayer> gamePlayers;
+    @ManyToOne
+    @JoinColumn(name="IDdeGameplayer")
+    private GamePlayer shipEnGamePlayer;
 
     private String tipoBarcoV;
     private ArrayList<String> locBarcoV;
