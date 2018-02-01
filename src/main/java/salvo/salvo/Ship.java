@@ -36,4 +36,6 @@ public class Ship {
     public ArrayList<String> getLocBarcoV() {
         return locBarcoV;
     }
+
+
 }
