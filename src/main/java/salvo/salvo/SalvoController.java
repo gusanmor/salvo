@@ -30,8 +30,8 @@ public class SalvoController {
 
         for(int i = 0; i<repoGamesfindAll.size(); i++){
             Map<String, Object> IDyCreatedMap = new HashMap<String, Object>();
-            IDyCreatedMap.put("ID", repoGamesfindAll.get(i).getId());
-            IDyCreatedMap.put("Created", repoGamesfindAll.get(i).getFechaVar());
+            IDyCreatedMap.put("gameID", repoGamesfindAll.get(i).getId());
+            IDyCreatedMap.put("gameCreated", repoGamesfindAll.get(i).getFechaVar());
 
             Set<GamePlayer> input = repoGamesfindAll.get(i).getGamePlayers();
             List<Map<String, Object>> output = new ArrayList<>();
@@ -106,9 +106,9 @@ public class SalvoController {
 //    }
     public Map<String, Object> getFullGame (GamePlayer gamePlayer) {
 
-        Map<String,Object> myMap = new LinkedHashMap<>();
-        myMap.put("game_id", gamePlayer.getGameEnGamePlayers().getId());
-        myMap.put("creation_date", gamePlayer.getGameEnGamePlayers().getFechaVar());
+        Map<String,Object> myMap = new HashMap<>();
+        myMap.put("gameID", gamePlayer.getGameEnGamePlayers().getId());
+        myMap.put("creationDateGame", gamePlayer.getGameEnGamePlayers().getFechaVar());
         myMap.put("gameplayers", gamePlayer.getGameEnGamePlayers().getGamePlayers().stream()
                                                                     .map(gp -> gamePlayerMetodo(gp)).collect(Collectors.toList()));
 
@@ -121,15 +121,15 @@ public class SalvoController {
     public Map<String, Object> gamePlayerMetodo(GamePlayer gamePlayerParam) {
         Map<String,Object> gamePlayersMap = new HashMap<>();
 
-        gamePlayersMap.put("id", gamePlayerParam.getId());
+        gamePlayersMap.put("gamePlayerID", gamePlayerParam.getId());
         gamePlayersMap.put("players", playersInfo(gamePlayerParam.getGamePlayerUserName()));
         return gamePlayersMap;
     }
 
     public Map<String, Object> playersInfo (Player playerParam) {
         Map<String, Object> playerMap = new HashMap<>();
-        playerMap.put("id", playerParam.getId());
-        playerMap.put("email", playerParam.getUserName());
+        playerMap.put("playerId", playerParam.getId());
+        playerMap.put("playerEmail", playerParam.getUserName());
 
         return playerMap;
     }
