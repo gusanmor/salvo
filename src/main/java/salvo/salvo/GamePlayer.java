@@ -52,6 +52,11 @@ public class GamePlayer {
         return id;
     }
 
+    public void addShips(Ship parShipenGamePlayer) {
+        parShipenGamePlayer.setShipEnGamePlayer(this);
+        this.ships.add(parShipenGamePlayer);
+        }
+
     public String toString() {
         return playerEnGameplayer+" "+gameEnGamePlayer;
     }
