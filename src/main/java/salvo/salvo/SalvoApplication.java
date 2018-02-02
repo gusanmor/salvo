@@ -70,6 +70,9 @@ public class SalvoApplication {
             Ship ship1 = new Ship("Destroyer", localBarco1);
             Ship ship2 = new Ship("Submarine", localBarco2);
 
+gamePlayer1Var.addShips(ship1);
+gamePlayer1Var.addShips(ship2);
+
             playerRepository.save(jugador1Var);
             playerRepository.save(jugador2Var);
             playerRepository.save(jugador3Var);
