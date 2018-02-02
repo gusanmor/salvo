@@ -111,6 +111,7 @@ public class SalvoController {
         myMap.put("creationDateGame", gamePlayer.getGameEnGamePlayers().getFechaVar());
         myMap.put("gameplayers", gamePlayer.getGameEnGamePlayers().getGamePlayers().stream()
                                                                     .map(gp -> gamePlayerMetodo(gp)).collect(Collectors.toList()));
+        myMap.put("ships","hola");
 
 
         return myMap;
@@ -136,7 +137,7 @@ public class SalvoController {
 
     @RequestMapping("api/game_view/{gamePlayerId}")
     public Map<String, Object> gameViewInfo (@PathVariable Long gamePlayerId) {
-        Map<String,Object> gameViewMap = getFullGame(repoGamePlayer.getOne(gamePlayerId));
+        Map<String,Object> gameViewMap = getFullGame(repoGamePlayer.findOne(gamePlayerId));
         return  gameViewMap;
     }
 }
