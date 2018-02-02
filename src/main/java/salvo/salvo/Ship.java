@@ -16,8 +16,6 @@ public class Ship {
     private GamePlayer shipEnGamePlayer;
 
     private String tipoBarcoV;
-
-
     private ArrayList<String> locBarcoV;
 
     public Ship() { }
