@@ -12,7 +12,7 @@ public class Ship {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name="IDdeGameplayer")
+    @JoinColumn(name="IDGameplayerPrueba")
     private GamePlayer shipEnGamePlayer;
 
     private String tipoBarcoV;
