@@ -9,8 +9,6 @@ import java.util.Set;
 @Entity
 public class GamePlayer {
 
-    // CAMBIO
-
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
