@@ -2,6 +2,7 @@ package salvo.salvo;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,7 +19,11 @@ public class Ship {
     private String tipoBarcoV;
 
 
-    private ArrayList<String> locBarcoV;
+//    private ArrayList<String> locBarcoV;
+
+    @ElementCollection
+    @Column(name="LocalBarcos")
+    private List<String> locBarcoV = new ArrayList<>();
 
     public Ship() { }
 
@@ -36,7 +41,7 @@ public class Ship {
         return tipoBarcoV;
     }
 
-    public ArrayList<String> getLocBarcoV() {
+    public List<String> getLocBarcoV() {
         return locBarcoV;
     }
 
