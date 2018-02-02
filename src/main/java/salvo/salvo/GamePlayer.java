@@ -9,7 +9,7 @@ import java.util.Set;
 @Entity
 public class GamePlayer {
 
-    // CAMBIO 2
+    // CAMBIO
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
