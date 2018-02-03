@@ -38,7 +38,7 @@ public class SalvoController {
 
             // Option 1
             for (GamePlayer gameNoEntiendo : input) {
-                Map<String, Object> gpDTO = gamePlayerMetodo(gameNoEntiendo);
+                Map<String, Object> gpDTO = datosGamePlayerMetodo(gameNoEntiendo);
                 output.add(gpDTO);
             }
 
@@ -104,13 +104,13 @@ public class SalvoController {
 //                                    .map(gamePlayer -> gamePlayerMetodo(gamePlayer) )                                            .collect(Collectors.toList()));
 //        return gameMap;
 //    }
-    public Map<String, Object> getFullGame (GamePlayer gamePlayer) {
+    public Map<String, Object> datosGameMetodo(GamePlayer gamePlayer) {
 
         Map<String,Object> myMap = new HashMap<>();
         myMap.put("gameID", gamePlayer.getGameEnGamePlayers().getId());
         myMap.put("creationDateGame", gamePlayer.getGameEnGamePlayers().getFechaVar());
         myMap.put("gameplayers", gamePlayer.getGameEnGamePlayers().getGamePlayers().stream()
-                                                                    .map(gp -> gamePlayerMetodo(gp)).collect(Collectors.toList()));
+                                                                    .map(gp -> datosGamePlayerMetodo(gp)).collect(Collectors.toList()));
         myMap.put("ships","hola");
 
 
@@ -119,15 +119,15 @@ public class SalvoController {
 
     }
 
-    public Map<String, Object> gamePlayerMetodo(GamePlayer gamePlayerParam) {
+    public Map<String, Object> datosGamePlayerMetodo(GamePlayer gamePlayerParam) {
         Map<String,Object> gamePlayersMap = new HashMap<>();
 
         gamePlayersMap.put("gamePlayerID", gamePlayerParam.getId());
-        gamePlayersMap.put("players", playersInfo(gamePlayerParam.getGamePlayerUserName()));
+        gamePlayersMap.put("players", datosPlayersMetodo(gamePlayerParam.getGamePlayerUserName()));
         return gamePlayersMap;
     }
 
-    public Map<String, Object> playersInfo (Player playerParam) {
+    public Map<String, Object> datosPlayersMetodo(Player playerParam) {
         Map<String, Object> playerMap = new HashMap<>();
         playerMap.put("playerId", playerParam.getId());
         playerMap.put("playerEmail", playerParam.getUserName());
@@ -137,7 +137,7 @@ public class SalvoController {
 
     @RequestMapping("api/game_view/{gamePlayerId}")
     public Map<String, Object> gameViewInfo (@PathVariable Long gamePlayerId) {
-        Map<String,Object> gameViewMap = getFullGame(repoGamePlayer.findOne(gamePlayerId));
+        Map<String,Object> gameViewMap = datosGameMetodo(repoGamePlayer.findOne(gamePlayerId));
         return  gameViewMap;
     }
 }
