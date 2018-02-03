@@ -34,7 +34,7 @@ public class SalvoController {
             IDyCreatedMap.put("gameCreated", repoGamesfindAll.get(i).getFechaVar());
 
             IDyCreatedMap.put("gamePlayers", repoGamesfindAll.get(i).getGamePlayers().stream()
-                    .map(gameNoEntiendo -> datosGamePlayerMetodo(gameNoEntiendo))
+                    .map(gameLambda -> datosGamePlayerMetodo(gameLambda))
                     .collect(Collectors.toList()));
 
             IDyCreatedList.add(IDyCreatedMap);
