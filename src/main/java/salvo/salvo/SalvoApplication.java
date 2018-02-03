@@ -31,10 +31,6 @@ public class SalvoApplication {
             Player jugador3Var = new Player("kim_bauer@gmail.com");
             Player jugador4Var = new Player("t.almeida@ctu.gov");
 
-
-
-
-
             Date fecha1Var = new Date();
             Date fecha2Var = Date.from(fecha1Var.toInstant().plusSeconds(3600));
             Date fecha3Var = Date.from(fecha1Var.toInstant().plusSeconds(7200));
@@ -49,20 +45,12 @@ public class SalvoApplication {
             Game partida5Var = new Game(fecha5Var);
             Game partida6Var = new Game(fecha6Var);
 
-
-//            gameRepository.save(partida4Var);
-//            gameRepository.save(partida5Var);
-//            gameRepository.save(partida6Var);
-
             GamePlayer gamePlayer1Var = new GamePlayer(jugador1Var, partida1Var);
             GamePlayer gamePlayer2Var = new GamePlayer(jugador2Var, partida1Var);
             GamePlayer gamePlayer3Var = new GamePlayer(jugador1Var, partida2Var);
             GamePlayer gamePlayer4Var = new GamePlayer(jugador2Var, partida2Var);
             GamePlayer gamePlayer5Var = new GamePlayer(jugador2Var, partida3Var);
             GamePlayer gamePlayer6Var = new GamePlayer(jugador4Var, partida3Var);
-
-
-
 
             ArrayList<String> localBarco1 = new ArrayList<String>(Arrays.asList("A1", "A2", "A3"));
             ArrayList<String> localBarco2 = new ArrayList<String>(Arrays.asList("E1", "F1", "G1"));

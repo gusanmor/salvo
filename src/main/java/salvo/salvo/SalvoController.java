@@ -44,8 +44,6 @@ public class SalvoController {
 
     @RequestMapping("api/game_view/{gamePlayerId}")
     public Map<String, Object> metodoGameView(@PathVariable Long gamePlayerId) {
-//        Map<String,Object> gameViewMap = datosGameMetodo(repoGamePlayer.findOne(gamePlayerId));
-//        return  gameViewMap;
 
         Map<String,Object> gameViewMap = new HashMap<>();
         gameViewMap.put("gameID", (repoGamePlayer.findOne(gamePlayerId).getGameEnGamePlayers().getId()));

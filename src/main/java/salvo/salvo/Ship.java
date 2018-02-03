@@ -17,9 +17,6 @@ public class Ship {
 
     private String tipoBarcoV;
 
-
-//    private ArrayList<String> locBarcoV;
-
     @ElementCollection
     @Column(name="LocalBarcos")
     private List<String> locBarcoV = new ArrayList<>();
@@ -47,9 +44,4 @@ public class Ship {
     public void setGamePlayerShip(GamePlayer gamePlayerShip) {
         this.gamePlayerShip = gamePlayerShip;
     }
-
-    //    public void addSubscription(Ship parAñadirBarcos) {
-//        parAñadirBarcos.setGameplayer(this);
-//        subscriptions.add(parAñadirBarcos);
-//    }
 }

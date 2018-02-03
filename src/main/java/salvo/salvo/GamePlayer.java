@@ -60,6 +60,6 @@ public class GamePlayer {
         }
 
     public String toString() {
-        return playerEnGameplayer+" "+gameEnGamePlayer;
+        return ""+gameEnGamePlayer;
     }
 }
