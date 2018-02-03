@@ -42,6 +42,10 @@ public class GamePlayer {
         return gameEnGamePlayer;
     }
 
+    public Set<Ship> getShips() {
+        return ships;
+    }
+
     public void setGameEnGamePlayers(Game argGameNiIdea) {
         this.gameEnGamePlayer = argGameNiIdea;
     }

@@ -52,30 +52,21 @@ public class SalvoController {
         gameViewMap.put("creationDateGame", (repoGamePlayer.findOne(gamePlayerId).getGameEnGamePlayers().getFechaVar()));
         gameViewMap.put("gameplayers", (repoGamePlayer.findOne(gamePlayerId).getGameEnGamePlayers().getGamePlayers()
                 .stream()
-                .map(gp -> datosGamePlayerMetodo(gp))
+                .map(gpLambda -> datosGamePlayerMetodo(gpLambda))
                 .collect(Collectors.toList())));
-        gameViewMap.put("ships", "prueba3");
+        gameViewMap.put("ships", (repoGamePlayer.findOne(gamePlayerId).getShips()
+                .stream()
+                .map(shLambda -> datosShipsMetodo(shLambda))
+                .collect(Collectors.toList())));
+
         return gameViewMap;
 
     }
 
-//    public Map<String, Object> datosGameMetodo(GamePlayer gamePlayer) {
-//
-//        Map<String,Object> myMap = new HashMap<>();
-//        myMap.put("gameID", gamePlayer.getGameEnGamePlayers().getId());
-//        myMap.put("creationDateGame", gamePlayer.getGameEnGamePlayers().getFechaVar());
-//        myMap.put("gameplayers", gamePlayer.getGameEnGamePlayers().getGamePlayers()
-//                .stream()
-//                .map(gp -> datosGamePlayerMetodo(gp))
-//                .collect(Collectors.toList()));
-//        myMap.put("ships", "prueba2");
-//        return myMap;
-//    }
-
     public Map<String, Object> datosGamePlayerMetodo(GamePlayer gamePlayerParam) {
         Map<String,Object> gamePlayersMap = new HashMap<>();
         gamePlayersMap.put("gamePlayerID", gamePlayerParam.getId());
-        gamePlayersMap.put("players", datosPlayersMetodo(gamePlayerParam.getGamePlayerUserName()));
+        gamePlayersMap.put("gamePlayerUserName", datosPlayersMetodo(gamePlayerParam.getGamePlayerUserName()));
         return gamePlayersMap;
     }
 
@@ -85,6 +76,14 @@ public class SalvoController {
         playerMap.put("playerEmail", playerParam.getUserName());
 
         return playerMap;
+    }
+
+    public Map<String, Object> datosShipsMetodo(Ship shipParam) {
+        Map<String, Object> shipsMap = new HashMap<>();
+        shipsMap.put("type", shipParam.getTipoBarcoV());
+        shipsMap.put("locations", shipParam.getLocBarcoV());
+
+        return shipsMap;
     }
 
     @RequestMapping("api/prueba")
