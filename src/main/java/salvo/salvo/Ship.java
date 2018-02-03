@@ -3,7 +3,6 @@ package salvo.salvo;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Ship {
@@ -13,8 +12,8 @@ public class Ship {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name="IDGameplayerPrueba")
-    private GamePlayer shipEnGamePlayer;
+    @JoinColumn(name="IDGameplayer")
+    private GamePlayer gamePlayerShip;
 
     private String tipoBarcoV;
 
@@ -45,8 +44,8 @@ public class Ship {
         return locBarcoV;
     }
 
-    public void setShipEnGamePlayer(GamePlayer shipEnGamePlayer) {
-        this.shipEnGamePlayer = shipEnGamePlayer;
+    public void setGamePlayerShip(GamePlayer gamePlayerShip) {
+        this.gamePlayerShip = gamePlayerShip;
     }
 
     //    public void addSubscription(Ship parAñadirBarcos) {
