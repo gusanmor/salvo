@@ -33,77 +33,21 @@ public class SalvoController {
             IDyCreatedMap.put("gameID", repoGamesfindAll.get(i).getId());
             IDyCreatedMap.put("gameCreated", repoGamesfindAll.get(i).getFechaVar());
 
-            Set<GamePlayer> input = repoGamesfindAll.get(i).getGamePlayers();
-            List<Map<String, Object>> output = new ArrayList<>();
-
-            // Option 1
-            for (GamePlayer gameNoEntiendo : input) {
-                Map<String, Object> gpDTO = datosGamePlayerMetodo(gameNoEntiendo);
-                output.add(gpDTO);
-            }
-
-            // Option 2
-//            output = input.stream()
-//                    .map(gameNoEntiendo -> gamePlayerMetodo(gameNoEntiendo))
-//                    .collect(Collectors.toList());
-
-
-//            IDyCreatedMap.put("gamePlayers", games.get(i).getGamePlayers().stream()
-//                    .map(gameNoEntiendo -> gamePlayerMetodo(gameNoEntiendo))
-//                    .collect(Collectors.toList()));
-
-            IDyCreatedMap.put("gamePlayers", output);
-
+            IDyCreatedMap.put("gamePlayers", repoGamesfindAll.get(i).getGamePlayers().stream()
+                    .map(gameNoEntiendo -> datosGamePlayerMetodo(gameNoEntiendo))
+                    .collect(Collectors.toList()));
 
             IDyCreatedList.add(IDyCreatedMap);
         }
         return IDyCreatedList;
-
-//        ArrayList IDsGamesArr = new ArrayList<>();
-//        for(int i = 0; i<repoGames.findAll().size(); i++){
-//            IDsGamesArr.add(repoGames.findAll().get(i).getId());
-//        }
-//        return IDsGamesArr;
-    }
-    @RequestMapping("api/prueba")
-    public ArrayList prueba5() {
-        int prueba6 = repoGames.findAll().size();
-        List prueba7 = repoGames.findAll();
-        long prueba8 = repoGames.findAll().get(1).getId();
-        Set<GamePlayer> prueba9 = repoGames.findAll().get(1).getGamePlayers();
-//        List prueba10 = repoGames.findAll().get(1).getGamePlayers().stream().map(gamePlayer -> gamePlayer.getId()).collect(Collectors.toList());
-//        List prueba11 = repoGames.findAll().get(1).getGamePlayers().stream().map(gamePlayer -> gamePlayer.getGamePlayerUserName()).collect(Collectors.toList());
-        ArrayList playerName = new ArrayList();
-//        String VarInterm = "";
-
-        for (GamePlayer gp : prueba9) {
-//            VarInterm = gp.getGamePlayerUserName().getUserName();
-            playerName.add(gp.getGamePlayerUserName().getUserName());
-        }
-
-        return playerName;
     }
 
-//    @RequestMapping("api/gustavo")
-//    public List<Object> arrayObjGeneral(){
-//
-//        return repoGames.findAll()
-//                .stream()
-//
-//                .map(gameNoEntiendo -> gameMetodo(gameNoEntiendo))
-//
-//                .collect(Collectors.toList());
-//
-//    }
+    @RequestMapping("api/game_view/{gamePlayerId}")
+    public Map<String, Object> gameViewInfo (@PathVariable Long gamePlayerId) {
+        Map<String,Object> gameViewMap = datosGameMetodo(repoGamePlayer.findOne(gamePlayerId));
+        return  gameViewMap;
+    }
 
-//    public Map<String,Object> gameMetodo(Game gameParam){
-//    Map<String,Object> gameMap = new HashMap<>();
-//    gameMap.put("id", gameParam.getId());
-//    gameMap.put("date", gameParam.getFechaVar());
-//    gameMap.put("gamePlayers", gameParam.getGamePlayers().stream()
-//                                    .map(gamePlayer -> gamePlayerMetodo(gamePlayer) )                                            .collect(Collectors.toList()));
-//        return gameMap;
-//    }
     public Map<String, Object> datosGameMetodo(GamePlayer gamePlayer) {
 
         Map<String,Object> myMap = new HashMap<>();
@@ -112,16 +56,11 @@ public class SalvoController {
         myMap.put("gameplayers", gamePlayer.getGameEnGamePlayers().getGamePlayers().stream()
                                                                     .map(gp -> datosGamePlayerMetodo(gp)).collect(Collectors.toList()));
         myMap.put("ships","hola");
-
-
         return myMap;
-
-
     }
 
     public Map<String, Object> datosGamePlayerMetodo(GamePlayer gamePlayerParam) {
         Map<String,Object> gamePlayersMap = new HashMap<>();
-
         gamePlayersMap.put("gamePlayerID", gamePlayerParam.getId());
         gamePlayersMap.put("players", datosPlayersMetodo(gamePlayerParam.getGamePlayerUserName()));
         return gamePlayersMap;
@@ -135,9 +74,19 @@ public class SalvoController {
         return playerMap;
     }
 
-    @RequestMapping("api/game_view/{gamePlayerId}")
-    public Map<String, Object> gameViewInfo (@PathVariable Long gamePlayerId) {
-        Map<String,Object> gameViewMap = datosGameMetodo(repoGamePlayer.findOne(gamePlayerId));
-        return  gameViewMap;
+    @RequestMapping("api/prueba")
+    public ArrayList prueba5() {
+        int prueba6 = repoGames.findAll().size();
+        List prueba7 = repoGames.findAll();
+        long prueba8 = repoGames.findAll().get(1).getId();
+        Set<GamePlayer> prueba9 = repoGames.findAll().get(1).getGamePlayers();
+
+        ArrayList playerName = new ArrayList();
+
+        for (GamePlayer gp : prueba9) {
+            playerName.add(gp.getGamePlayerUserName().getUserName());
+        }
+
+        return playerName;
     }
 }
