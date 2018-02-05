@@ -7,7 +7,7 @@ $.getJSON("http://localhost:8080/api/games", function (data) {
 
 function crearFutbolMobile(data) {
 
-//console.log(data);
+console.log(data);
     
     var contenidoFutbolMobile = {};
     
