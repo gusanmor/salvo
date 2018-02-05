@@ -1,8 +1,16 @@
-.fotarIzquierda {
-/*    float: right;*/
-/*    background-color: red;*/
+/*.fotarIzquierda {*/
+/*!*    float: right;*!*/
+/*!*    background-color: red;*!*/
+/*}*/
+
+h1{
+    /*background-color: blue;*/
+    /*color: red;*/
 }
 
-td {
-    background-color: blue;
+td{
+    width: 2rem;
+    height: 2rem;
+    /*background-color: aqua;*/
 }
+
