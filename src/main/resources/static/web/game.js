@@ -20,19 +20,23 @@ function crearFutbolMobile(data) {
 
     arrayLetrasTabla = ["A", "B","C","D","F","G","H","I","J"];
 
-    for (var i=0; i<arrayNumerosTabla.length; i++) {
-
-        contenidoRejillaBarcos1 += '<tr>'+
-        '<td>'+arrayNumerosTabla[i]+'</td>';
-
-    }
+    contenidoRejillaBarcos1 += "<tr>";
 
     for (var i=0; i<arrayNumerosTabla.length; i++) {
 
-        contenidoRejillaBarcos1 += '<tr>'+
-            '<td>'+arrayLetrasTabla[0]+'</td>';
+        contenidoRejillaBarcos1 += '<td>'+arrayNumerosTabla[i]+'</td>';
 
     }
+
+    contenidoRejillaBarcos1 += "</tr><tr>";
+
+    for (var i=0; i<arrayNumerosTabla.length; i++) {
+
+        contenidoRejillaBarcos1 += '<td>'+arrayLetrasTabla[0]+'</td>';
+
+    }
+    contenidoRejillaBarcos1 += "</tr>";
+
 
         // contenidoRejillaBarcos1 = '<tr><td>0<td>DOS</td></tr>';
 
