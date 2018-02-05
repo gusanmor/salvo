@@ -15,7 +15,7 @@ function crearFutbolMobile(data) {
     // var fecha2 = new Date(data[i].Created);
     // var fecha3 = fecha2.toString();
 
-    arrayNumerosTabla = ["0", "1","2","3","4","5","6","7","8","9","10"];
+    arrayNumerosTabla = [" ", "1","2","3","4","5","6","7","8","9","10"];
     console.log(arrayNumerosTabla);
 
     arrayLetrasTabla = ["A", "B","C","D","F","G","H","I","J"];
@@ -30,9 +30,15 @@ function crearFutbolMobile(data) {
 
     contenidoRejillaBarcos1 += "</tr><tr>";
 
-    for (var i=0; i<arrayNumerosTabla.length; i++) {
+    for (var j=0; j<arrayLetrasTabla.length; j++) {
 
-        contenidoRejillaBarcos1 += '<td>'+arrayLetrasTabla[0]+'</td>';
+        contenidoRejillaBarcos1 += '<td>'+arrayLetrasTabla[j]+'</td>';
+
+        for (var k=1; k<arrayNumerosTabla.length; k++) {
+            // console.log("hola");
+            contenidoRejillaBarcos1 += '<td>X</td>';
+        }
+        contenidoRejillaBarcos1 += '</tr>';
 
     }
     contenidoRejillaBarcos1 += "</tr>";
