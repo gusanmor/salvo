@@ -10,10 +10,8 @@ function paramObj(search) {
     search.replace(reg, function(match, param, val) {
         obj[decodeURIComponent(param)] = val === undefined ? "" : decodeURIComponent(val);
     });
-
     var obj2 = "";
     obj2 = obj.gp;
-
     return obj2;
 }
 
@@ -21,7 +19,6 @@ function crearRejillaBarcos(data) {
     
     var contenidoRejillaBarcos1 = "";
     arrayNumerosTabla = [" ", "1","2","3","4","5","6","7","8","9","10"];
-    console.log(arrayNumerosTabla);
 
     arrayLetrasTabla = ["A", "B","C","D","E","F","G","H","I","J"];
 

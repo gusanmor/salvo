@@ -54,12 +54,15 @@ public class SalvoApplication {
 
             ArrayList<String> localBarco1 = new ArrayList<String>(Arrays.asList("A1", "A2", "A3"));
             ArrayList<String> localBarco2 = new ArrayList<String>(Arrays.asList("E1", "F1", "G1"));
+            ArrayList<String> localBarco3 = new ArrayList<String>(Arrays.asList("C1", "D1", "E1"));
 
             Ship ship1 = new Ship("Destroyer", localBarco1);
             Ship ship2 = new Ship("Submarine", localBarco2);
+            Ship ship3 = new Ship("Submarine", localBarco3);
 
 gamePlayer1Var.addShips(ship1);
 gamePlayer1Var.addShips(ship2);
+gamePlayer2Var.addShips(ship3);
 
             playerRepository.save(jugador1Var);
             playerRepository.save(jugador2Var);
@@ -79,6 +82,7 @@ gamePlayer1Var.addShips(ship2);
 
             shipRepository.save(ship1);
             shipRepository.save(ship2);
+            shipRepository.save(ship3);
 
 
         };
