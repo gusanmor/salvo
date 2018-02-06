@@ -35,6 +35,7 @@ function crearFutbolMobile(data) {
         contenidoRejillaBarcos1 += '<td>'+arrayLetrasTabla[j]+'</td>';
 
         for (var k=1; k<arrayNumerosTabla.length; k++) {
+            var claseBarco = "celdaSinBarco";
             // console.log("hola");
             var idCeldas = arrayLetrasTabla[j]+arrayNumerosTabla[k];
             // contenidoRejillaBarcos1 += '<td>'+idCeldas+'</td>';

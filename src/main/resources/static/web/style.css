@@ -16,6 +16,10 @@ td{
 }
 
 .celdaBarco {
+    background-color: gray;
+}
+
+.celdaSinBarco{
     background-color: aqua;
 }
 
