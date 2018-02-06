@@ -11,6 +11,10 @@ public class Salvo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+//    @ManyToOne
+//    @JoinColumn(name="IDGameplayerSalvos")
+//    private GamePlayer gamePlayerSalvo;
+
     private int numeroTurnoV;
 
     @ElementCollection
