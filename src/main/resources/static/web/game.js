@@ -38,6 +38,17 @@ function crearFutbolMobile(data) {
             // console.log("hola");
             var idCeldas = arrayLetrasTabla[j]+arrayNumerosTabla[k];
             contenidoRejillaBarcos1 += '<td>'+idCeldas+'</td>';
+
+            for (var l=1; l<data.ships.length; l++) {
+
+                console.log(data.ships.length);
+
+                for (var m=1; m<data.ships[l].locations.length; m++) {
+                    console.log(data.ships[l].locations.length);
+
+                }
+
+            }
         }
         contenidoRejillaBarcos1 += '</tr>';
 
