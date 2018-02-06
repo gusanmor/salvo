@@ -59,4 +59,17 @@ function crearRejillaBarcos(data) {
 
     document.getElementById("gameID").innerHTML = contenidoRejillaBarcos1;
 
+    // ---------------JUGADORES--------------
+
+    var crearDatosJugadoresGamesView = "";
+
+    if (paramObj(document.location.search) ==data.gameplayers[0].gamePlayerID){
+        crearDatosJugadoresGamesView = data.gameplayers[0].gamePlayerUserName.playerEmail+"(YOU) VS. "+data.gameplayers[1].gamePlayerUserName.playerEmail;
+    }
+    else {
+        crearDatosJugadoresGamesView = data.gameplayers[1].gamePlayerUserName.playerEmail+"(YOU) VS. "+data.gameplayers[0].gamePlayerUserName.playerEmail;
+    }
+
+    document.getElementById("jugadoresGamesviewID").innerHTML = crearDatosJugadoresGamesView;
+
 }
