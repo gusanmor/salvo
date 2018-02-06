@@ -41,10 +41,10 @@ function crearFutbolMobile(data) {
 
             for (var l=1; l<data.ships.length; l++) {
 
-                console.log(data.ships.length);
+                // console.log(data.ships.length);
 
                 for (var m=1; m<data.ships[l].locations.length; m++) {
-                    console.log(data.ships[l].locations.length);
+                    console.log(data.ships[l].locations[m]);
 
                 }
 
