@@ -37,7 +37,7 @@ function crearFutbolMobile(data) {
         for (var k=1; k<arrayNumerosTabla.length; k++) {
             // console.log("hola");
             var idCeldas = arrayLetrasTabla[j]+arrayNumerosTabla[k];
-            contenidoRejillaBarcos1 += '<td>'+idCeldas+'</td>';
+            // contenidoRejillaBarcos1 += '<td>'+idCeldas+'</td>';
 
             for (var l=0; l<data.ships.length; l++) {
 
@@ -48,9 +48,14 @@ function crearFutbolMobile(data) {
                     // console.log(m);
                     console.log(data.ships[l].locations[m]);
 
+                    if (data.ships[l].locations[m]==idCeldas){
+                        var claseBarco = "celdaBarco";
+                    }
+
                 }
 
             }
+            contenidoRejillaBarcos1 += '<td class="'+claseBarco+'">'+idCeldas+'</td>';
         }
         contenidoRejillaBarcos1 += '</tr>';
 
