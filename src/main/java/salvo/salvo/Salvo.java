@@ -4,12 +4,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.ArrayList;
 
 @Entity
 public class Salvo {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    private int numeroTurnoV;
+
+    public Salvo() {
+    }
+
+    public Salvo(int numeroTurnoPar) {
+        this.numeroTurnoV = numeroTurnoPar;
+    }
 }
