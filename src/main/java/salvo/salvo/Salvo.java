@@ -1,10 +1,8 @@
 package salvo.salvo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Salvo {
@@ -15,10 +13,15 @@ public class Salvo {
 
     private int numeroTurnoV;
 
+    @ElementCollection
+    @Column(name="LocalSalvos")
+    private List<String> locSalvoV = new ArrayList<>();
+
     public Salvo() {
     }
 
-    public Salvo(int numeroTurnoPar) {
+    public Salvo(int numeroTurnoPar, ArrayList<String> locSalvoPar) {
         this.numeroTurnoV = numeroTurnoPar;
+        this.locSalvoV = locSalvoPar;
     }
 }
