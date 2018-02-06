@@ -18,7 +18,7 @@ function crearFutbolMobile(data) {
     arrayNumerosTabla = [" ", "1","2","3","4","5","6","7","8","9","10"];
     console.log(arrayNumerosTabla);
 
-    arrayLetrasTabla = ["A", "B","C","D","F","G","H","I","J"];
+    arrayLetrasTabla = ["A", "B","C","D","E","F","G","H","I","J"];
 
     contenidoRejillaBarcos1 += "<tr>";
 
@@ -57,7 +57,7 @@ function crearFutbolMobile(data) {
                 }
 
             }
-            contenidoRejillaBarcos1 += '<td class="'+claseBarco+'">'+idCeldas+'</td>';
+            contenidoRejillaBarcos1 += '<td id="'+idCeldas+'" class="'+claseBarco+'">'+idCeldas+'</td>';
         }
         contenidoRejillaBarcos1 += '</tr>';
 
