@@ -47,6 +47,7 @@ function crearFutbolMobile(data) {
                     // console.log(l);
                     // console.log(m);
                     console.log(data.ships[l].locations[m]);
+                    console.log(idCeldas);
 
                     if (data.ships[l].locations[m]==idCeldas){
                         var claseBarco = "celdaBarco";
