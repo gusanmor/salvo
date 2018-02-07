@@ -28,4 +28,8 @@ public class Salvo {
         this.numeroTurnoV = numeroTurnoPar;
         this.locSalvoV = locSalvoPar;
     }
+
+    public void setGamePlayerSalvo(GamePlayer gamePlayerSalvo) {
+        this.gamePlayerSalvo = gamePlayerSalvo;
+    }
 }

@@ -62,6 +62,11 @@ public class GamePlayer {
         this.ships.add(parShipenGamePlayer);
         }
 
+    public void addSalvos(Salvo parSalvoEnGamePlayer) {
+        parSalvoEnGamePlayer.setGamePlayerSalvo(this);
+        this.salvos.add(parSalvoEnGamePlayer);
+    }
+
     public Set<Salvo> getSalvos() {
         return salvos;
     }
@@ -69,4 +74,5 @@ public class GamePlayer {
     public String toString() {
         return ""+gameEnGamePlayer;
     }
+
 }

@@ -56,6 +56,7 @@ public class SalvoController {
                 .stream()
                 .map(shLambda -> datosShipsMetodo(shLambda))
                 .collect(Collectors.toList())));
+        gameViewMap.put("salvoes", "hola");
 
         return gameViewMap;
 
