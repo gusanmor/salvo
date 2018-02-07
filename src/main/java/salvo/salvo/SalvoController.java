@@ -56,7 +56,10 @@ public class SalvoController {
                 .stream()
                 .map(shLambda -> datosShipsMetodo(shLambda))
                 .collect(Collectors.toList())));
-        gameViewMap.put("salvoes", "hola");
+        gameViewMap.put("salvoes", (repoGamePlayer.findOne(gamePlayerId).getShips()
+                .stream()
+                .map(shLambda -> datosShipsMetodo(shLambda))
+                .collect(Collectors.toList())));
 
         return gameViewMap;
 
