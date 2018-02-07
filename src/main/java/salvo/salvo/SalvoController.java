@@ -88,10 +88,10 @@ public class SalvoController {
         return shipsMap;
     }
 
-    public Map<String, Object> datosSalvosMetodo(GamePlayer salvoParam) {
-        Map<String, Object> shipsMap = new HashMap<>();
-        shipsMap.put("turn", salvoParam.getSalvos());
-        shipsMap.put("playerID", salvoParam.getId());
+    public Map<Object, Object> datosSalvosMetodo(GamePlayer salvoParam) {
+        Map<Object, Object> shipsMap = new HashMap<>();
+        shipsMap.put(salvoParam.getGamePlayerUserName().getId(), salvoParam.getSalvos());
+//        shipsMap.put("playerID", salvoParam.getId());
 //        shipsMap.put("locations", salvoParam.getLocSalvoV());
 //        shipsMap.put("player", salvoParam);
 
