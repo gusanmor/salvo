@@ -22,7 +22,7 @@ public class SalvoApplication {
     public CommandLineRunner initData(PlayerRepository playerRepository,
                                       GameRepository gameRepository,
                                       GamePlayerRepository gamePlayerRepository,
-                                      ShipRepository shipRepository) {
+                                      ShipRepository shipRepository, SalvoRepository salvoRepository) {
 
         return (args) -> {
 
@@ -60,9 +60,16 @@ public class SalvoApplication {
             Ship ship2 = new Ship("Submarine", localBarco2);
             Ship ship3 = new Ship("Submarine", localBarco3);
 
+            ArrayList<String> localSalvo1 = new ArrayList<String>(Arrays.asList("C9", "D9", "E9"));
+
+            Salvo salvo1 = new Salvo(1, localSalvo1);
+
+
 gamePlayer1Var.addShips(ship1);
 gamePlayer1Var.addShips(ship2);
 gamePlayer2Var.addShips(ship3);
+
+//            gamePlayer1Var.addSalvos(salvo1);
 
             playerRepository.save(jugador1Var);
             playerRepository.save(jugador2Var);
@@ -84,7 +91,7 @@ gamePlayer2Var.addShips(ship3);
             shipRepository.save(ship2);
             shipRepository.save(ship3);
 
-
+            salvoRepository.save(salvo1);
         };
     }
 
