@@ -88,12 +88,19 @@ public class SalvoController {
         return shipsMap;
     }
 
-    public Map<Object, Object> datosSalvosMetodo(GamePlayer salvoParam) {
-        Map<Object, Object> shipsMap = new HashMap<>();
+    public Map<Long, Object> datosSalvosMetodo(GamePlayer salvoParam) {
+        Map<Long, Object> shipsMap = new HashMap<>();
         shipsMap.put(salvoParam.getPlayerEnGameplayer().getId(), salvoParam.getSalvos());
 
         return shipsMap;
     }
+
+//    public Map<Long, Object> datosSalvosMetodo2(GamePlayer salvoParam) {
+//        Map<Long, Object> shipsMap = new HashMap<>();
+//        shipsMap.put(salvoParam.getPlayerEnGameplayer().getId(), salvoParam.getSalvos());
+//
+//        return shipsMap;
+//    }
 
     @RequestMapping("api/prueba")
     public ArrayList prueba5() {
