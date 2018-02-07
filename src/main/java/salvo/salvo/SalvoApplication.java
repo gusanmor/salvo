@@ -74,8 +74,8 @@ gamePlayer1Var.addShips(ship2);
 gamePlayer2Var.addShips(ship3);
 
             gamePlayer1Var.addSalvos(salvo1);
-            gamePlayer2Var.addSalvos(salvo2);
-            gamePlayer3Var.addSalvos(salvo3);
+            gamePlayer1Var.addSalvos(salvo2);
+            gamePlayer2Var.addSalvos(salvo3);
 
             playerRepository.save(jugador1Var);
             playerRepository.save(jugador2Var);

@@ -29,6 +29,14 @@ public class Salvo {
         this.locSalvoV = locSalvoPar;
     }
 
+    public int getNumeroTurnoV() {
+        return numeroTurnoV;
+    }
+
+    public List<String> getLocSalvoV() {
+        return locSalvoV;
+    }
+
     public void setGamePlayerSalvo(GamePlayer gamePlayerSalvo) {
         this.gamePlayerSalvo = gamePlayerSalvo;
     }
