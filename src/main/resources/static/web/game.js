@@ -63,11 +63,12 @@ function crearRejillaBarcos(data) {
 
     var crearDatosJugadoresGamesView = "";
 
+
     if (paramObj(document.location.search) ==data.gameplayers[0].gamePlayerID){
-        crearDatosJugadoresGamesView = data.gameplayers[0].gamePlayerUserName.playerEmail+"(YOU) VS. "+data.gameplayers[1].gamePlayerUserName.playerEmail;
+        crearDatosJugadoresGamesView = data.gameplayers[0].player.playerEmail+"(YOU) VS. "+data.gameplayers[1].player.playerEmail;
     }
     else {
-        crearDatosJugadoresGamesView = data.gameplayers[1].gamePlayerUserName.playerEmail+"(YOU) VS. "+data.gameplayers[0].gamePlayerUserName.playerEmail;
+        crearDatosJugadoresGamesView = data.gameplayers[1].player.playerEmail+"(YOU) VS. "+data.gameplayers[0].player.playerEmail;
     }
 
     document.getElementById("jugadoresGamesviewID").innerHTML = crearDatosJugadoresGamesView;

@@ -34,7 +34,7 @@ public class GamePlayer {
         this.gameEnGamePlayer = argGameGamePlayer;
     }
 
-    public Player getGamePlayerUserName() {
+    public Player getPlayerEnGameplayer() {
         return playerEnGameplayer;
     }
     public void setGamePlayerUserName(Player gamePlayerUserName) {

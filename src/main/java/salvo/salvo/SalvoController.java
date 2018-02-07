@@ -68,7 +68,7 @@ public class SalvoController {
     public Map<String, Object> datosGamePlayerMetodo(GamePlayer gamePlayerParam) {
         Map<String,Object> gamePlayersMap = new HashMap<>();
         gamePlayersMap.put("gamePlayerID", gamePlayerParam.getId());
-        gamePlayersMap.put("gamePlayerUserName", datosPlayersMetodo(gamePlayerParam.getGamePlayerUserName()));
+        gamePlayersMap.put("player", datosPlayersMetodo(gamePlayerParam.getPlayerEnGameplayer()));
         return gamePlayersMap;
     }
 
@@ -90,14 +90,7 @@ public class SalvoController {
 
     public Map<Object, Object> datosSalvosMetodo(GamePlayer salvoParam) {
         Map<Object, Object> shipsMap = new HashMap<>();
-        shipsMap.put(salvoParam.getGamePlayerUserName().getId(), salvoParam.getSalvos());
-//        shipsMap.put("playerID", salvoParam.getId());
-//        shipsMap.put("locations", salvoParam.getLocSalvoV());
-//        shipsMap.put("player", salvoParam);
-
-//        gp.getGameEnGamePlayers().getGamePlayers().forEach(
-//                gamePlayer -> gamePlayer.getSalvos()
-//        );
+        shipsMap.put(salvoParam.getPlayerEnGameplayer().getId(), salvoParam.getSalvos());
 
         return shipsMap;
     }
@@ -112,7 +105,7 @@ public class SalvoController {
         ArrayList playerName = new ArrayList();
 
         for (GamePlayer gp : prueba9) {
-            playerName.add(gp.getGamePlayerUserName().getUserName());
+            playerName.add(gp.getPlayerEnGameplayer().getUserName());
         }
 
         return playerName;
