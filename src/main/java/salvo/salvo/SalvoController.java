@@ -56,9 +56,9 @@ public class SalvoController {
                 .stream()
                 .map(shLambda -> datosShipsMetodo(shLambda))
                 .collect(Collectors.toList())));
-        gameViewMap.put("salvoes", (repoGamePlayer.findOne(gamePlayerId).getShips()
+        gameViewMap.put("salvoes", (repoGamePlayer.findOne(gamePlayerId).getSalvos()
                 .stream()
-                .map(shLambda -> datosShipsMetodo(shLambda))
+                .map(salvoLambda -> datosSalvosMetodo(salvoLambda))
                 .collect(Collectors.toList())));
 
         return gameViewMap;
@@ -84,6 +84,14 @@ public class SalvoController {
         Map<String, Object> shipsMap = new HashMap<>();
         shipsMap.put("type", shipParam.getTipoBarcoV());
         shipsMap.put("locations", shipParam.getLocBarcoV());
+
+        return shipsMap;
+    }
+
+    public Map<String, Object> datosSalvosMetodo(Salvo salvoParam) {
+        Map<String, Object> shipsMap = new HashMap<>();
+        shipsMap.put("turn", "shipParam.getTipoBarcoV()");
+        shipsMap.put("locations", "shipParam.getLocBarcoV()");
 
         return shipsMap;
     }
