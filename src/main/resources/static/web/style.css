@@ -27,6 +27,10 @@ td{
     background-color: aqua;
 }
 
+.celdaSalvo{
+    background-color: red;
+}
+
 /*#gameID1{*/
     /*width: 40%;*/
     /*display: inline;*/
