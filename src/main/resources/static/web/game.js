@@ -50,8 +50,14 @@ function crearRejillaBarcos(data) {
                     }
                 }
             }
-// console.log(data.salvoes["0"].locations["0"].locations["0"]);
+console.log("disparos por salvo "+data.salvoes[1].locations["0"].length);
+console.log("cantidad de turnos "+data.salvoes["0"].locations.length);
+console.log("turno actual "+data.salvoes["0"].turn["0"]);
+console.log(data.salvoes["0"].locations["0"]["0"]);
 // console.log(data.salvoes["0"].locations["0"].locations.length);
+//         .salvoes["0"].locations
+//         .salvoes["0"].locations["0"]["0"]
+//         .salvoes["0"].turn["0"]
 
             // for (var n=0; n<data.salvoes["0"].locations.length; n++) {
             //     // console.log(data.salvoes["0"].locations["0"].locations[n]);
