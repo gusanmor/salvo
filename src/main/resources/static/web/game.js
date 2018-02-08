@@ -53,21 +53,14 @@ function crearRejillaBarcos(data) {
 
             // -------------PINTAR CELDAS CON SALVOS------------
             var keySalvos = 0;
-            if (data.gameplayers[1].gamePlayerID == paramObj(document.location.search)){
+            if (data.gameplayers[1].gamePlayerID == paramObj(document.location.search)) {
                 keySalvos = 1;
-                // console.log(data.salvoes[1][1][0]);
-                for (key in data.salvoes[1][1]){
-                    // console.log(key);
-                    // console.log(key in data.salvoes[1][1][key].length);
-                }
-}
-            // for (var n=0; l<data.salvoes[0].length; n++) {
-            //     // for (var m=0; m<data.ships[l].locations.length; m++) {
-            //     //     if (data.ships[l].locations[m]==idCeldas){
-            //     //         var claseBarco = "celdaBarco";
-            //     //     }
-            //     // }
-            //     console.log(data.salvoes[0].length);
+            }
+
+            console.log(data.salvoes[keySalvos][keySalvos][1][1]["0"]);
+
+            // for (var n=0; n<data.data.salvoes[0][1]["0"][1].length; n++) {
+            //
             // }
 
 
