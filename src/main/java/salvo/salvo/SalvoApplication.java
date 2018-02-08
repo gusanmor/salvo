@@ -60,9 +60,9 @@ public class SalvoApplication {
             Ship ship2 = new Ship("Submarine", localBarco2);
             Ship ship3 = new Ship("Submarine", localBarco3);
 
-            ArrayList<String> localSalvo1 = new ArrayList<String>(Arrays.asList("C9", "D9", "E9"));
-            ArrayList<String> localSalvo2 = new ArrayList<String>(Arrays.asList("D1", "D2", "D3"));
-            ArrayList<String> localSalvo3 = new ArrayList<String>(Arrays.asList("E1", "E2", "E3"));
+            ArrayList<String> localSalvo1 = new ArrayList<String>(Arrays.asList("C9", "E9"));
+            ArrayList<String> localSalvo2 = new ArrayList<String>(Arrays.asList("D1", "D3"));
+            ArrayList<String> localSalvo3 = new ArrayList<String>(Arrays.asList("E1", "E3"));
 
             Salvo salvo1 = new Salvo(1, localSalvo1);
             Salvo salvo2 = new Salvo(2, localSalvo2);
