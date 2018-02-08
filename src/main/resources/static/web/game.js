@@ -50,14 +50,24 @@ function crearRejillaBarcos(data) {
                     }
                 }
             }
+// console.log(data.salvoes["0"].locations["0"].locations["0"]);
+// console.log(data.salvoes["0"].locations["0"].locations.length);
+
+            // for (var n=0; n<data.salvoes["0"].locations.length; n++) {
+            //     // console.log(data.salvoes["0"].locations["0"].locations[n]);
+            //     for (var o=0; o<data.salvoes["0"].locations[n].locations.length; o++) {
+            //         console.log(data.salvoes["0"].locations[n].locations[o]);
+            //     }
+            // }
+
 
             // -------------PINTAR CELDAS CON SALVOS------------
-            var keySalvos = 0;
-            if (data.gameplayers[1].gamePlayerID == paramObj(document.location.search)) {
-                keySalvos = 1;
-            }
+            // var keySalvos = 0;
+            // if (data.gameplayers[1].gamePlayerID == paramObj(document.location.search)) {
+            //     keySalvos = 1;
+            // }
 
-            console.log(data.salvoes[keySalvos][keySalvos][1][1]["0"]);
+            // console.log(data.salvoes[keySalvos][keySalvos][1][1]["0"]);
 
             // for (var n=0; n<data.data.salvoes[0][1]["0"][1].length; n++) {
             //

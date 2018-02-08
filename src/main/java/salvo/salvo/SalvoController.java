@@ -88,22 +88,36 @@ public class SalvoController {
         return shipsMap;
     }
 
-    public Map<Long, Object> datosSalvosMetodo(GamePlayer salvoParam) {
-        Map<Long, Object> shipsMap = new HashMap<>();
-        shipsMap.put(salvoParam.getPlayerEnGameplayer().getId(), salvoParam.getSalvos()
+    public Map<Object, Object> datosSalvosMetodo(GamePlayer salvoParam) {
+        Map<Object, Object> shipsMap = new HashMap<>();
+        shipsMap.put("playerId", salvoParam.getPlayerEnGameplayer().getId());
+        shipsMap.put("turn", salvoParam.getSalvos()
                 .stream()
                 .map(salvo2Lambda -> datosSalvoMetodo2(salvo2Lambda))
+                .collect(Collectors.toList()));
+        shipsMap.put("locations", salvoParam.getSalvos()
+                .stream()
+                .map(salvo3Lambda -> datosSalvoMetodo3(salvo3Lambda))
                 .collect(Collectors.toList()));
 
         return shipsMap;
     }
 
-    public Map<Object, Object> datosSalvoMetodo2(Salvo salvoPar2) {
-        Map<Object, Object> shipsMap = new HashMap<>();
+    public int datosSalvoMetodo2(Salvo salvoPar2) {
+//        Map<Object, Object> shipsMap = new HashMap<>();
 //        shipsMap.put(salvoPar2.getLocSalvoV(), salvoPar2.getNumeroTurnoV());
-        shipsMap.put(salvoPar2.getNumeroTurnoV(), salvoPar2.getLocSalvoV());
+//        shipsMap.put(salvoPar2.getNumeroTurnoV(), salvoPar2.getLocSalvoV());
+//        shipsMap.put("turn", salvoPar2.getNumeroTurnoV());
 
-        return shipsMap;
+        return salvoPar2.getNumeroTurnoV();
+    }
+
+    public List datosSalvoMetodo3(Salvo salvoPar3) {
+//        ArrayList shipsMap = new HashMap<>();
+//        shipsMap.put(salvoPar2.getLocSalvoV(), salvoPar2.getNumeroTurnoV());
+//        shipsMap.put("locations", salvoPar3.getLocSalvoV());
+
+        return salvoPar3.getLocSalvoV();
     }
 
 
