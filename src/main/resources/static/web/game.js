@@ -33,8 +33,8 @@ function crearRejiBarcosYsalvos(data) {
         keyContrario = 0;
     }
 
+    // ----------CONSTRUIR TABLA-------------------
     for (var i = 0; i < arrayNumerosTabla.length; i++) {
-
         contenidoRejillaBarcos1 += '<td>' + arrayNumerosTabla[i] + '</td>';
     }
 
@@ -57,6 +57,7 @@ function crearRejiBarcosYsalvos(data) {
                 for (var m = 0; m < data.ships[l].locations.length; m++) {
                     if (data.ships[l].locations[m] == idCeldaBarco) {
                         var claseBarco = "celdaBarco";
+                        // ----PINTAR LOS IMPACTOS DE LOS DISPAROS EN TUS BARCOS--------------
                         for (var p = 0; p < data.salvoes[keyContrario].locations.length; p++) {
                             for (var q = 0; q < data.salvoes[keyContrario].locations[p].length; q++) {
                                 if (data.salvoes[keyContrario].locations[p][q] == idCeldaBarco) {
@@ -83,7 +84,7 @@ function crearRejiBarcosYsalvos(data) {
             }
 
             contenidoRejillaBarcos1 += '<td id="' + idCeldaBarco + '" class="' + claseBarco + '">' + idCeldaBarco + '</td>';
-            contenidoRejillaSalvos1 += '<td id="' + idCeldaBarco + '" class="' + claseSalvo + '">' + idCeldaBarco + '</td>';
+            contenidoRejillaSalvos1 += '<td id="' + idCeldaSalvo + '" class="' + claseSalvo + '">' + idCeldaSalvo + '</td>';
         }
         contenidoRejillaBarcos1 += '</tr>';
         contenidoRejillaSalvos1 += '</tr>';
