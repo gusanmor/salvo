@@ -48,18 +48,19 @@ function crearRejillaBarcos(data) {
         for (var k=1; k<arrayNumerosTabla.length; k++) {
             var claseBarco = "celdaSinBarco";
             var claseSalvo = "celdaSinSalvo";
-            var idCeldas = arrayLetrasTabla[j]+arrayNumerosTabla[k];
+            var idCeldaBarco = arrayLetrasTabla[j]+arrayNumerosTabla[k];
+            var idCeldaSalvo = idCeldaBarco;
 
             // --------PINTAR CELDAS CON BARCOS-----------
             for (var l=0; l<data.ships.length; l++) {
                 for (var m=0; m<data.ships[l].locations.length; m++) {
-                    if (data.ships[l].locations[m]==idCeldas){
+                    if (data.ships[l].locations[m]==idCeldaBarco){
                         var claseBarco = "celdaBarco";
                         for (var p=0; p<data.salvoes[keyContrario].locations.length; p++) {
                             for (var q=0; q<data.salvoes[keyContrario].locations[p].length; q++) {
-                                if (data.salvoes[keyContrario].locations[p][q]==idCeldas){
+                                if (data.salvoes[keyContrario].locations[p][q]==idCeldaBarco){
                                     var claseBarco = "celdaTocado";
-                                    idCeldas = data.salvoes[keyContrario].turn[p];
+                                    idCeldaBarco = data.salvoes[keyContrario].turn[p];
                                 }
                             }
                         }
@@ -73,15 +74,15 @@ function crearRejillaBarcos(data) {
                 // console.log(data.salvoes["0"].locations["0"].locations[n]);
                 for (var o=0; o<data.salvoes[keyTuJugador].locations[n].length; o++) {
                     // console.log(data.salvoes["0"].locations[n][o]);
-                    if (data.salvoes[keyTuJugador].locations[n][o]==idCeldas){
+                    if (data.salvoes[keyTuJugador].locations[n][o]==idCeldaBarco){
                         var claseSalvo = "celdaSalvo";
-                        idCeldas = data.salvoes[keyTuJugador].turn[n];
+                        idCeldaSalvo = data.salvoes[keyTuJugador].turn[n];
                     }
                 }
             }
 
-            contenidoRejillaBarcos1 += '<td id="'+idCeldas+'" class="'+claseBarco+'">'+idCeldas+'</td>';
-            contenidoRejillaSalvos1 += '<td id="'+idCeldas+'" class="'+claseSalvo+'">'+idCeldas+'</td>';
+            contenidoRejillaBarcos1 += '<td id="'+idCeldaBarco+'" class="'+claseBarco+'">'+idCeldaBarco+'</td>';
+            contenidoRejillaSalvos1 += '<td id="'+idCeldaBarco+'" class="'+claseSalvo+'">'+idCeldaBarco+'</td>';
         }
         contenidoRejillaBarcos1 += '</tr>';
         contenidoRejillaSalvos1 += '</tr>';
