@@ -72,7 +72,7 @@ function crearRejiBarcosYsalvos(data) {
                 }
             }
 
-            // -------------PINTAR CELDAS CON SALVOS------------
+            // -------------PINTAR CELDAS CON TUS SALVOS------------
 
             for (var n = 0; n < data.salvoes[keyTuJugador].locations.length; n++) {
                 // console.log(data.salvoes["0"].locations["0"].locations[n]);
