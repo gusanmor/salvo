@@ -1,9 +1,9 @@
-$.getJSON("http://localhost:8080/api/game_view/"+paramObj(document.location.search), function (data) {
+$.getJSON("http://localhost:8080/api/game_view/"+limpiarURL(document.location.search), function (data) {
     console.log(data);
     crearRejillaBarcos(data);
 });
 
-function paramObj(search) {
+function limpiarURL(search) {
     var obj = {};
     var reg = /(?:[?&]([^?&#=]+)(?:=([^&#]*))?)(?:#.*)?/g;
 
@@ -50,46 +50,33 @@ function crearRejillaBarcos(data) {
                     }
                 }
             }
-// console.log("disparos por salvo "+data.salvoes[1].locations["0"].length);
-// console.log("cantidad de turnos "+data.salvoes["0"].locations.length);
-// console.log("turno actual "+data.salvoes["0"].turn["0"]);
-// console.log(data.salvoes["0"].locations["0"]["0"]);
-// console.log(data.salvoes["0"].locations["0"].locations.length);
-//         .salvoes["0"].locations
-//         .salvoes["0"].locations["0"]["0"]
-//         .salvoes["0"].turn["0"]
 
-            for (var n=0; n<data.salvoes[0].locations.length; n++) {
+            // -------------PINTAR CELDAS CON SALVOS------------
+
+            var keySalvos = 0;
+            if (data.gameplayers[1].gamePlayerID == limpiarURL(document.location.search)) {
+                keySalvos = 1;
+            }
+
+            for (var n=0; n<data.salvoes[keySalvos].locations.length; n++) {
                 // console.log(data.salvoes["0"].locations["0"].locations[n]);
-                for (var o=0; o<data.salvoes[0].locations[n].length; o++) {
+                for (var o=0; o<data.salvoes[keySalvos].locations[n].length; o++) {
                     // console.log(data.salvoes["0"].locations[n][o]);
-                    if (data.salvoes["0"].locations[n][o]==idCeldas){
+                    if (data.salvoes[keySalvos].locations[n][o]==idCeldas){
                         var claseSalvo = "celdaSalvo";
+                        idCeldas = data.salvoes[keySalvos].turn[n];
                     }
                 }
             }
 
-
-            // -------------PINTAR CELDAS CON SALVOS------------
-            // var keySalvos = 0;
-            // if (data.gameplayers[1].gamePlayerID == paramObj(document.location.search)) {
-            //     keySalvos = 1;
-            // }
-
-            // console.log(data.salvoes[keySalvos][keySalvos][1][1]["0"]);
-
-            // for (var n=0; n<data.data.salvoes[0][1]["0"][1].length; n++) {
-            //
-            // }
-
-
-            // ------------FIN PINTAR CELDAS BARCOS Y SALVOS---------
             contenidoRejillaBarcos1 += '<td id="'+idCeldas+'" class="'+claseBarco+'">'+idCeldas+'</td>';
             contenidoRejillaSalvos1 += '<td id="'+idCeldas+'" class="'+claseSalvo+'">'+idCeldas+'</td>';
         }
         contenidoRejillaBarcos1 += '</tr>';
         contenidoRejillaSalvos1 += '</tr>';
     }
+
+    // ------------FIN PINTAR CELDAS BARCOS Y SALVOS---------
 
     // console.log(contenidoRejillaSalvos1);
 
@@ -101,7 +88,7 @@ function crearRejillaBarcos(data) {
     var crearDatosJugadoresGamesView = "";
 
 
-    if (paramObj(document.location.search) ==data.gameplayers[0].gamePlayerID){
+    if (limpiarURL(document.location.search) ==data.gameplayers[0].gamePlayerID){
         crearDatosJugadoresGamesView = data.gameplayers[0].player.playerEmail+"(YOU) VS. "+data.gameplayers[1].player.playerEmail;
     }
     else {
