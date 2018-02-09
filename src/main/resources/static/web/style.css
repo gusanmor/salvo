@@ -31,6 +31,10 @@ td{
     background-color: red;
 }
 
+.celdaTocado{
+    background-color: orange;
+}
+
 /*#gameID1{*/
     /*width: 40%;*/
     /*display: inline;*/

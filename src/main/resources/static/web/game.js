@@ -55,6 +55,14 @@ function crearRejillaBarcos(data) {
                 for (var m=0; m<data.ships[l].locations.length; m++) {
                     if (data.ships[l].locations[m]==idCeldas){
                         var claseBarco = "celdaBarco";
+                        for (var p=0; p<data.salvoes[keyContrario].locations.length; p++) {
+                            for (var q=0; q<data.salvoes[keyContrario].locations[p].length; q++) {
+                                if (data.salvoes[keyContrario].locations[p][q]==idCeldas){
+                                    var claseBarco = "celdaTocado";
+                                    idCeldas = data.salvoes[keyContrario].turn[p];
+                                }
+                            }
+                        }
                     }
                 }
             }
