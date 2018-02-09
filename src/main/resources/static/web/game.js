@@ -49,20 +49,22 @@ function crearRejiBarcosYsalvos(data) {
         for (var k = 1; k < arrayNumerosTabla.length; k++) {
             var claseBarco = "celdaSinBarco";
             var claseSalvo = "celdaSinSalvo";
-            var idCeldaBarco = arrayLetrasTabla[j] + arrayNumerosTabla[k];
-            var idCeldaSalvo = idCeldaBarco;
+            var idCelda = arrayLetrasTabla[j] + arrayNumerosTabla[k];
+            // var idCelda = idCelda;
+            var txBarcoTocado = idCelda;
+            var txCeldaTuSalvo = idCelda;
 
             // --------PINTAR CELDAS CON BARCOS-----------
             for (var l = 0; l < data.ships.length; l++) {
                 for (var m = 0; m < data.ships[l].locations.length; m++) {
-                    if (data.ships[l].locations[m] == idCeldaBarco) {
+                    if (data.ships[l].locations[m] == idCelda) {
                         var claseBarco = "celdaBarco";
                         // ----PINTAR LOS IMPACTOS DE LOS DISPAROS EN TUS BARCOS--------------
                         for (var p = 0; p < data.salvoes[keyContrario].locations.length; p++) {
                             for (var q = 0; q < data.salvoes[keyContrario].locations[p].length; q++) {
-                                if (data.salvoes[keyContrario].locations[p][q] == idCeldaBarco) {
+                                if (data.salvoes[keyContrario].locations[p][q] == idCelda) {
                                     var claseBarco = "celdaTocado";
-                                    idCeldaBarco = data.salvoes[keyContrario].turn[p];
+                                    var txBarcoTocado = data.salvoes[keyContrario].turn[p];
                                 }
                             }
                         }
@@ -76,15 +78,15 @@ function crearRejiBarcosYsalvos(data) {
                 // console.log(data.salvoes["0"].locations["0"].locations[n]);
                 for (var o = 0; o < data.salvoes[keyTuJugador].locations[n].length; o++) {
                     // console.log(data.salvoes["0"].locations[n][o]);
-                    if (data.salvoes[keyTuJugador].locations[n][o] == idCeldaBarco) {
+                    if (data.salvoes[keyTuJugador].locations[n][o] == idCelda) {
                         var claseSalvo = "celdaSalvo";
-                        idCeldaSalvo = data.salvoes[keyTuJugador].turn[n];
+                        var txCeldaTuSalvo = data.salvoes[keyTuJugador].turn[n];
                     }
                 }
             }
 
-            contenidoRejillaBarcos1 += '<td id="' + idCeldaBarco + '" class="' + claseBarco + '">' + idCeldaBarco + '</td>';
-            contenidoRejillaSalvos1 += '<td id="' + idCeldaSalvo + '" class="' + claseSalvo + '">' + idCeldaSalvo + '</td>';
+            contenidoRejillaBarcos1 += '<td id="' + idCelda + '" class="' + claseBarco + '">' + txBarcoTocado + '</td>';
+            contenidoRejillaSalvos1 += '<td id="' + idCelda + '" class="' + claseSalvo + '">' + txCeldaTuSalvo + '</td>';
         }
         contenidoRejillaBarcos1 += '</tr>';
         contenidoRejillaSalvos1 += '</tr>';
