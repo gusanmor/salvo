@@ -63,10 +63,12 @@ public class SalvoApplication {
             ArrayList<String> localSalvo1 = new ArrayList<String>(Arrays.asList("C9", "E9"));
             ArrayList<String> localSalvo2 = new ArrayList<String>(Arrays.asList("D1", "D3"));
             ArrayList<String> localSalvo3 = new ArrayList<String>(Arrays.asList("E1", "E3"));
+            ArrayList<String> localSalvo4 = new ArrayList<String>(Arrays.asList("A1", "A3"));
 
             Salvo salvo1 = new Salvo(1, localSalvo1);
             Salvo salvo2 = new Salvo(2, localSalvo2);
             Salvo salvo3 = new Salvo(1, localSalvo3);
+            Salvo salvo4 = new Salvo(2, localSalvo4);
 
 
 gamePlayer1Var.addShips(ship1);
@@ -76,6 +78,7 @@ gamePlayer2Var.addShips(ship3);
             gamePlayer1Var.addSalvos(salvo1);
             gamePlayer1Var.addSalvos(salvo2);
             gamePlayer2Var.addSalvos(salvo3);
+            gamePlayer2Var.addSalvos(salvo4);
 
             playerRepository.save(jugador1Var);
             playerRepository.save(jugador2Var);
@@ -100,6 +103,7 @@ gamePlayer2Var.addShips(ship3);
             salvoRepository.save(salvo1);
             salvoRepository.save(salvo2);
             salvoRepository.save(salvo3);
+            salvoRepository.save(salvo4);
         };
     }
 
