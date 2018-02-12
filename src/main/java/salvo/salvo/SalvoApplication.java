@@ -70,6 +70,8 @@ public class SalvoApplication {
             Salvo salvo3 = new Salvo(1, localSalvo3);
             Salvo salvo4 = new Salvo(2, localSalvo4);
 
+            Score score1 = new Score(1.0, fecha2Var);
+
 
 gamePlayer1Var.addShips(ship1);
 gamePlayer1Var.addShips(ship2);
