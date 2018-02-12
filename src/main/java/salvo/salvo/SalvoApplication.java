@@ -22,7 +22,8 @@ public class SalvoApplication {
     public CommandLineRunner initData(PlayerRepository playerRepository,
                                       GameRepository gameRepository,
                                       GamePlayerRepository gamePlayerRepository,
-                                      ShipRepository shipRepository, SalvoRepository salvoRepository) {
+                                      ShipRepository shipRepository, SalvoRepository salvoRepository,
+                                      ScoreRepository scoreRepository) {
 
         return (args) -> {
 
@@ -106,6 +107,8 @@ gamePlayer2Var.addShips(ship3);
             salvoRepository.save(salvo2);
             salvoRepository.save(salvo3);
             salvoRepository.save(salvo4);
+
+            scoreRepository.save(score1);
         };
     }
 

@@ -13,6 +13,10 @@ public class Score {
     @JoinColumn(name="IDGame")
     private Game gameEnScore;
 
+    @ManyToOne
+    @JoinColumn(name="IDPlayer")
+    private Player playerEnScore;
+
     private double scoreV;
     private Date finishDateV;
 

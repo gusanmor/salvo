@@ -13,6 +13,11 @@ public class Player {
     @OneToMany(mappedBy="playerEnGameplayer", fetch=FetchType.EAGER)
     Set<GamePlayer> gamePlayers;
 
+    @OneToMany(mappedBy="playerEnScore", fetch=FetchType.EAGER)
+    Set<Score> scores;
+
+
+
     private String userName;
 
 
