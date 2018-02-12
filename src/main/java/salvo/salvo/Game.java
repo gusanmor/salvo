@@ -44,6 +44,11 @@ public class Game {
         this.fechaVar = fechaVar;
     }
 
+    public void addScore(Score scorePar) {
+        scorePar.setGameEnScore(this);
+        this.scores.add(scorePar);
+    }
+
     public String toString() {
         return ""+fechaVar;
     }

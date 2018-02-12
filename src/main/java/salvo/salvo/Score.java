@@ -26,4 +26,8 @@ public class Score {
         this.scoreV = parScore;
         this.finishDateV = parFinishDate;
     }
+
+    public void setGameEnScore(Game gameEnScore) {
+        this.gameEnScore = gameEnScore;
+    }
 }
