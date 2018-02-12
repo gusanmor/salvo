@@ -83,6 +83,9 @@ gamePlayer2Var.addShips(ship3);
             gamePlayer2Var.addSalvos(salvo3);
             gamePlayer2Var.addSalvos(salvo4);
 
+            partida1Var.addScore(score1);
+            jugador1Var.addScore(score1);
+
             playerRepository.save(jugador1Var);
             playerRepository.save(jugador2Var);
             playerRepository.save(jugador3Var);

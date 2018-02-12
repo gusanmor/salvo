@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -19,7 +20,7 @@ public class Game {
     Set<GamePlayer> gamePlayers;
 
     @OneToMany(mappedBy="gameEnScore", fetch=FetchType.EAGER)
-    Set<Score> scores;
+    Set<Score> scores = new HashSet<>();
 
     public Game() { }
 
@@ -46,7 +47,7 @@ public class Game {
 
     public void addScore(Score scorePar) {
         scorePar.setGameEnScore(this);
-        this.scores.add(scorePar);
+//        this.scores.add(scorePar);
     }
 
     public String toString() {

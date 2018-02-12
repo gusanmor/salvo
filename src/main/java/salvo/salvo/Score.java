@@ -30,4 +30,8 @@ public class Score {
     public void setGameEnScore(Game gameEnScore) {
         this.gameEnScore = gameEnScore;
     }
+
+    public void setPlayerEnScore(Player playerEnScore) {
+        this.playerEnScore = playerEnScore;
+    }
 }
