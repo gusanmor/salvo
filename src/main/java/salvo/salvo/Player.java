@@ -31,12 +31,12 @@ public class Player {
 
     public void addScore(Score scorePar) {
         scorePar.setPlayerEnScore(this);
-        this.scores.add(scorePar);
+//        this.scores.add(scorePar);
     }
 
-    public void setScores(Set<Score> scores) {
-        this.scores = scores;
-    }
+//    public void setScores(Set<Score> scores) {
+//        this.scores = scores;
+//    }
 
     public long getId() {
         return id;

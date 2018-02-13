@@ -27,31 +27,31 @@ public class SalvoApplication {
 
         return (args) -> {
 
-            Player jugador1Var = new Player("j.bauer@ctu.gov");
-            Player jugador2Var = new Player("c.obrian@ctu.gov");
-            Player jugador3Var = new Player("kim_bauer@gmail.com");
-            Player jugador4Var = new Player("t.almeida@ctu.gov");
+            Player player1V = new Player("j.bauer@ctu.gov");
+            Player player2V = new Player("c.obrian@ctu.gov");
+            Player player3V = new Player("kim_bauer@gmail.com");
+            Player player4V = new Player("t.almeida@ctu.gov");
 
-            Date fecha1Var = new Date();
-            Date fecha2Var = Date.from(fecha1Var.toInstant().plusSeconds(3600));
-            Date fecha3Var = Date.from(fecha1Var.toInstant().plusSeconds(7200));
-            Date fecha4Var = Date.from(fecha1Var.toInstant().plusSeconds(10800));
-            Date fecha5Var = Date.from(fecha1Var.toInstant().plusSeconds(14400));
-            Date fecha6Var = Date.from(fecha1Var.toInstant().plusSeconds(18000));
+            Date date1V = new Date();
+            Date date2V = Date.from(date1V.toInstant().plusSeconds(3600));
+            Date date3V = Date.from(date1V.toInstant().plusSeconds(7200));
+            Date date4V = Date.from(date1V.toInstant().plusSeconds(10800));
+            Date date5V = Date.from(date1V.toInstant().plusSeconds(14400));
+            Date date6V = Date.from(date1V.toInstant().plusSeconds(18000));
 
-            Game partida1Var = new Game(fecha1Var);
-            Game partida2Var = new Game(fecha2Var);
-            Game partida3Var = new Game(fecha3Var);
-            Game partida4Var = new Game(fecha4Var);
-            Game partida5Var = new Game(fecha5Var);
-            Game partida6Var = new Game(fecha6Var);
+            Game game1V = new Game(date1V);
+            Game game2V = new Game(date2V);
+            Game game3V = new Game(date3V);
+            Game game4V = new Game(date4V);
+            Game game5V = new Game(date5V);
+            Game game6V = new Game(date6V);
 
-            GamePlayer gamePlayer1Var = new GamePlayer(jugador1Var, partida1Var);
-            GamePlayer gamePlayer2Var = new GamePlayer(jugador2Var, partida1Var);
-            GamePlayer gamePlayer3Var = new GamePlayer(jugador1Var, partida2Var);
-            GamePlayer gamePlayer4Var = new GamePlayer(jugador2Var, partida2Var);
-            GamePlayer gamePlayer5Var = new GamePlayer(jugador2Var, partida3Var);
-            GamePlayer gamePlayer6Var = new GamePlayer(jugador4Var, partida3Var);
+            GamePlayer gamePlayer1Var = new GamePlayer(player1V, game1V);
+            GamePlayer gamePlayer2Var = new GamePlayer(player2V, game1V);
+            GamePlayer gamePlayer3Var = new GamePlayer(player1V, game2V);
+            GamePlayer gamePlayer4Var = new GamePlayer(player2V, game2V);
+            GamePlayer gamePlayer5Var = new GamePlayer(player2V, game3V);
+            GamePlayer gamePlayer6Var = new GamePlayer(player4V, game3V);
 
             ArrayList<String> localBarco1 = new ArrayList<String>(Arrays.asList("A1", "A2", "A3"));
             ArrayList<String> localBarco2 = new ArrayList<String>(Arrays.asList("E1", "F1", "G1"));
@@ -71,10 +71,10 @@ public class SalvoApplication {
             Salvo salvo3 = new Salvo(1, localSalvo3);
             Salvo salvo4 = new Salvo(2, localSalvo4);
 
-            Score score1 = new Score(1.0, fecha2Var);
-            Score score2 = new Score(0.0, fecha2Var);
-            Score score3 = new Score(0.5, fecha3Var);
-            Score score4 = new Score(0.5, fecha3Var);
+            Score score1 = new Score(1.0, date2V);
+            Score score2 = new Score(0.0, date2V);
+            Score score3 = new Score(0.5, date3V);
+            Score score4 = new Score(0.5, date3V);
 
 
 gamePlayer1Var.addShips(ship1);
@@ -85,22 +85,24 @@ gamePlayer2Var.addShips(ship3);
             gamePlayer1Var.addSalvos(salvo2);
             gamePlayer2Var.addSalvos(salvo3);
             gamePlayer2Var.addSalvos(salvo4);
+            game1V.addScore(score1);
+            player1V.addScore(score1);
+            game1V.addScore(score2);
+            player2V.addScore(score2);
 
-            partida1Var.addScore(score1);
-            jugador1Var.addScore(score1);
-            partida1Var.addScore(score2);
-            jugador2Var.addScore(score2);
+            game2V.addScore(score3);
+            player1V.addScore(score3);
+            game2V.addScore(score4);
+            player2V.addScore(score4);
 
-            partida2Var.addScore(score3);
+            playerRepository.save(player1V);
+            playerRepository.save(player2V);
+            playerRepository.save(player3V);
+            playerRepository.save(player4V);
 
-            playerRepository.save(jugador1Var);
-            playerRepository.save(jugador2Var);
-            playerRepository.save(jugador3Var);
-            playerRepository.save(jugador4Var);
-
-            gameRepository.save(partida1Var);
-            gameRepository.save(partida2Var);
-            gameRepository.save(partida3Var);
+            gameRepository.save(game1V);
+            gameRepository.save(game2V);
+            gameRepository.save(game3V);
 
             gamePlayerRepository.save(gamePlayer1Var);
             gamePlayerRepository.save(gamePlayer2Var);
