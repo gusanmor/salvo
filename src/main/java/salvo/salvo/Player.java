@@ -46,6 +46,15 @@ public class Player {
         return userName;
     }
 
+    public Set<Score> getScores() {
+        return scores;
+    }
+
+//    public Set<Score> getScoresdeGame(Game gamePar) {
+////        gamePar.filter
+//        return scores;
+//    }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
