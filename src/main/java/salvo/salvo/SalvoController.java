@@ -86,6 +86,7 @@ public class SalvoController {
         Map<String, Object> playerMap = new HashMap<>();
         playerMap.put("playerId", playerParam.getId());
         playerMap.put("playerEmail", playerParam.getUserName());
+        playerMap.put("playerScore", playerParam);
 
         return playerMap;
     }
