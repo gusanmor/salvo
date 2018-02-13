@@ -72,6 +72,9 @@ public class SalvoApplication {
             Salvo salvo4 = new Salvo(2, localSalvo4);
 
             Score score1 = new Score(1.0, fecha2Var);
+            Score score2 = new Score(0.0, fecha2Var);
+            Score score3 = new Score(0.5, fecha3Var);
+            Score score4 = new Score(0.5, fecha3Var);
 
 
 gamePlayer1Var.addShips(ship1);
@@ -85,6 +88,10 @@ gamePlayer2Var.addShips(ship3);
 
             partida1Var.addScore(score1);
             jugador1Var.addScore(score1);
+            partida1Var.addScore(score2);
+            jugador2Var.addScore(score2);
+
+            partida2Var.addScore(score3);
 
             playerRepository.save(jugador1Var);
             playerRepository.save(jugador2Var);
@@ -112,6 +119,9 @@ gamePlayer2Var.addShips(ship3);
             salvoRepository.save(salvo4);
 
             scoreRepository.save(score1);
+            scoreRepository.save(score2);
+            scoreRepository.save(score3);
+            scoreRepository.save(score4);
         };
     }
 
