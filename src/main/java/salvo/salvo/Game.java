@@ -50,6 +50,10 @@ public class Game {
         this.scores.add(scorePar);
     }
 
+    public Set<Score> getScores() {
+        return scores;
+    }
+
     public String toString() {
         return ""+fechaVar;
     }

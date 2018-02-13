@@ -46,6 +46,7 @@ public class SalvoController {
             IDyCreatedMap.put("gamePlayers", repoGamesfindAll.get(i).getGamePlayers().stream()
                     .map(gameLambda -> datosGamePlayerMetodo(gameLambda))
                     .collect(Collectors.toList()));
+            IDyCreatedMap.put("scores",repoGamesfindAll.get(i).getScores());
 
             IDyCreatedList.add(IDyCreatedMap);
 //            IDyCreatedMap.put("scores","hola");
@@ -80,7 +81,7 @@ public class SalvoController {
         Map<String,Object> gamePlayersMap = new HashMap<>();
         gamePlayersMap.put("gamePlayerID", gamePlayerParam.getId());
         gamePlayersMap.put("player", datosPlayersMetodo(gamePlayerParam.getPlayerEnGameplayer()));
-        gamePlayersMap.put("playerScoreDD", gamePlayerParam.getPlayerEnGameplayer().getScores());
+//        gamePlayersMap.put("playerScoreDD", gamePlayerParam.getPlayerEnGameplayer().getScores());
         return gamePlayersMap;
     }
 
