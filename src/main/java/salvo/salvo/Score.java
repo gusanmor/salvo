@@ -20,11 +20,24 @@ public class Score {
     private double scoreV;
     private Date finishDateV;
 
-    public Score(){}
+    public Score() {
+    }
 
     public Score(Double parScore, Date parFinishDate){
         this.scoreV = parScore;
         this.finishDateV = parFinishDate;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public double getScoreV() {
+        return scoreV;
+    }
+
+    public Date getFinishDateV() {
+        return finishDateV;
     }
 
     public void setGameEnScore(Game gameEnScore) {
