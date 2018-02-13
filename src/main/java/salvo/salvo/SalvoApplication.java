@@ -75,6 +75,8 @@ public class SalvoApplication {
             Score score2 = new Score(0.0, date2V);
             Score score3 = new Score(0.5, date3V);
             Score score4 = new Score(0.5, date3V);
+            Score score5 = new Score();
+            Score score6 = new Score();
 
 
 gamePlayer1Var.addShips(ship1);
@@ -94,6 +96,12 @@ gamePlayer2Var.addShips(ship3);
             player1V.addScore(score3);
             game2V.addScore(score4);
             player2V.addScore(score4);
+
+            game3V.addScore(score5);
+            player2V.addScore(score5);
+
+            game3V.addScore(score6);
+            player4V.addScore(score6);
 
             playerRepository.save(player1V);
             playerRepository.save(player2V);
@@ -124,6 +132,8 @@ gamePlayer2Var.addShips(ship3);
             scoreRepository.save(score2);
             scoreRepository.save(score3);
             scoreRepository.save(score4);
+            scoreRepository.save(score5);
+            scoreRepository.save(score6);
         };
     }
 
