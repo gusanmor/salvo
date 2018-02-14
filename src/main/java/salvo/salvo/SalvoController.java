@@ -24,12 +24,6 @@ public class SalvoController {
     @Autowired
     private ScoreRepository repoScore;
 
-    @RequestMapping("api/scores")
-    public Map scoresMetodo(Score score){
-        Map scoreMap = new HashMap();
-        scoreMap.put("hola", repoScore.findAll());
-        return scoreMap;
-    }
 
     @RequestMapping("api/games")
     public ArrayList IDyCreatedMetodo(Game game) {
@@ -83,7 +77,11 @@ public class SalvoController {
         Map<String,Object> gamePlayersMap = new HashMap<>();
         gamePlayersMap.put("gamePlayerID", gamePlayerParam.getId());
         gamePlayersMap.put("player", datosPlayersMetodo(gamePlayerParam.getPlayerEnGameplayer()));
-        gamePlayersMap.put("score", gamePlayerParam.getPlayerEnGameplayer().get1Score(gamePlayerParam.getGameEnGamePlayers()).getScoreV());
+//        Double scoreGamePlayer = gamePlayerParam.getPlayerEnGameplayer().get1Score(gamePlayerParam.getGameEnGamePlayers()).getScoreV();
+        if (gamePlayerParam.getPlayerEnGameplayer().get1Score(gamePlayerParam.getGameEnGamePlayers()) != null){
+            gamePlayersMap.put("score", gamePlayerParam.getPlayerEnGameplayer().get1Score(gamePlayerParam.getGameEnGamePlayers()).getScoreV());
+        }
+        else gamePlayersMap.put("score", "null");
         return gamePlayersMap;
     }
 

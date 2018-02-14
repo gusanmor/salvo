@@ -132,8 +132,8 @@ gamePlayer2Var.addShips(ship3);
             scoreRepository.save(score2);
             scoreRepository.save(score3);
             scoreRepository.save(score4);
-            scoreRepository.save(score5);
-            scoreRepository.save(score6);
+//            scoreRepository.save(score5);
+//            scoreRepository.save(score6);
         };
     }
 
