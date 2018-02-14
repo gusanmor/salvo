@@ -16,11 +16,23 @@ function tablaLeaderBoard(data) {
 //
 
     var contenidoLeaderBoard = "";
+    var nombresJugadores = [];
 
 //
     for (var i=0; i<data.length; i++) {
 
+        nombresJugadores.push(data[i].gamePlayers[0].player.playerEmail);
+        nombresJugadores.push(data[i].gamePlayers[1].player.playerEmail);
+
     }
+    console.log(nombresJugadores);
+
+    var nomJugNoRepetidos = [];
+    $.each(nombresJugadores, function(i, el){
+        if($.inArray(el, nomJugNoRepetidos) === -1) nomJugNoRepetidos.push(el);
+    });
+
+    console.log(nomJugNoRepetidos);
 //     var fecha2 = new Date(data[i].Created);
 //     var fecha3 = fecha2.toString();
 //
