@@ -1,19 +1,26 @@
-console.log("prueba");
+// console.log("prueba");
 
-// $.getJSON("http://localhost:8080/api/games", function (data) {
-//
-//     	console.log(data);
-//     // crearFutbolMobile(data);
-//
-// });
+$.getJSON("http://localhost:8080/api/games", function (data) {
 
-// function crearFutbolMobile(data) {
+    	// console.log(data);
+    tablaLeaderBoard(data);
+
+});
+
+function tablaLeaderBoard(data) {
+
+    console.log(data);
+    console.log(data[0].gamePlayers[1].score);
+
+// }
 //
-// //console.log(data);
+
+    var contenidoLeaderBoard = "";
+
 //
-//     var contenidoFutbolMobile = {};
-//
-//     for (var i=0; i<data.length; i++) {
+    for (var i=0; i<data.length; i++) {
+
+    }
 //     var fecha2 = new Date(data[i].Created);
 //     var fecha3 = fecha2.toString();
 //
@@ -37,8 +44,8 @@ console.log("prueba");
 //
 //     }
 //
-// //    console.log(contenidoFutbolMobile);
+//    console.log(contenidoFutbolMobile);
 //
-//     document.getElementById("futbolMobileID").innerHTML = contenidoFutbolMobile;
+    document.getElementById("tablaID").innerHTML = "<td>hola</td>";
 //
-// }
+}
