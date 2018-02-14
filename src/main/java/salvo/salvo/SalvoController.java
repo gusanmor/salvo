@@ -38,10 +38,10 @@ public class SalvoController {
             IDyCreatedMap.put("gameCreated", repoGamesfindAll.get(i).getFechaVar());
 
             IDyCreatedMap.put("gamePlayers", repoGamesfindAll.get(i).getGamePlayers().stream()
-                    .map(gameLambda -> datosGamePlayerMetodo(gameLambda))
+                    .map(gameLambda -> gamePlayerDTO(gameLambda))
                     .collect(Collectors.toList()));
 //            IDyCreatedMap.put("scores",repoGamesfindAll.get(i).getScores().stream()
-//                    .map(scoreLambda -> datosGamePlayerMetodo(scoreLambda))
+//                    .map(scoreLambda -> gamePlayerDTO(scoreLambda))
 //                    .collect(Collectors.toList()));
 
             IDyCreatedList.add(IDyCreatedMap);
@@ -58,25 +58,25 @@ public class SalvoController {
         gameViewMap.put("creationDateGame", (repoGamePlayer.findOne(gamePlayerId).getGameEnGamePlayers().getFechaVar()));
         gameViewMap.put("gameplayers", (repoGamePlayer.findOne(gamePlayerId).getGameEnGamePlayers().getGamePlayers()
                 .stream()
-                .map(gpLambda -> datosGamePlayerMetodo(gpLambda))
+                .map(gpLambda -> gamePlayerDTO(gpLambda))
                 .collect(Collectors.toList())));
         gameViewMap.put("ships", (repoGamePlayer.findOne(gamePlayerId).getShips()
                 .stream()
-                .map(shLambda -> datosShipsMetodo(shLambda))
+                .map(shLambda -> shipsDTO(shLambda))
                 .collect(Collectors.toList())));
         gameViewMap.put("salvoes", (repoGamePlayer.findOne(gamePlayerId).getGameEnGamePlayers().getGamePlayers()
                 .stream()
-                .map(salvoLambda -> datosSalvosMetodo(salvoLambda))
+                .map(salvoLambda -> salvosDTO(salvoLambda))
                 .collect(Collectors.toList())));
 
         return gameViewMap;
 
     }
 
-    public Map<String, Object> datosGamePlayerMetodo(GamePlayer gamePlayerParam) {
+    public Map<String, Object> gamePlayerDTO(GamePlayer gamePlayerParam) {
         Map<String,Object> gamePlayersMap = new HashMap<>();
         gamePlayersMap.put("gamePlayerID", gamePlayerParam.getId());
-        gamePlayersMap.put("player", datosPlayersMetodo(gamePlayerParam.getPlayerEnGameplayer()));
+        gamePlayersMap.put("player", playersDTO(gamePlayerParam.getPlayerEnGameplayer()));
 //        Double scoreGamePlayer = gamePlayerParam.getPlayerEnGameplayer().get1Score(gamePlayerParam.getGameEnGamePlayers()).getScoreV();
         if (gamePlayerParam.getPlayerEnGameplayer().get1Score(gamePlayerParam.getGameEnGamePlayers()) != null){
             gamePlayersMap.put("score", gamePlayerParam.getPlayerEnGameplayer().get1Score(gamePlayerParam.getGameEnGamePlayers()).getScoreV());
@@ -85,7 +85,7 @@ public class SalvoController {
         return gamePlayersMap;
     }
 
-    public Map<String, Object> datosPlayersMetodo(Player playerParam) {
+    public Map<String, Object> playersDTO(Player playerParam) {
         Map<String, Object> playerMap = new HashMap<>();
         playerMap.put("playerId", playerParam.getId());
         playerMap.put("playerEmail", playerParam.getUserName());
@@ -94,7 +94,7 @@ public class SalvoController {
         return playerMap;
     }
 
-    public Map<String, Object> datosShipsMetodo(Ship shipParam) {
+    public Map<String, Object> shipsDTO(Ship shipParam) {
         Map<String, Object> shipsMap = new HashMap<>();
         shipsMap.put("type", shipParam.getTipoBarcoV());
         shipsMap.put("locations", shipParam.getLocBarcoV());
@@ -102,22 +102,22 @@ public class SalvoController {
         return shipsMap;
     }
 
-    public Map<Object, Object> datosSalvosMetodo(GamePlayer salvoParam) {
+    public Map<Object, Object> salvosDTO(GamePlayer salvoParam) {
         Map<Object, Object> shipsMap = new HashMap<>();
         shipsMap.put("playerId", salvoParam.getPlayerEnGameplayer().getId());
         shipsMap.put("turn", salvoParam.getSalvos()
                 .stream()
-                .map(salvo2Lambda -> datosSalvoMetodo2(salvo2Lambda))
+                .map(salvo2Lambda -> salvoDTO2(salvo2Lambda))
                 .collect(Collectors.toList()));
         shipsMap.put("locations", salvoParam.getSalvos()
                 .stream()
-                .map(salvo3Lambda -> datosSalvoMetodo3(salvo3Lambda))
+                .map(salvo3Lambda -> salvoDTO3(salvo3Lambda))
                 .collect(Collectors.toList()));
 
         return shipsMap;
     }
 
-    public int datosSalvoMetodo2(Salvo salvoPar2) {
+    public int salvoDTO2(Salvo salvoPar2) {
 //        Map<Object, Object> shipsMap = new HashMap<>();
 //        shipsMap.put(salvoPar2.getLocSalvoV(), salvoPar2.getNumeroTurnoV());
 //        shipsMap.put(salvoPar2.getNumeroTurnoV(), salvoPar2.getLocSalvoV());
@@ -126,7 +126,7 @@ public class SalvoController {
         return salvoPar2.getNumeroTurnoV();
     }
 
-    public List datosSalvoMetodo3(Salvo salvoPar3) {
+    public List salvoDTO3(Salvo salvoPar3) {
 //        ArrayList shipsMap = new HashMap<>();
 //        shipsMap.put(salvoPar2.getLocSalvoV(), salvoPar2.getNumeroTurnoV());
 //        shipsMap.put("locations", salvoPar3.getLocSalvoV());
