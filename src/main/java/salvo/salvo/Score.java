@@ -40,6 +40,10 @@ public class Score {
         return finishDateV;
     }
 
+    public Game getGameEnScore() {
+        return gameEnScore;
+    }
+
     public void setGameEnScore(Game gameEnScore) {
         this.gameEnScore = gameEnScore;
     }

@@ -50,6 +50,14 @@ public class Player {
         return scores;
     }
 
+    public Score get1Score(Game game) {
+        return scores
+                .stream()
+                .filter(score -> score.getGameEnScore().getId() == game.getId())
+                .findFirst()
+                .orElse(null);
+    }
+
 //    public Set<Score> getScoresdeGame(Game gamePar) {
 ////        gamePar.filter
 //        return scores;
