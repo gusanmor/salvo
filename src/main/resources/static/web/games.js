@@ -37,13 +37,12 @@ function tablaLeaderBoard(data) {
 
     arrayObjJugadores = [];
     for (var j=0; j<nomJugNoRepetidos.length; j++) {
-        objetosJugadores = {};
-        // console.log("hola");
-        objetosJugadores.name = nomJugNoRepetidos[j];
-        objetosJugadores.points = cogerPuntosJugador(data, nomJugNoRepetidos[j]);
+
+
+        // objetosJugadores.points =
         // objetosJugadores.won = cogerWonJugador(data, nomJugNoRepetidos[j]);
         // console.log(nomJugNoRepetidos[j]);
-        arrayObjJugadores.push(objetosJugadores);
+        arrayObjJugadores.push(cogerPuntosJugador(data, nomJugNoRepetidos[j]));
 
     }
     ordenarMembers(arrayObjJugadores);
@@ -57,6 +56,14 @@ function tablaLeaderBoard(data) {
 
 function cogerPuntosJugador(data, nombreJugador){
 
+    objetosJugadores = {};
+    // console.log("hola");
+    objetosJugadores.name = nombreJugador;
+    objetosJugadores.points = 0.0;
+    objetosJugadores.win = 0;
+    objetosJugadores.lost = 0;
+    objetosJugadores.tied = 0;
+
     var puntosJugador = 0.0;
     var won = 0;
 
@@ -66,16 +73,21 @@ function cogerPuntosJugador(data, nombreJugador){
             if (data[k].gamePlayers[l].player.playerEmail == nombreJugador) {
                 if (data[k].gamePlayers[l].score != "null") {
                     // console.log("diferente");
-                    puntosJugador += data[k].gamePlayers[l].score;
+                    objetosJugadores.points += data[k].gamePlayers[l].score;
                 }
                 if (data[k].gamePlayers[l].score == "1") {
-                    won = +1;
-                    console.log("WIN");
+                    objetosJugadores.win++;
+                }
+                if (data[k].gamePlayers[l].score == "0") {
+                    objetosJugadores.lost++;
+                }
+                if (data[k].gamePlayers[l].score == "0.5") {
+                    objetosJugadores.tied++;
                 }
             }
         }
     }
-    return puntosJugador;
+    return objetosJugadores;
 }
 
 function ordenarMembers(data) {
