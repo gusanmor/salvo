@@ -27,7 +27,9 @@ function tablaLeaderBoard(data) {
     }
     ordenarMembers(arrayObjJugadores);
     console.log(arrayObjJugadores);
-    document.getElementById("tablaID").innerHTML = "<td>hola</td>";
+
+    rellenarTabla(arrayObjJugadores);
+
 }
 
 function cogerPuntosJugador(data, nombreJugador){
@@ -77,4 +79,22 @@ function ordenarMembers(data) {
         return 0;
     });
 
+}
+
+function rellenarTabla(parArrayObj){
+    console.log("rellenarTablar");
+    console.log(parArrayObj);
+    varTablaLeader = "";
+
+    for (var m=0; m<parArrayObj.length; m++) {
+        console.log("long");
+        varTablaLeader += '<tr>'+
+            '<td>'+parArrayObj[m].name+'</td>'+
+            '<td>'+parArrayObj[m].points+'</td>'+
+            '<td>'+parArrayObj[m].win+'</td>'+
+            '<td>'+parArrayObj[m].lost+'</td>'+
+            '<td>'+parArrayObj[m].tied+'</td>'+
+            '</tr>';
+    }
+    document.getElementById("tablaID").innerHTML = varTablaLeader;
 }
