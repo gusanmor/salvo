@@ -58,6 +58,7 @@ function tablaLeaderBoard(data) {
 function cogerPuntosJugador(data, nombreJugador){
 
     var puntosJugador = 0.0;
+    var won = 0;
 
     for (var k=0; k<data.length; k++) {
         for (var l=0; l<2; l++) {
@@ -66,6 +67,10 @@ function cogerPuntosJugador(data, nombreJugador){
                 if (data[k].gamePlayers[l].score != "null") {
                     // console.log("diferente");
                     puntosJugador += data[k].gamePlayers[l].score;
+                }
+                if (data[k].gamePlayers[l].score == "1") {
+                    won = +1;
+                    console.log("WIN");
                 }
             }
         }
