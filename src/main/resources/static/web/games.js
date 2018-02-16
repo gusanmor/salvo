@@ -72,11 +72,16 @@ function ordenarMembers(data) {
         if (a.points < b.points) {
             return 1;
         }
-        if (a.points > b.points) {
+        else if (a.points > b.points) {
             return -1;
         }
-        // a must be equal to b
-        return 0;
+        else
+        if (a.win< b.win)
+            return -1;
+        else if (a.win> b.win)
+            return 1;
+        else
+            return 0;
     });
 
 }
