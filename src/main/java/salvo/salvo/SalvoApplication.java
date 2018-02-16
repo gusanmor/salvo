@@ -58,8 +58,11 @@ public class SalvoApplication {
             ArrayList<String> localBarco3 = new ArrayList<String>(Arrays.asList("C1", "D1", "E1"));
 
             Ship ship1 = new Ship("Destroyer", localBarco1);
+            gamePlayer1Var.addShips(ship1);
             Ship ship2 = new Ship("Submarine", localBarco2);
+            gamePlayer1Var.addShips(ship2);
             Ship ship3 = new Ship("Submarine", localBarco3);
+            gamePlayer2Var.addShips(ship3);
 
             ArrayList<String> localSalvo1 = new ArrayList<String>(Arrays.asList("C9", "E9"));
             ArrayList<String> localSalvo2 = new ArrayList<String>(Arrays.asList("D1", "D3"));
@@ -67,39 +70,30 @@ public class SalvoApplication {
             ArrayList<String> localSalvo4 = new ArrayList<String>(Arrays.asList("A1", "A3"));
 
             Salvo salvo1 = new Salvo(1, localSalvo1);
+            gamePlayer1Var.addSalvos(salvo1);
             Salvo salvo2 = new Salvo(2, localSalvo2);
+            gamePlayer1Var.addSalvos(salvo2);
             Salvo salvo3 = new Salvo(1, localSalvo3);
+            gamePlayer2Var.addSalvos(salvo3);
             Salvo salvo4 = new Salvo(2, localSalvo4);
+            gamePlayer2Var.addSalvos(salvo4);
 
             Score score1 = new Score(1.0, date2V);
-            Score score2 = new Score(0.0, date2V);
-            Score score3 = new Score(0.5, date3V);
-            Score score4 = new Score(0.5, date3V);
-            Score score5 = new Score();
-            Score score6 = new Score();
-
-
-gamePlayer1Var.addShips(ship1);
-gamePlayer1Var.addShips(ship2);
-gamePlayer2Var.addShips(ship3);
-
-            gamePlayer1Var.addSalvos(salvo1);
-            gamePlayer1Var.addSalvos(salvo2);
-            gamePlayer2Var.addSalvos(salvo3);
-            gamePlayer2Var.addSalvos(salvo4);
             game1V.addScore(score1);
             player1V.addScore(score1);
+            Score score2 = new Score(0.0, date2V);
             game1V.addScore(score2);
             player2V.addScore(score2);
-
+            Score score3 = new Score(0.5, date3V);
             game2V.addScore(score3);
             player1V.addScore(score3);
+            Score score4 = new Score(0.5, date3V);
             game2V.addScore(score4);
             player2V.addScore(score4);
-
+            Score score5 = new Score();
             game3V.addScore(score5);
             player2V.addScore(score5);
-
+            Score score6 = new Score();
             game3V.addScore(score6);
             player4V.addScore(score6);
 
