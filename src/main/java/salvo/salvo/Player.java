@@ -20,13 +20,14 @@ public class Player {
 
 
     private String userName;
+    private String password;
 
 
     public Player() { }
 
-    public Player(String argUserName) {
-        userName = argUserName;
-
+    public Player(String argUserName, String passwordPar) {
+        this.userName = argUserName;
+        this.password = passwordPar;
     }
 
     public void addScore(Score scorePar) {
@@ -44,6 +45,14 @@ public class Player {
 
     public String getUserName() {
         return userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Set<Score> getScores() {

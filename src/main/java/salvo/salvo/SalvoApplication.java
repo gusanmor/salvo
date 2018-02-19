@@ -27,10 +27,10 @@ public class SalvoApplication {
 
         return (args) -> {
 
-            Player player1V = new Player("j.bauer@ctu.gov");
-            Player player2V = new Player("c.obrian@ctu.gov");
-            Player player3V = new Player("kim_bauer@gmail.com");
-            Player player4V = new Player("t.almeida@ctu.gov");
+            Player player1V = new Player("j.bauer@ctu.gov","24");
+            Player player2V = new Player("c.obrian@ctu.gov","42");
+            Player player3V = new Player("kim_bauer@gmail.com","kb");
+            Player player4V = new Player("t.almeida@ctu.gov","mole");
 
             Date date1V = new Date();
             Date date2V = Date.from(date1V.toInstant().plusSeconds(3600));
