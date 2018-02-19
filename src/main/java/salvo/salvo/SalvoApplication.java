@@ -211,11 +211,17 @@ public class SalvoApplication {
 
 }
 
+@Configuration
+class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
+}
+
 @EnableWebSecurity
 @Configuration
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests().anyRequest().fullyAuthenticated().
+                and().httpBasic();
     }
 }
