@@ -234,14 +234,14 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
         return new UserDetailsService() {
 
             @Override
-            public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-                List<Player> people = playerRepository.findByUserName(name);
-                if (!people.isEmpty()) {
-                    Player person = people.get(0);
-                    return new User(person.getUserName(), person.getPassword(),
+            public UserDetails loadUserByUsername(String userNamePar) throws UsernameNotFoundException {
+                List<Player> players = playerRepository.findByUserName(userNamePar);
+                if (!players.isEmpty()) {
+                    Player player = players.get(0);
+                    return new User(player.getUserName(), player.getPassword(),
                             AuthorityUtils.createAuthorityList("USER"));
                 } else {
-                    throw new UsernameNotFoundException("Unknown user: " + name);
+                    throw new UsernameNotFoundException("Unknown user: " + userNamePar);
                 }
             }
         };
