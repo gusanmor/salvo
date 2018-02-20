@@ -254,8 +254,13 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().fullyAuthenticated().
-                and().httpBasic();
+        http.authorizeRequests()
+
+                .antMatchers("/rest/**").hasAuthority("USER")
+                .antMatchers("/web/game.html").hasAuthority("USER")
+                .antMatchers("/web/games.html").permitAll()
+                .and()
+                .formLogin();
     }
 
 }

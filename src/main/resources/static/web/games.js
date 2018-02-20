@@ -103,3 +103,5 @@ function rellenarTabla(parArrayObj){
     }
     document.getElementById("tablaID").innerHTML = varTablaLeader;
 }
+
+$.post("/api/login", { username: "j.bauer@ctu.gov", password: "24" }).done(function() { console.log("logged in!"); })
