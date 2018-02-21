@@ -2,10 +2,10 @@ package salvo.salvo;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -36,7 +36,6 @@ public class SalvoController {
         if (authentication !=null) {
             nameAuth = authentication.getName();
             IDAuth = ""+repoPlayers.findByUserName(nameAuth).get(0).getId();
-//            IDAuth = ""+repoPlayers.findByUserName("j.bauer")
         }
         Set<GamePlayer> gamePlayers = game.getGamePlayers();
 
@@ -176,5 +175,24 @@ public class SalvoController {
         }
 
         return playerName;
+    }
+
+    @RequestMapping(path = "api/players", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> createUser(@RequestParam String name, String password) {
+        if (name.isEmpty()) {
+            return new ResponseEntity<>(makeMap("error", "No name"), HttpStatus.FORBIDDEN);
+        }
+        Player user = repoPlayers.findByUserName(name).get(0);
+        if (user != null) {
+            return new ResponseEntity<>(makeMap("error", "No such user"), HttpStatus.CONFLICT);
+        }
+        user = repoPlayers.save(new Player(name, password));
+        return new ResponseEntity<>(makeMap("id", "dss"), HttpStatus.CREATED);
+    }
+
+    private Map<String, Object> makeMap(String key, Object value) {
+        Map<String, Object> map = new HashMap<>();
+        map.put(key, value);
+        return map;
     }
 }
