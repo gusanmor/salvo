@@ -2,6 +2,7 @@ package salvo.salvo;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,10 +27,12 @@ public class SalvoController {
 
 
     @RequestMapping("api/games")
-    public Map<String, Object> IDyCreatedMetodo(Game game) {
+    public Map<String, Object> IDyCreatedMetodo(Game game, Authentication authentication) {
         ArrayList IDyCreatedList = new ArrayList();
         List<Game> repoGamesfindAll = repoGames.findAll();
-
+        String name = authentication.getName();
+        List<Player> playerList = repoPlayers.findByUserName(name);
+        Player player = playerList.get(0);
         Set<GamePlayer> gamePlayers = game.getGamePlayers();
 
         for(int i = 0; i<repoGamesfindAll.size(); i++){
@@ -47,10 +50,11 @@ public class SalvoController {
             IDyCreatedList.add(IDyCreatedMap);
 //            IDyCreatedMap.put("scores","hola");
         }
-        Map<String,String> playerLogueado = new HashMap<String, String>();
+        Map<String,Object> playerLogueado = new HashMap<>();
 
-        playerLogueado.put("ID", "NN");
-        playerLogueado.put("name", "username");
+        playerLogueado.put("ID", player.getId());
+
+        playerLogueado.put("name",player.getUserName());
 
         Map<String,Object> gamesYplayLog = new HashMap<String, Object>();
 
@@ -61,6 +65,11 @@ public class SalvoController {
 //        IDyCreatedList.add(playerLogueado);
 
         return gamesYplayLog;
+    }
+
+//    @RequestMapping("/books")
+    public List<Player> getAll(Authentication authentication) {
+        return repoPlayers.findByUserName(authentication.getName());
     }
 
     @RequestMapping("api/game_view/{gamePlayerId}")
