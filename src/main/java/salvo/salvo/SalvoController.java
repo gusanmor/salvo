@@ -49,13 +49,14 @@ public class SalvoController {
         }
         Map<String,String> playerLogueado = new HashMap<String, String>();
 
-        playerLogueado.put("playerLogueado", "sasdsdf");
+        playerLogueado.put("ID", "NN");
+        playerLogueado.put("name", "username");
 
         Map<String,Object> gamesYplayLog = new HashMap<String, Object>();
 
         gamesYplayLog.put("games",IDyCreatedList);
 
-        gamesYplayLog.put("player",playerLogueado);
+        gamesYplayLog.put("playerLogueado",playerLogueado);
 
 //        IDyCreatedList.add(playerLogueado);
 
