@@ -26,7 +26,7 @@ public class SalvoController {
 
 
     @RequestMapping("api/games")
-    public ArrayList IDyCreatedMetodo(Game game) {
+    public Map<String, Object> IDyCreatedMetodo(Game game) {
         ArrayList IDyCreatedList = new ArrayList();
         List<Game> repoGamesfindAll = repoGames.findAll();
 
@@ -47,7 +47,19 @@ public class SalvoController {
             IDyCreatedList.add(IDyCreatedMap);
 //            IDyCreatedMap.put("scores","hola");
         }
-        return IDyCreatedList;
+        Map<String,String> playerLogueado = new HashMap<String, String>();
+
+        playerLogueado.put("playerLogueado", "sasdsdf");
+
+        Map<String,Object> gamesYplayLog = new HashMap<String, Object>();
+
+        gamesYplayLog.put("games",IDyCreatedList);
+
+        gamesYplayLog.put("player",playerLogueado);
+
+//        IDyCreatedList.add(playerLogueado);
+
+        return gamesYplayLog;
     }
 
     @RequestMapping("api/game_view/{gamePlayerId}")

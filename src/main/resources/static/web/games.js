@@ -9,9 +9,9 @@ function tablaLeaderBoard(data) {
     var nombresJugadores = [];
 
 // CONSEGUIR TODOS LOS JUGADORES QUITANDO LOS REPETIDOS////
-    for (var i=0; i<data.length; i++) {
-        nombresJugadores.push(data[i].gamePlayers[0].player.playerEmail);
-        nombresJugadores.push(data[i].gamePlayers[1].player.playerEmail);
+    for (var i=0; i<data.games.length; i++) {
+        nombresJugadores.push(data.games[i].gamePlayers[0].player.playerEmail);
+        nombresJugadores.push(data.games[i].gamePlayers[1].player.playerEmail);
     }
     var nomJugNoRepetidos = [];
     $.each(nombresJugadores, function(i, el){
@@ -44,21 +44,21 @@ function cogerPuntosJugador(data, nombreJugador){
     var puntosJugador = 0.0;
     var won = 0;
 
-    for (var k=0; k<data.length; k++) {
+    for (var k=0; k<data.games.length; k++) {
         for (var l=0; l<2; l++) {
             // console.log(nombreJugador);
-            if (data[k].gamePlayers[l].player.playerEmail == nombreJugador) {
-                if (data[k].gamePlayers[l].score != "null") {
+            if (data.games[k].gamePlayers[l].player.playerEmail == nombreJugador) {
+                if (data.games[k].gamePlayers[l].score != "null") {
                     // console.log("diferente");
-                    objetosJugadores.points += data[k].gamePlayers[l].score;
+                    objetosJugadores.points += data.games[k].gamePlayers[l].score;
                 }
-                if (data[k].gamePlayers[l].score == "1") {
+                if (data.games[k].gamePlayers[l].score == "1") {
                     objetosJugadores.win++;
                 }
-                if (data[k].gamePlayers[l].score == "0") {
+                if (data.games[k].gamePlayers[l].score == "0") {
                     objetosJugadores.lost++;
                 }
-                if (data[k].gamePlayers[l].score == "0.5") {
+                if (data.games[k].gamePlayers[l].score == "0.5") {
                     objetosJugadores.tied++;
                 }
             }
