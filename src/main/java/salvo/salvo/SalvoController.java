@@ -30,9 +30,14 @@ public class SalvoController {
     public Map<String, Object> IDyCreatedMetodo(Game game, Authentication authentication) {
         ArrayList IDyCreatedList = new ArrayList();
         List<Game> repoGamesfindAll = repoGames.findAll();
-        String name = authentication.getName();
-        List<Player> playerList = repoPlayers.findByUserName(name);
-        Player player = playerList.get(0);
+        String nameAuth = "NombreSinLog";
+        String IDAuth = "IDSinLog";
+
+        if (authentication !=null) {
+            nameAuth = authentication.getName();
+            IDAuth = ""+repoPlayers.findByUserName(nameAuth).get(0).getId();
+//            IDAuth = ""+repoPlayers.findByUserName("j.bauer")
+        }
         Set<GamePlayer> gamePlayers = game.getGamePlayers();
 
         for(int i = 0; i<repoGamesfindAll.size(); i++){
@@ -50,11 +55,11 @@ public class SalvoController {
             IDyCreatedList.add(IDyCreatedMap);
 //            IDyCreatedMap.put("scores","hola");
         }
-        Map<String,Object> playerLogueado = new HashMap<>();
+        Map<String,String> playerLogueado = new HashMap<>();
 
-        playerLogueado.put("ID", player.getId());
+        playerLogueado.put("ID", IDAuth);
 
-        playerLogueado.put("name",player.getUserName());
+        playerLogueado.put("name", nameAuth);
 
         Map<String,Object> gamesYplayLog = new HashMap<String, Object>();
 
