@@ -3,6 +3,15 @@ $.getJSON("http://localhost:8080/api/games", function (data) {
     tablaLeaderBoard(data);
 });
 
+function funcionLogIn(){
+    console.log("login");
+    var usuarInput = document.getElementById("usernameID").value;
+    var passInput = document.getElementById("passwordID").value;
+    console.log(usuarInput);
+    console.log(passInput);
+    $.post("/api/login", { username: "j.bauer@ctu.gov", password: "24" }).done(function() { console.log("logged in!"); })
+}
+
 function tablaLeaderBoard(data) {
 
     var contenidoLeaderBoard = "";
