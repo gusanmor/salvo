@@ -180,14 +180,14 @@ public class SalvoController {
     @RequestMapping(path = "api/players", method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> createUser(@RequestParam String username, String password) {
         if (username.isEmpty()) {
-            return new ResponseEntity<>(makeMap("error", "No name"), HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(makeMap("error", "no name introduced"), HttpStatus.FORBIDDEN);
         }
-        Player user = repoPlayers.findByUserName(username).get(0);
+        Player user = repoPlayers.findOneByUserName(username);
         if (user != null) {
-            return new ResponseEntity<>(makeMap("error", "No such user"), HttpStatus.CONFLICT);
+            return new ResponseEntity<>(makeMap("error", "this username already exists"), HttpStatus.CONFLICT);
         }
         user = repoPlayers.save(new Player(username, password));
-        return new ResponseEntity<>(makeMap("id", "dss"), HttpStatus.CREATED);
+        return new ResponseEntity<>(makeMap("success", "username " +username+ " has been created"), HttpStatus.CREATED);
     }
 
     private Map<String, Object> makeMap(String key, Object value) {

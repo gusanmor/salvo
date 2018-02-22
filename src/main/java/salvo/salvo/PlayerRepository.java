@@ -10,6 +10,7 @@ import java.util.List;
 public interface PlayerRepository extends JpaRepository<Player, Long> {
 
     List<Player>findByUserName(String userNamePar);
+    Player findOneByUserName(String userNamePar);
 }
 
 
