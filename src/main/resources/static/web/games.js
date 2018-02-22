@@ -9,7 +9,21 @@ function funcionLogIn(){
     var passInput = document.getElementById("passwordID").value;
     console.log(usuarInput);
     console.log(passInput);
-    $.post("/api/login", { username: "j.bauer@ctu.gov", password: "24" }).done(function() { console.log("logged in!"); })
+    $.post("/api/login", { username: usuarInput, password: passInput }).done(loginCorrecto());
+}
+
+function loginCorrecto() {
+    console.log("logged in!");
+    document.getElementById("divLogin").style.display = "none";
+    document.getElementById("divLogOut").style.display = "block";
+
+}
+
+function funcionLogOut(){
+    $.post("/api/logout").done(function() { console.log("logged out"); })
+    $("#divLogin").show();
+    $("#divLogOut").hide();
+
 }
 
 function tablaLeaderBoard(data) {

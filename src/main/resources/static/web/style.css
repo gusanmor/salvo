@@ -35,6 +35,9 @@ td{
     background-color: orange;
 }
 
+#divLogOut{
+    display: none;
+}
 /*#gameID1{*/
     /*width: 40%;*/
     /*display: inline;*/
