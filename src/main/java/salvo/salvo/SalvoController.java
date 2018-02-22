@@ -178,15 +178,15 @@ public class SalvoController {
     }
 
     @RequestMapping(path = "api/players", method = RequestMethod.POST)
-    public ResponseEntity<Map<String, Object>> createUser(@RequestParam String name, String password) {
-        if (name.isEmpty()) {
+    public ResponseEntity<Map<String, Object>> createUser(@RequestParam String username, String password) {
+        if (username.isEmpty()) {
             return new ResponseEntity<>(makeMap("error", "No name"), HttpStatus.FORBIDDEN);
         }
-        Player user = repoPlayers.findByUserName(name).get(0);
+        Player user = repoPlayers.findByUserName(username).get(0);
         if (user != null) {
             return new ResponseEntity<>(makeMap("error", "No such user"), HttpStatus.CONFLICT);
         }
-        user = repoPlayers.save(new Player(name, password));
+        user = repoPlayers.save(new Player(username, password));
         return new ResponseEntity<>(makeMap("id", "dss"), HttpStatus.CREATED);
     }
 
