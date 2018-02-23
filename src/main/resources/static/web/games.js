@@ -8,6 +8,9 @@ function funcionLogIn(){
     var passInput = document.getElementById("passwordID").value;
     $.post("/api/login", { username: usuarInput, password: passInput }).done(function() {
         loginCorrecto(usuarInput);
+    }).fail(function(response) {
+        console.log("fallo login");
+        console.log(response.responseJSON.status);
     });
 }
 
@@ -16,7 +19,11 @@ function funcionSingIn(){
     var passInput = document.getElementById("passwSignInID").value;
     $.post("/api/players", { username: usuarInput, password: passInput }).done(function() {
         console.log("sign in");
-    });
+        document.getElementById("usarCreatID").innerHTML = "<p>User "+usuarInput+ " has been created, please Log In</p>";
+        $("#signIn").hide();
+
+
+});
 }
 
 function loginCorrecto(nombLogPar) {
@@ -24,6 +31,7 @@ function loginCorrecto(nombLogPar) {
     document.getElementById("divLogin").style.display = "none";
     document.getElementById("divLogOut").style.display = "block";
     document.getElementById("welcUsuar").innerHTML = "<p>Welcome "+nombLogPar+"</p>";
+    $("#usarCreatID").hide();
 
 }
 
