@@ -7,7 +7,7 @@ function funcionLogIn(){
     var usuarInput = document.getElementById("usernameID").value;
     var passInput = document.getElementById("passwordID").value;
     $.post("/api/login", { username: usuarInput, password: passInput }).done(function() {
-        loginCorrecto();
+        loginCorrecto(usuarInput);
     });
 }
 
@@ -19,10 +19,11 @@ function funcionSingIn(){
     });
 }
 
-function loginCorrecto() {
+function loginCorrecto(nombLogPar) {
     console.log("logged in!");
     document.getElementById("divLogin").style.display = "none";
     document.getElementById("divLogOut").style.display = "block";
+    document.getElementById("welcUsuar").innerHTML = "<p>Welcome "+nombLogPar+"</p>";
 
 }
 
