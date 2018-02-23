@@ -21,9 +21,9 @@ function funcionSingIn(){
         console.log("sign in");
         document.getElementById("usarCreatID").innerHTML = "<p>User "+usuarInput+ " has been created, please Log In</p>";
         $("#signIn").hide();
-
-
-});
+}).fail(function(response) {
+        alert(response.responseJSON.error);
+    });
 }
 
 function loginCorrecto(nombLogPar) {
