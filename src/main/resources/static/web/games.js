@@ -4,11 +4,8 @@ $.getJSON("http://localhost:8080/api/games", function (data) {
 });
 
 function funcionLogIn(){
-    // console.log("login");
     var usuarInput = document.getElementById("usernameID").value;
     var passInput = document.getElementById("passwordID").value;
-    // console.log(usuarInput);
-    // console.log(passInput);
     $.post("/api/login", { username: usuarInput, password: passInput }).done(function() {
         loginCorrecto();
     });
