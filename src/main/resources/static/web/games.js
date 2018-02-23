@@ -11,7 +11,15 @@ function funcionLogIn(){
     // console.log(passInput);
     $.post("/api/login", { username: usuarInput, password: passInput }).done(function() {
         loginCorrecto();
-    })
+    });
+}
+
+function funcionSingIn(){
+    var usuarInput = document.getElementById("usernSignInID").value;
+    var passInput = document.getElementById("passwSignInID").value;
+    $.post("/api/players", { username: usuarInput, password: passInput }).done(function() {
+        console.log("sign in");
+    });
 }
 
 function loginCorrecto() {
