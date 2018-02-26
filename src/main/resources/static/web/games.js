@@ -9,8 +9,9 @@ function funcionLogIn(){
     $.post("/api/login", { username: usuarInput, password: passInput }).done(function() {
         loginCorrecto(usuarInput);
     }).fail(function(response) {
-        console.log("fallo login");
-        console.log(response.responseJSON.status);
+        // console.log("fallo login");
+        // console.log(response);
+        alert("Log in error: "+response.responseJSON.error);
     });
 }
 
@@ -22,7 +23,8 @@ function funcionSingIn(){
         document.getElementById("usarCreatID").innerHTML = "<p>User "+usuarInput+ " has been created, please Log In</p>";
         $("#signIn").hide();
 }).fail(function(response) {
-        alert(response.responseJSON.error);
+    console.log(response);
+        alert("Sign in error: "+response.responseJSON.error);
     });
 }
 
