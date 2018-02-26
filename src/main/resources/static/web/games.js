@@ -1,5 +1,6 @@
 $.getJSON("http://localhost:8080/api/games", function (data) {
     console.log(data);
+    crearTablaGames(data);
     tablaLeaderBoard(data);
 });
 
@@ -70,6 +71,22 @@ function tablaLeaderBoard(data) {
     console.log(arrayObjJugadores);
 
     rellenarTabla(arrayObjJugadores);
+
+}
+
+function crearTablaGames(data){
+    var tablaGames = "";
+    for (var p=0; p<data.games.length; p++) {
+        var creatDate = new Date(data.games[p].gameCreated);
+        var stcd = toString(creatDate);
+        tablaGames += "<tr>"+
+            "<td>"+data.games[p].gameID+"</td>"+
+            "<td>"+creatDate+"</td>"+
+            "<td>"+data.games[p].gamePlayers[0].player.playerEmail+"</td>"+
+            "<td>"+data.games[p].gamePlayers[1].player.playerEmail+"</td>"+
+            "</tr>";
+    }
+    document.getElementById("tablaGamesID").innerHTML =tablaGames;
 
 }
 
