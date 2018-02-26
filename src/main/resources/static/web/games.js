@@ -77,11 +77,18 @@ function tablaLeaderBoard(data) {
 function crearTablaGames(data){
     var tablaGames = "";
     for (var p=0; p<data.games.length; p++) {
+
         var creatDate = new Date(data.games[p].gameCreated);
+
+        var horaSinSubstring = String(creatDate);
+
+        var horaConSubstring = horaSinSubstring.substring(0, 21);
+
+
         var stcd = toString(creatDate);
         tablaGames += "<tr>"+
             "<td>"+data.games[p].gameID+"</td>"+
-            "<td>"+creatDate+"</td>"+
+            "<td>"+horaConSubstring+"</td>"+
             "<td>"+data.games[p].gamePlayers[0].player.playerEmail+"</td>"+
             "<td>"+data.games[p].gamePlayers[1].player.playerEmail+"</td>"+
             "</tr>";
