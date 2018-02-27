@@ -2,12 +2,21 @@ $.getJSON("http://localhost:8080/api/games", function (data) {
     console.log(data);
     crearTablaGames(data);
     tablaLeaderBoard(data);
+    ocultarSiLog(data);
 });
+
+function ocultarSiLog(data){
+    if (data.playerLogueado.name!="NombreSinLog"){
+        loginCorrecto(data.playerLogueado.name);
+        console.log("ya logueado");
+    }
+}
 
 function funcionLogIn(){
     var usuarInput = document.getElementById("usernameID").value;
     var passInput = document.getElementById("passwordID").value;
     $.post("/api/login", { username: usuarInput, password: passInput }).done(function() {
+        location.reload();
         loginCorrecto(usuarInput);
     }).fail(function(response) {
         // console.log("fallo login");
@@ -41,10 +50,13 @@ function loginCorrecto(nombLogPar) {
 }
 
 function funcionLogOut(){
-    $.post("/api/logout").done(function() { console.log("logged out"); })
+    $.post("/api/logout").done(function() {
+        location.reload();
+        console.log("logged out");
     $("#divLogin").show();
     $("#divLogOut").hide();
-
+    $("#welcUsuar").hide();
+    })
 }
 
 function tablaLeaderBoard(data) {
