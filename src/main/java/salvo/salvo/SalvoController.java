@@ -179,4 +179,13 @@ public class SalvoController {
         map.put(key, value);
         return map;
     }
+
+    @RequestMapping(path = "api/games", method = RequestMethod.POST)
+    public void createGame() {
+        Date datePrV = new Date();
+        repoGames.save(new Game(datePrV));
+
+//        return new ResponseEntity<>("Named added", "dsd");
+
+    }
 }
