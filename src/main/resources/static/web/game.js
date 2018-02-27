@@ -28,7 +28,7 @@ function crearRejiBarcosYsalvos(data) {
     var keyTuJugador = 0;
     var keyContrario = 1;
 
-    if (data.gameplayers[1].gamePlayerID == limpiarURL(document.location.search)) {
+    if (data.gameplayers[1] != null && data.gameplayers[1].gamePlayerID == limpiarURL(document.location.search)) {
         keyTuJugador = 1;
         keyContrario = 0;
     }
