@@ -69,6 +69,7 @@ public class SalvoApplication {
             GamePlayer gamePlayer4Var = new GamePlayer(player2V, game2V);
             GamePlayer gamePlayer5Var = new GamePlayer(player2V, game3V);
             GamePlayer gamePlayer6Var = new GamePlayer(player4V, game3V);
+            GamePlayer gamePlayer9Var = new GamePlayer(player3V, game6V);
 
             ArrayList<String> localBarco1 = new ArrayList<String>(Arrays.asList("H2", "H3", "H4"));
             ArrayList<String> localBarco2 = new ArrayList<String>(Arrays.asList("E1", "F1", "G1"));
@@ -176,6 +177,7 @@ public class SalvoApplication {
             gameRepository.save(game1V);
             gameRepository.save(game2V);
             gameRepository.save(game3V);
+            gameRepository.save(game6V);
 
             gamePlayerRepository.save(gamePlayer1Var);
             gamePlayerRepository.save(gamePlayer2Var);
@@ -183,6 +185,7 @@ public class SalvoApplication {
             gamePlayerRepository.save(gamePlayer4Var);
             gamePlayerRepository.save(gamePlayer5Var);
             gamePlayerRepository.save(gamePlayer6Var);
+            gamePlayerRepository.save(gamePlayer9Var);
 
             shipRepository.save(ship1);
             shipRepository.save(ship2);

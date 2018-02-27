@@ -161,22 +161,6 @@ public class SalvoController {
     }
 
 
-    @RequestMapping("api/prueba")
-    public ArrayList prueba5() {
-        int prueba6 = repoGames.findAll().size();
-        List prueba7 = repoGames.findAll();
-        long prueba8 = repoGames.findAll().get(1).getId();
-        Set<GamePlayer> prueba9 = repoGames.findAll().get(1).getGamePlayers();
-
-        ArrayList playerName = new ArrayList();
-
-        for (GamePlayer gp : prueba9) {
-            playerName.add(gp.getPlayerEnGameplayer().getUserName());
-        }
-
-        return playerName;
-    }
-
     @RequestMapping(path = "api/players", method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> createUser(@RequestParam String username, String password) {
         if (username.isEmpty()) {

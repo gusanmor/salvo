@@ -45,6 +45,8 @@ function loginCorrecto(nombLogPar) {
     document.getElementById("divLogOut").style.display = "block";
     document.getElementById("welcUsuar").innerHTML = "<p>Welcome "+nombLogPar+"</p>";
     $("#usarCreatID").hide();
+    $("#crearGameID").show();
+
     // location.reload();
 // crearTablaGames();
 }
@@ -66,8 +68,12 @@ function tablaLeaderBoard(data) {
 
 // CONSEGUIR TODOS LOS JUGADORES QUITANDO LOS REPETIDOS////
     for (var i=0; i<data.games.length; i++) {
-        nombresJugadores.push(data.games[i].gamePlayers[0].player.playerEmail);
-        nombresJugadores.push(data.games[i].gamePlayers[1].player.playerEmail);
+        if (data.games[i].gamePlayers[0] != null) {
+            nombresJugadores.push(data.games[i].gamePlayers[0].player.playerEmail);
+        }
+        if (data.games[i].gamePlayers[1] != null) {
+            nombresJugadores.push(data.games[i].gamePlayers[1].player.playerEmail);
+        }
     }
     var nomJugNoRepetidos = [];
     $.each(nombresJugadores, function(i, el){
@@ -100,12 +106,23 @@ function crearTablaGames(data){
         var boton1 = "";
         var boton2 = "";
         // var gameplayerLog = .games["0"].gamePlayers["0"].gamePlayerID
-        var playerEmail1 = data.games[p].gamePlayers[0].player.playerEmail;
-        var playerEmail2 = data.games[p].gamePlayers[1].player.playerEmail;
-
-        var gamePlayerGP1 = data.games[p].gamePlayers[0].gamePlayerID;
-        var gameplayerGP2 = data.games[p].gamePlayers[1].gamePlayerID;
-
+        var playerEmail1 = "NO_PLAYER";
+        var playerEmail2 = "NO_PLAYER";
+        // console.log(data.games[p].gamePlayers[1].player.playerEmail);
+        if (data.games[p].gamePlayers[0] != null){
+            var playerEmail1 = data.games[p].gamePlayers[0].player.playerEmail;
+        }
+        if (data.games[p].gamePlayers[1] != null) {
+            var playerEmail2 = data.games[p].gamePlayers[1].player.playerEmail;
+        }
+        var gamePlayerGP1 ="";
+        var gamePlayerGP2 ="";
+        if (data.games[p].gamePlayers[0] !=null){
+            var gamePlayerGP1 = data.games[p].gamePlayers[0].gamePlayerID;
+        }
+        if (data.games[p].gamePlayers[1] !=null) {
+            var gameplayerGP2 = data.games[p].gamePlayers[1].gamePlayerID;
+        }
         if (playerEmail1==data.playerLogueado.name){
             // console.log("boton");
             boton1 = '<a class="btn btn-primary" href="/web/game.html?gp='+gamePlayerGP1+'">GO TO GAME</a></td>';
@@ -114,8 +131,9 @@ function crearTablaGames(data){
             // console.log("boton");
             boton2 = '<a class="btn btn-primary" href="/web/game.html?gp='+gameplayerGP2+'">GO TO GAME</a></td>';
         }
-
-        var stcd = toString(creatDate);
+        if (playerEmail2=="NO_PLAYER" && data.playerLogueado.name !="NombreSinLog") {
+            boton2 = '<a class="btn btn-primary">JOIN GAME</a></td>';
+        }
         tablaGames += "<tr>"+
             "<td>"+data.games[p].gameID+"</td>"+
             "<td>"+horaConSubstring+"</td>"+
@@ -142,19 +160,22 @@ function cogerPuntosJugador(data, nombreJugador){
     for (var k=0; k<data.games.length; k++) {
         for (var l=0; l<2; l++) {
             // console.log(nombreJugador);
-            if (data.games[k].gamePlayers[l].player.playerEmail == nombreJugador) {
-                if (data.games[k].gamePlayers[l].score != "null") {
-                    // console.log("diferente");
-                    objetosJugadores.points += data.games[k].gamePlayers[l].score;
-                }
-                if (data.games[k].gamePlayers[l].score == "1") {
-                    objetosJugadores.win++;
-                }
-                if (data.games[k].gamePlayers[l].score == "0") {
-                    objetosJugadores.lost++;
-                }
-                if (data.games[k].gamePlayers[l].score == "0.5") {
-                    objetosJugadores.tied++;
+            if (data.games[k].gamePlayers[l] != null) {
+
+                if (data.games[k].gamePlayers[l].player.playerEmail == nombreJugador) {
+                    if (data.games[k].gamePlayers[l].score != "null") {
+                        // console.log("diferente");
+                        objetosJugadores.points += data.games[k].gamePlayers[l].score;
+                    }
+                    if (data.games[k].gamePlayers[l].score == "1") {
+                        objetosJugadores.win++;
+                    }
+                    if (data.games[k].gamePlayers[l].score == "0") {
+                        objetosJugadores.lost++;
+                    }
+                    if (data.games[k].gamePlayers[l].score == "0.5") {
+                        objetosJugadores.tied++;
+                    }
                 }
             }
         }

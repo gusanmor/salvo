@@ -38,6 +38,10 @@ td{
 #divLogOut{
     display: none;
 }
+#crearGameID{
+    display: none;
+}
+
 /*#gameID1{*/
     /*width: 40%;*/
     /*display: inline;*/
