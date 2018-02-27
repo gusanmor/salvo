@@ -183,7 +183,12 @@ public class SalvoController {
     @RequestMapping(path = "api/games", method = RequestMethod.POST)
     public void createGame() {
         Date datePrV = new Date();
-        repoGames.save(new Game(datePrV));
+        Game gameprueb = new Game(datePrV);
+        Player playerPr = repoPlayers.findOneByUserName("j.bauer@ctu.gov");
+        GamePlayer gpPrueb = new GamePlayer(playerPr , gameprueb);
+        repoGames.save(gameprueb);
+        repoGamePlayer.save(gpPrueb);
+//        repoGamePlayer.save()
 
 //        return new ResponseEntity<>("Named added", "dsd");
 
