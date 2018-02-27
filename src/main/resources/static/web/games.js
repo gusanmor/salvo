@@ -30,12 +30,14 @@ function funcionSingIn(){
 }
 
 function loginCorrecto(nombLogPar) {
+
     console.log("logged in!");
     document.getElementById("divLogin").style.display = "none";
     document.getElementById("divLogOut").style.display = "block";
     document.getElementById("welcUsuar").innerHTML = "<p>Welcome "+nombLogPar+"</p>";
     $("#usarCreatID").hide();
-
+    // location.reload();
+// crearTablaGames();
 }
 
 function funcionLogOut(){
@@ -89,13 +91,16 @@ function crearTablaGames(data){
         var playerEmail1 = data.games[p].gamePlayers[0].player.playerEmail;
         var playerEmail2 = data.games[p].gamePlayers[1].player.playerEmail;
 
+        var gamePlayerGP1 = data.games[p].gamePlayers[0].gamePlayerID;
+        var gameplayerGP2 = data.games[p].gamePlayers[1].gamePlayerID;
+
         if (playerEmail1==data.playerLogueado.name){
             // console.log("boton");
-            boton1 = '<a class="btn btn-primary" href="/web/game.html?gp=1">GO TO GAME</a></td>';
+            boton1 = '<a class="btn btn-primary" href="/web/game.html?gp='+gamePlayerGP1+'">GO TO GAME</a></td>';
         }
         if (playerEmail2==data.playerLogueado.name){
             // console.log("boton");
-            boton2 = '<a class="btn btn-primary" href="/web/game.html?gp=1">GO TO GAME</a></td>';
+            boton2 = '<a class="btn btn-primary" href="/web/game.html?gp='+gameplayerGP2+'">GO TO GAME</a></td>';
         }
 
         var stcd = toString(creatDate);
