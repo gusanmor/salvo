@@ -83,14 +83,27 @@ function crearTablaGames(data){
         var horaSinSubstring = String(creatDate);
 
         var horaConSubstring = horaSinSubstring.substring(0, 21);
+        var boton1 = "";
+        var boton2 = "";
+        // var gameplayerLog = .games["0"].gamePlayers["0"].gamePlayerID
+        var playerEmail1 = data.games[p].gamePlayers[0].player.playerEmail;
+        var playerEmail2 = data.games[p].gamePlayers[1].player.playerEmail;
 
+        if (playerEmail1==data.playerLogueado.name){
+            // console.log("boton");
+            boton1 = '<a class="btn btn-primary" href="/web/game.html?gp=1">GO TO GAME</a></td>';
+        }
+        if (playerEmail2==data.playerLogueado.name){
+            // console.log("boton");
+            boton2 = '<a class="btn btn-primary" href="/web/game.html?gp=1">GO TO GAME</a></td>';
+        }
 
         var stcd = toString(creatDate);
         tablaGames += "<tr>"+
             "<td>"+data.games[p].gameID+"</td>"+
             "<td>"+horaConSubstring+"</td>"+
-            "<td>"+data.games[p].gamePlayers[0].player.playerEmail+"</td>"+
-            "<td>"+data.games[p].gamePlayers[1].player.playerEmail+"</td>"+
+            "<td>"+playerEmail1+boton1+"</td>"+
+            "<td>"+playerEmail2+boton2+"</td>"+
             "</tr>";
     }
     document.getElementById("tablaGamesID").innerHTML =tablaGames;
