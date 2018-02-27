@@ -162,6 +162,7 @@ function cogerPuntosJugador(data, nombreJugador){
     return objetosJugadores;
 }
 
+
 function ordenarMembers(data) {
     return data.sort(function (a, b) {
         if (a.points < b.points) {
