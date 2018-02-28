@@ -4,6 +4,8 @@ package salvo.salvo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -181,16 +183,17 @@ public class SalvoController {
     }
 
     @RequestMapping(path = "api/games", method = RequestMethod.POST)
-    public void createGame() {
+//    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<String> createGame(Authentication authentication) {
         Date datePrV = new Date();
         Game gameprueb = new Game(datePrV);
-        Player playerPr = repoPlayers.findOneByUserName("j.bauer@ctu.gov");
+        Player playerPr = repoPlayers.findOneByUserName(authentication.getName());
         GamePlayer gpPrueb = new GamePlayer(playerPr , gameprueb);
         repoGames.save(gameprueb);
         repoGamePlayer.save(gpPrueb);
 //        repoGamePlayer.save()
 
-//        return new ResponseEntity<>("Named added", "dsd");
+        return new ResponseEntity<>("Named added", HttpStatus.OK);
 
     }
 }
