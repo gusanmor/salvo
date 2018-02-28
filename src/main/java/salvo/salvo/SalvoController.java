@@ -187,13 +187,16 @@ public class SalvoController {
     public ResponseEntity<String> createGame(Authentication authentication) {
         Date datePrV = new Date();
         Game gameprueb = new Game(datePrV);
-        Player playerPr = repoPlayers.findOneByUserName(authentication.getName());
-        GamePlayer gpPrueb = new GamePlayer(playerPr , gameprueb);
-        repoGames.save(gameprueb);
-        repoGamePlayer.save(gpPrueb);
+        if (authentication != null) {
+            Player playerPr = repoPlayers.findOneByUserName(authentication.getName());
+            GamePlayer gpPrueb = new GamePlayer(playerPr, gameprueb);
+            repoGames.save(gameprueb);
+            repoGamePlayer.save(gpPrueb);
 //        repoGamePlayer.save()
 
-        return new ResponseEntity<>("Named added", HttpStatus.OK);
+            return new ResponseEntity<>("Game created", HttpStatus.OK);
+        }
+        else return new ResponseEntity<>("Error, no login", HttpStatus.FORBIDDEN);
 
     }
 }
