@@ -102,13 +102,17 @@ function crearRejiBarcosYsalvos(data) {
     function crearJugadoresGV(data) {
 
         var datosJugadoresGamesView = "";
-
-        if (limpiarURL(document.location.search) == data.gameplayers[0].gamePlayerID) {
-            datosJugadoresGamesView = data.gameplayers[0].player.playerEmail + "(YOU) VS. " + data.gameplayers[1].player.playerEmail;
-        }
-        else {
-            datosJugadoresGamesView = data.gameplayers[1].player.playerEmail + "(YOU) VS. " + data.gameplayers[0].player.playerEmail;
-        }
+if (data.gameplayers[0]!= null && data.gameplayers[1]!= null) {
+    if (limpiarURL(document.location.search) == data.gameplayers[0].gamePlayerID) {
+        datosJugadoresGamesView = data.gameplayers[0].player.playerEmail + "(YOU) VS. " + data.gameplayers[1].player.playerEmail;
+    }
+    else {
+        datosJugadoresGamesView = data.gameplayers[1].player.playerEmail + "(YOU) VS. " + data.gameplayers[0].player.playerEmail;
+    }
+}
+else {
+    datosJugadoresGamesView = data.gameplayers[0].player.playerEmail + "(YOU) VS. NO PLAYER";
+}
 
         document.getElementById("jugadoresGamesviewID").innerHTML = datosJugadoresGamesView;
 
