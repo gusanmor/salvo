@@ -62,9 +62,9 @@ function funcionLogOut(){
 }
 
 function crearGame(){
-    $.post("/api/games").done(function() {
-
-        console.log("gameCreated");
+    $.post("/api/games").done(function(response) {
+        console.log(response);
+        window.location.replace("/web/game.html?gp="+response);
     }).fail(function(response) {
         alert(response.responseText);
     })

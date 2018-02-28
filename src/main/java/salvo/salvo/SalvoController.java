@@ -184,7 +184,7 @@ public class SalvoController {
 
     @RequestMapping(path = "api/games", method = RequestMethod.POST)
 //    @PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<String> createGame(Authentication authentication) {
+    public ResponseEntity<Object> createGame(Authentication authentication) {
         Date datePrV = new Date();
         Game gameprueb = new Game(datePrV);
         if (authentication != null) {
@@ -192,9 +192,8 @@ public class SalvoController {
             GamePlayer gpPrueb = new GamePlayer(playerPr, gameprueb);
             repoGames.save(gameprueb);
             repoGamePlayer.save(gpPrueb);
-//        repoGamePlayer.save()
 
-            return new ResponseEntity<>("Game created", HttpStatus.OK);
+            return new ResponseEntity<>(""+gpPrueb.getId(), HttpStatus.OK);
         }
         else return new ResponseEntity<>("Error, no login", HttpStatus.FORBIDDEN);
 
