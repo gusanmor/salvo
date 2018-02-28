@@ -61,6 +61,15 @@ function funcionLogOut(){
     })
 }
 
+function crearGame(){
+    $.post("/api/games").done(function() {
+
+        console.log("gameCreated");
+    }).fail(function(response) {
+        alert(response.responseText);
+    })
+}
+
 function tablaLeaderBoard(data) {
 
     var contenidoLeaderBoard = "";
