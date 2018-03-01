@@ -200,10 +200,19 @@ public class SalvoController {
     }
     @RequestMapping(path = "/api/game/{IDgameP}/players", method = RequestMethod.POST)
     public ResponseEntity<String> joinGame(@PathVariable Long IDgameP , Authentication authentication){
-        Player playerJoin = repoPlayers.findOneByUserName(authentication.getName());
-        Game gameJoin = repoGames.findOne(IDgameP);
-        GamePlayer gamePlayJoin = new GamePlayer(playerJoin , gameJoin);
-        repoGamePlayer.save(gamePlayJoin);
-        return new ResponseEntity<>(""+gamePlayJoin.getId(), HttpStatus.OK);
+        if (authentication != null) {
+            Player playerJoin = repoPlayers.findOneByUserName(authentication.getName());
+            Game gameJoin = repoGames.findOne(IDgameP);
+
+            if (gameJoin.getGamePlayers().size()>1){
+                return new ResponseEntity<>("Game is full", HttpStatus.FORBIDDEN);
+            }
+            else {
+                GamePlayer gamePlayJoin = new GamePlayer(playerJoin, gameJoin);
+                repoGamePlayer.save(gamePlayJoin);
+                return new ResponseEntity<>("" + gamePlayJoin.getId(), HttpStatus.OK);
+            }
+        }
+        else return new ResponseEntity<>("Error, no login", HttpStatus.FORBIDDEN);
     }
 }

@@ -72,8 +72,11 @@ function crearGame(){
 
 function joinGameBoton(botGameID){
     $.post("/api/game/"+botGameID+"/players").done(function(response) {
-        console.log(response);
+        // console.log(response);
         window.location.replace("/web/game.html?gp="+response);
+    }).fail(function(response) {
+        // alert(response.responseJSON.error);
+        alert(response.responseText);
     })
 }
 
