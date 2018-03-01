@@ -204,6 +204,6 @@ public class SalvoController {
         Game gameJoin = repoGames.findOne(IDgameP);
         GamePlayer gamePlayJoin = new GamePlayer(playerJoin , gameJoin);
         repoGamePlayer.save(gamePlayJoin);
-        return new ResponseEntity<>("join game", HttpStatus.OK);
+        return new ResponseEntity<>(""+gamePlayJoin.getId(), HttpStatus.OK);
     }
 }

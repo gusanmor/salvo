@@ -70,10 +70,11 @@ function crearGame(){
     })
 }
 
-function joinGame(botGameID , botGPID){
-    $.post("/api/game/"+botGameID+"/players").done(function() {
-        console.log("join"); })
-    window.location.replace("/web/game.html?gp="+botGPID);
+function joinGameBoton(botGameID){
+    $.post("/api/game/"+botGameID+"/players").done(function(response) {
+        console.log(response);
+        window.location.replace("/web/game.html?gp="+response);
+    })
 }
 
 function tablaLeaderBoard(data) {
@@ -147,7 +148,7 @@ function crearTablaGames(data){
             boton2 = '<a class="btn btn-primary" href="/web/game.html?gp='+gameplayerGP2+'">GO TO GAME</a></td>';
         }
         if (playerEmail2=="NO_PLAYER" && data.playerLogueado.name !="NombreSinLog") {
-            boton2 = '<button id="" onclick="joinGame('+data.games[p].gameID+',8)">JOIN GAME</button>';
+            boton2 = '<button id="" onclick="joinGameBoton('+data.games[p].gameID+')">JOIN GAME</button>';
         }
         tablaGames += "<tr>"+
             "<td>"+data.games[p].gameID+"</td>"+
