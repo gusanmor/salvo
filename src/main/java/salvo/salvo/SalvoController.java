@@ -184,7 +184,7 @@ public class SalvoController {
 
     @RequestMapping(path = "api/games", method = RequestMethod.POST)
 //    @PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<Object> createGame(Authentication authentication) {
+    public ResponseEntity<String> createGame(Authentication authentication) {
         Date datePrV = new Date();
         Game gameprueb = new Game(datePrV);
         if (authentication != null) {
@@ -197,5 +197,10 @@ public class SalvoController {
         }
         else return new ResponseEntity<>("Error, no login", HttpStatus.FORBIDDEN);
 
+    }
+    @RequestMapping(path = "/api/game/nn/players", method = RequestMethod.POST)
+    public ResponseEntity<String> joinGame(){
+//        repoGamePlayer.save(repoPlayers.findOneByUserName("j.bauer@ctu.gov"),repoGames.f);
+        return new ResponseEntity<>("join game", HttpStatus.OK);
     }
 }
