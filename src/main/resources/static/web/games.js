@@ -70,6 +70,11 @@ function crearGame(){
     })
 }
 
+function joinGame(){
+    $.post("/api/game/5/players").done(function() {
+        console.log("join"); })
+}
+
 function tablaLeaderBoard(data) {
 
     var contenidoLeaderBoard = "";
@@ -141,7 +146,7 @@ function crearTablaGames(data){
             boton2 = '<a class="btn btn-primary" href="/web/game.html?gp='+gameplayerGP2+'">GO TO GAME</a></td>';
         }
         if (playerEmail2=="NO_PLAYER" && data.playerLogueado.name !="NombreSinLog") {
-            boton2 = '<a class="btn btn-primary">JOIN GAME</a></td>';
+            boton2 = '<button id="" onclick="joinGame()">JOIN GAME</button>';
         }
         tablaGames += "<tr>"+
             "<td>"+data.games[p].gameID+"</td>"+
