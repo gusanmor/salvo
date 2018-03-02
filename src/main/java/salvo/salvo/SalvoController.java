@@ -27,6 +27,9 @@ public class SalvoController {
     @Autowired
     private ScoreRepository repoScore;
 
+    @Autowired
+    private ShipRepository repoShip;
+
 
     @RequestMapping("api/games")
     public Map<String, Object> IDyCreatedMetodo(Game game, Authentication authentication) {
@@ -164,7 +167,7 @@ public class SalvoController {
 
 
     @RequestMapping(path = "api/players", method = RequestMethod.POST)
-    public ResponseEntity<Map<String, Object>> createUser(@RequestParam String username, String password) {
+    public ResponseEntity<Map<String, Object>> createUser(@RequestParam String username, @RequestParam String password) {
         if (username.isEmpty()) {
             return new ResponseEntity<>(makeMap("error", "no name introduced"), HttpStatus.FORBIDDEN);
         }
@@ -214,5 +217,21 @@ public class SalvoController {
             }
         }
         else return new ResponseEntity<>("Error, no login", HttpStatus.FORBIDDEN);
+    }
+
+    @RequestMapping(path = "/games/players/{IDGP}/ships", method = RequestMethod.POST)
+    public ResponseEntity<String> colocarBarcos(@PathVariable Long IDGP){
+        ArrayList<String> localBarcoPr = new ArrayList<String>(Arrays.asList("H2", "H3", "H4"));
+
+        Ship shipPr2 = new Ship("Destroyer", localBarcoPr);
+        GamePlayer gamePlayerPr2 = repoGamePlayer.findOne(IDGP);
+
+        gamePlayerPr2.addShips(shipPr2);
+
+        repoGamePlayer.save(gamePlayerPr2);
+        repoShip.save(shipPr2);
+
+        return new ResponseEntity<>("Barco añadido", HttpStatus.CREATED);
+
     }
 }
