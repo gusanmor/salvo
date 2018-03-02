@@ -220,7 +220,15 @@ public class SalvoController {
     }
 
     @RequestMapping(path = "/games/players/{IDGP}/ships", method = RequestMethod.POST)
-    public ResponseEntity<String> colocarBarcos(@PathVariable Long IDGP , @RequestBody Set<Ship> localTodosBarcos){
+    public ResponseEntity<String> colocarBarcos(@PathVariable Long IDGP , @RequestBody Set<Ship> TodosBarcos){
+
+//        Ship barco = null;
+
+        for (Ship barco : TodosBarcos){
+            repoGamePlayer.findOne(IDGP).addShips(barco);
+            repoGamePlayer.save(repoGamePlayer.findOne(IDGP));
+            repoShip.save(barco);
+        }
         ArrayList<String> localBarcoPr = new ArrayList<String>(Arrays.asList("H2", "H3", "H4"));
 
         Ship shipPr2 = new Ship("Destroyer", localBarcoPr);
