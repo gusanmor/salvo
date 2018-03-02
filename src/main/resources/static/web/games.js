@@ -64,7 +64,7 @@ function funcionLogOut(){
 function crearGame(){
     $.post("/api/games").done(function(response) {
         console.log(response);
-        window.location.replace("/web/game.html?gp="+response);
+        window.location.assign("/web/game.html?gp="+response);
     }).fail(function(response) {
         alert(response.responseText);
     })
@@ -73,7 +73,7 @@ function crearGame(){
 function joinGameBoton(botGameID){
     $.post("/api/game/"+botGameID+"/players").done(function(response) {
         // console.log(response);
-        window.location.replace("/web/game.html?gp="+response);
+        window.location.assign("/web/game.html?gp="+response);
     }).fail(function(response) {
         // alert(response.responseJSON.error);
         alert(response.responseText);
