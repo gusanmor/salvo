@@ -226,12 +226,17 @@ public class SalvoController {
             GamePlayer GPcolocandoBarcos = repoGamePlayer.findOne(IDGP);
             ///SI EL GAMEPLAYER EXISTE///
             if (GPcolocandoBarcos != null) {
-                for (Ship barco : todosBarcos) {
-                    GPcolocandoBarcos.addShips(barco);
-                    repoGamePlayer.save(GPcolocandoBarcos);
-                    repoShip.save(barco);
+                //SI EL GAMEPLAYER AUTHENTIFICADO ES IGUAL QUE EL QUE HA HECHO EL POST///
+                if (GPcolocandoBarcos.getPlayerEnGameplayer().getUserName() == repoPlayers.findOneByUserName(authentication.getName()).getUserName()) {
+                    for (Ship barco : todosBarcos) {
+                        GPcolocandoBarcos.addShips(barco);
+                        repoGamePlayer.save(GPcolocandoBarcos);
+                        repoShip.save(barco);
+                    }
+                    return new ResponseEntity<>("Barco añadido", HttpStatus.CREATED);
                 }
-                return new ResponseEntity<>("Barco añadido", HttpStatus.CREATED);
+                else return new ResponseEntity<>("Tu usuario no puede poner barcos en este juego", HttpStatus.FORBIDDEN);
+
             }
             ///GAMEPLAYER NO EXISTE///
             else return new ResponseEntity<>("Error barco no añadido, Gameplayer no existe", HttpStatus.FORBIDDEN);

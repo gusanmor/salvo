@@ -80,6 +80,8 @@ function joinGameBoton(botGameID){
     })
 }
 
+
+
 function enviarBarcos(){
     // console.log("barco");
     $.post({
@@ -87,7 +89,7 @@ function enviarBarcos(){
         data: JSON.stringify([
             { tipoBarcoV: "Submarine", locBarcoV: ["A1", "B1", "C1"]},
             { tipoBarcoV: "Destroyer", locBarcoV: ["A3", "B3"]}
-            ]),
+        ]),
         dataType: "text",
         contentType: "application/json"
     })
@@ -95,7 +97,7 @@ function enviarBarcos(){
             console.log( "barco añadido" );
         })
         .fail(function () {
-            alert("barco no añadido");
+            console.log("barco no añadido");
         })
 }
 
