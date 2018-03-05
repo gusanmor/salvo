@@ -220,26 +220,22 @@ public class SalvoController {
     }
 
     @RequestMapping(path = "/games/players/{IDGP}/ships", method = RequestMethod.POST)
-    public ResponseEntity<String> colocarBarcos(@PathVariable Long IDGP , @RequestBody Set<Ship> todosBarcos){
-
-//        Ship barco = null;
-
-        for (Ship barco : todosBarcos){
-            repoGamePlayer.findOne(IDGP).addShips(barco);
-            repoGamePlayer.save(repoGamePlayer.findOne(IDGP));
-            repoShip.save(barco);
+    public ResponseEntity<String> colocarBarcos(@PathVariable Long IDGP , @RequestBody Set<Ship> todosBarcos, Authentication authentication){
+////LE PREGUNTO SI HAY ALGUIEN LOGUEADO///
+        if (authentication != null) {
+            GamePlayer GPcolocandoBarcos = repoGamePlayer.findOne(IDGP);
+            ///SI EL GAMEPLAYER EXISTE///
+            if (GPcolocandoBarcos != null) {
+                for (Ship barco : todosBarcos) {
+                    GPcolocandoBarcos.addShips(barco);
+                    repoGamePlayer.save(GPcolocandoBarcos);
+                    repoShip.save(barco);
+                }
+                return new ResponseEntity<>("Barco añadido", HttpStatus.CREATED);
+            }
+            ///GAMEPLAYER NO EXISTE///
+            else return new ResponseEntity<>("Error barco no añadido, Gameplayer no existe", HttpStatus.FORBIDDEN);
         }
-//        ArrayList<String> localBarcoPr = new ArrayList<String>(Arrays.asList("H2", "H3", "H4"));
-//
-//        Ship shipPr2 = new Ship("Destroyer", localBarcoPr);
-//        GamePlayer gamePlayerPr2 = repoGamePlayer.findOne(IDGP);
-//
-//        gamePlayerPr2.addShips(shipPr2);
-//
-//        repoGamePlayer.save(gamePlayerPr2);
-//        repoShip.save(shipPr2);
-
-        return new ResponseEntity<>("Barco añadido", HttpStatus.CREATED);
-
+        else return new ResponseEntity<>("Error barco no añadido, no login", HttpStatus.FORBIDDEN);
     }
 }
