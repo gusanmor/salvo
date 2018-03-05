@@ -80,29 +80,6 @@ function joinGameBoton(botGameID){
     })
 }
 
-
-
-function enviarBarcos(){
-    // console.log("barco");
-    $.post({
-        url: "/games/players/8/ships",
-        data: JSON.stringify([
-            { tipoBarcoV: "Submarine", locBarcoV: ["A1", "B1", "C1"]},
-            { tipoBarcoV: "Destroyer", locBarcoV: ["A3", "B3"]}
-        ]),
-        dataType: "text",
-        contentType: "application/json"
-    })
-        .done(function () {
-            console.log( "barco añadido" );
-        })
-        .fail(function () {
-            console.log("barco no añadido");
-        })
-}
-
-
-
 function tablaLeaderBoard(data) {
 
     var contenidoLeaderBoard = "";
