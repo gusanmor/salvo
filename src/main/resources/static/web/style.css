@@ -42,6 +42,49 @@ td{
     display: none;
 }
 
+/*!*--------------DRAG AND DROP-----*!*/
+
+/*!**/
+            /** propiedades de las cajas (arrastrables)*/
+            /**!*/
+/*div[id ^='caja'] {*/
+    /*width:330px;*/
+    /*height:auto;*/
+    /*background:rgba(204, 0, 0, 0.8);*/
+    /*border: 3px solid rgba(204, 0, 0, 1);*/
+    /*margin:5px auto;*/
+    /*padding:5px;*/
+    /*color:#FFF;*/
+/*}*/
+/*div[id ^='caja']:after {*/
+    /*content:"  Fuera del contenedor"*/
+/*}*/
+/*!**/
+ /** propiedades que van a tomar el elemento arrastrable luego de que  este se suelte dentro de su contenedor*/
+ /**!*/
+/*div[id ^='contenedor'] div[id ^='caja'] {*/
+    /*background:rgba(0,178,255,0.8);*/
+    /*border: 3px solid rgba(0,178,255, 1);*/
+    /*float:right;*/
+/*}*/
+/*div[id ^='contenedor'] div[id ^='caja'] span {*/
+    /*color:#FFF;*/
+/*}*/
+/*div[id ^='contenedor'] div[id ^='caja']:after {*/
+    /*content:"  Dentro del contenedor  "*/
+/*}*/
+/*!**/
+/** propiedades del contenedor*/
+           /**!*/
+/*div[id ^='contenedor'] {*/
+    /*width:350px;*/
+    /*height:200px;*/
+    /*background:rgba(38,104,127,0.8);*/
+    /*border: 3px solid rgba(38,104,127, 1);*/
+    /*margin:5px auto;*/
+    /*padding:5px;*/
+/*}*/
+
 /*#gameID1{*/
     /*width: 40%;*/
     /*display: inline;*/

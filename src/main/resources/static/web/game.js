@@ -140,3 +140,15 @@ function enviarBarcos(){
         })
 }
 
+// ---DRAG AND DROP-------------
+// function dragstart(caja, evento) {
+//     // el elemento a arrastrar
+//     event.dataTransfer.setData('Data', caja.id);
+// }
+//
+// function drop(target, evento) {
+//     // obtenemos los datos
+//     var caja = event.dataTransfer.getData('Data');
+//     // agregamos el elemento de arrastre al contenedor
+//     target.appendChild(document.getElementById(caja));
+// }
