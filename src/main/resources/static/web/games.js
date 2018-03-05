@@ -83,8 +83,11 @@ function joinGameBoton(botGameID){
 function enviarBarcos(){
     // console.log("barco");
     $.post({
-        url: "/games/players/{8}/ships",
-        data: JSON.stringify({ type: destroyer, locations: ["A1", "B1", "C1"]}),
+        url: "/games/players/8/ships",
+        data: JSON.stringify([
+            { tipoBarcoV: "Submarine", locBarcoV: ["A1", "B1", "C1"]},
+            { tipoBarcoV: "Destroyer", locBarcoV: ["A3", "B3"]}
+            ]),
         dataType: "text",
         contentType: "application/json"
     })

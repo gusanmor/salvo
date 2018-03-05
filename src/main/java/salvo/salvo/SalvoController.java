@@ -220,24 +220,24 @@ public class SalvoController {
     }
 
     @RequestMapping(path = "/games/players/{IDGP}/ships", method = RequestMethod.POST)
-    public ResponseEntity<String> colocarBarcos(@PathVariable Long IDGP , @RequestBody Set<Ship> TodosBarcos){
+    public ResponseEntity<String> colocarBarcos(@PathVariable Long IDGP , @RequestBody Set<Ship> todosBarcos){
 
 //        Ship barco = null;
 
-        for (Ship barco : TodosBarcos){
+        for (Ship barco : todosBarcos){
             repoGamePlayer.findOne(IDGP).addShips(barco);
             repoGamePlayer.save(repoGamePlayer.findOne(IDGP));
             repoShip.save(barco);
         }
-        ArrayList<String> localBarcoPr = new ArrayList<String>(Arrays.asList("H2", "H3", "H4"));
-
-        Ship shipPr2 = new Ship("Destroyer", localBarcoPr);
-        GamePlayer gamePlayerPr2 = repoGamePlayer.findOne(IDGP);
-
-        gamePlayerPr2.addShips(shipPr2);
-
-        repoGamePlayer.save(gamePlayerPr2);
-        repoShip.save(shipPr2);
+//        ArrayList<String> localBarcoPr = new ArrayList<String>(Arrays.asList("H2", "H3", "H4"));
+//
+//        Ship shipPr2 = new Ship("Destroyer", localBarcoPr);
+//        GamePlayer gamePlayerPr2 = repoGamePlayer.findOne(IDGP);
+//
+//        gamePlayerPr2.addShips(shipPr2);
+//
+//        repoGamePlayer.save(gamePlayerPr2);
+//        repoShip.save(shipPr2);
 
         return new ResponseEntity<>("Barco añadido", HttpStatus.CREATED);
 
