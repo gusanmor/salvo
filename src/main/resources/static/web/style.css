@@ -15,6 +15,13 @@ td{
     /*background-color: aqua;*/
 }
 
+.celdaSinBarco, .celdaSinSalvo{
+    background-color: aqua;
+    width: 2rem;
+    height: 2rem;
+    border: 0.1rem solid black;
+}
+
 .celdaBarco {
     background-color: gray;
     width: 2rem;
@@ -22,22 +29,24 @@ td{
     border: 0.1rem solid black;
 }
 
-#drag1 {
+.celdaDrag{
     background-color: gray;
-    width: 5.8rem;
-    height: 1.8rem;
     border: 0.1rem solid black;
     position: absolute;
     z-index: 3 !important;
     margin-top: -0.85rem;
 }
-
-.celdaSinBarco, .celdaSinSalvo{
-    background-color: aqua;
-    width: 2rem;
-    height: 2rem;
-    border: 0.1rem solid black;
+#drag1 {
+    width: 9.8rem;
+    height: 1.8rem;
 }
+
+#drag2 {
+    width: 7.8rem;
+    height: 1.8rem;
+}
+
+
 
 /*.celdaSinSalvo{*/
     /*background-color: aqua;*/

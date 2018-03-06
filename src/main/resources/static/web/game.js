@@ -122,16 +122,23 @@ else {
 
 function allowDrop(ev) {
     ev.preventDefault();
+    console.log("PERMITIENDO DROP");
 }
 
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
+    console.log("HACIENDO DRAG");
+    // ev.target.removeAttribute("class","");
+    console.log(ev);
 }
 
 function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
+    ev.target.setAttribute("class","celdaBarco");
+    console.log("DROP HECHO");
+    console.log(ev);
 }
 
     // -----CREAR BARCOS PICANDO BOTON---------
