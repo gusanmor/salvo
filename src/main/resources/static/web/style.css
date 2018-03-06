@@ -24,9 +24,12 @@ td{
 
 #drag1 {
     background-color: gray;
-    width: 1.8rem;
+    width: 5.8rem;
     height: 1.8rem;
     border: 0.1rem solid black;
+    position: absolute;
+    z-index: 3 !important;
+    margin-top: -0.85rem;
 }
 
 .celdaSinBarco, .celdaSinSalvo{
