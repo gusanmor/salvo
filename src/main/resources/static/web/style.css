@@ -9,23 +9,36 @@ h1{
 }
 
 td{
-    width: 2rem;
-    height: 2rem;
+    /*width: 2rem;*/
+    /*height: 2rem;*/
     border: 0.1rem solid black;
     /*background-color: aqua;*/
 }
 
 .celdaBarco {
     background-color: gray;
+    width: 2rem;
+    height: 2rem;
+    border: 0.1rem solid black;
 }
 
-.celdaSinBarco{
-    background-color: aqua;
+#drag1 {
+    background-color: gray;
+    width: 1.8rem;
+    height: 1.8rem;
+    border: 0.1rem solid black;
 }
 
-.celdaSinSalvo{
+.celdaSinBarco, .celdaSinSalvo{
     background-color: aqua;
+    width: 2rem;
+    height: 2rem;
+    border: 0.1rem solid black;
 }
+
+/*.celdaSinSalvo{*/
+    /*background-color: aqua;*/
+/*}*/
 
 .celdaSalvo{
     background-color: red;
@@ -33,6 +46,19 @@ td{
 
 .celdaTocado{
     background-color: orange;
+    border: 0.1rem solid black;
+}
+#rejillaBarcosID{
+    display: inline;
+}
+
+#rejillaSalvosID{
+    float: right;
+}
+
+.barco1{
+    height: 1.5rem;
+    position: absolute;
 }
 
 #divLogOut{

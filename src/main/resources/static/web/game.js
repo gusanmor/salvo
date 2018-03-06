@@ -85,7 +85,7 @@ function crearRejiBarcosYsalvos(data) {
                 }
             }
 
-            contenidoRejillaBarcos1 += '<td id="' + idCelda + '" class="' + claseBarco + '">' + txBarcoTocado + '</td>';
+            contenidoRejillaBarcos1 += '<td id="' + idCelda + '" class="' + claseBarco + '"ondrop="drop(event)" ondragover="allowDrop(event)"></td>';
             contenidoRejillaSalvos1 += '<td id="' + idCelda + '" class="' + claseSalvo + '">' + txCeldaTuSalvo + '</td>';
         }
         contenidoRejillaBarcos1 += '</tr>';
@@ -117,6 +117,22 @@ else {
         document.getElementById("jugadoresGamesviewID").innerHTML = datosJugadoresGamesView;
 
     }
+
+//POSICIONAR BARCOS CON DRAG AND DROP////
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
 
     // -----CREAR BARCOS PICANDO BOTON---------
 
