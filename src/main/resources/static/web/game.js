@@ -141,19 +141,23 @@ function drop(ev) {
     console.log(ev);
 }
 
-document.getElementById("drag1").onclick = function(){
-    girarVerHor("drag1");
+document.getElementById("carrier").onclick = function(){
+    girarVerHor("carrier");
     };
+
+document.getElementById("battleship").onclick = function(){
+    girarVerHor("battleship");
+};
 
 function girarVerHor(idAgirar) {
     var vertOHor = document.getElementById(idAgirar).getAttribute("class");
-    if (vertOHor == "celdaDrag") {
-        document.getElementById("drag1").setAttribute("class", "drag1Vertical");
+    if (vertOHor == idAgirar+"Hor") {
+        document.getElementById(idAgirar).setAttribute("class", idAgirar+"Ver");
         console.log("ver");
     }
     else {
         console.log("hor");
-        document.getElementById(idAgirar).setAttribute("class", "celdaDrag");
+        document.getElementById(idAgirar).setAttribute("class", idAgirar+"Hor");
     }
 
 

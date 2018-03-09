@@ -29,37 +29,41 @@ td{
     border: 0.1rem solid black;
 }
 
-.celdaDrag{
+#carrier{
+    background-color: gray;
+    border: 0.1rem solid black;
+    position: absolute;
+    /*z-index: 3 !important;*/
+    margin-top: -0.85rem;
+}
+
+#battleship{
+    background-color: gray;
+    border: 0.1rem solid black;
+    position: absolute;
+    /*z-index: 3 !important;*/
+    margin-top: -0.85rem;
+}
+
+.carrierHor{
     width: 9.8rem;
     height: 1.8rem;
-    background-color: gray;
-    border: 0.1rem solid black;
-    position: absolute;
-    /*z-index: 3 !important;*/
-    margin-top: -0.85rem;
 }
 
-.drag1Vertical{
+.carrierVer{
     width: 1.8rem;
     height: 9.8rem;
-    background-color: gray;
-    border: 0.1rem solid black;
-    position: absolute;
-    /*z-index: 3 !important;*/
-    margin-top: -0.85rem;
 }
 
-#drag2 {
+.battleshipHor{
     width: 7.8rem;
     height: 1.8rem;
-
 }
 
-
-
-/*.celdaSinSalvo{*/
-    /*background-color: aqua;*/
-/*}*/
+.battleshipVer{
+    width: 1.8rem;
+    height: 7.8rem;
+}
 
 .celdaSalvo{
     background-color: red;
