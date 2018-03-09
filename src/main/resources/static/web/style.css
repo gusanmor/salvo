@@ -30,20 +30,29 @@ td{
 }
 
 .celdaDrag{
+    width: 9.8rem;
+    height: 1.8rem;
     background-color: gray;
     border: 0.1rem solid black;
     position: absolute;
-    z-index: 3 !important;
+    /*z-index: 3 !important;*/
     margin-top: -0.85rem;
 }
-#drag1 {
-    width: 9.8rem;
-    height: 1.8rem;
+
+.drag1Vertical{
+    width: 1.8rem;
+    height: 9.8rem;
+    background-color: gray;
+    border: 0.1rem solid black;
+    position: absolute;
+    /*z-index: 3 !important;*/
+    margin-top: -0.85rem;
 }
 
 #drag2 {
     width: 7.8rem;
     height: 1.8rem;
+
 }
 
 

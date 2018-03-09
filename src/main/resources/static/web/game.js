@@ -141,6 +141,31 @@ function drop(ev) {
     console.log(ev);
 }
 
+document.getElementById("drag1").onclick = function(){
+    girarVerHor("drag1");
+    };
+
+function girarVerHor(idAgirar) {
+    var vertOHor = document.getElementById(idAgirar).getAttribute("class");
+    if (vertOHor == "celdaDrag") {
+        document.getElementById("drag1").setAttribute("class", "drag1Vertical");
+        console.log("ver");
+    }
+    else {
+        console.log("hor");
+        document.getElementById(idAgirar).setAttribute("class", "celdaDrag");
+    }
+
+
+
+};
+
+// $('#rejillaBarcosID').click(function(){
+//     console.log("girandoBarco1");
+// });
+
+
+
     // -----CREAR BARCOS PICANDO BOTON---------
 
 function enviarBarcos(){
