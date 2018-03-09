@@ -136,7 +136,7 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
-    ev.target.setAttribute("class","celdaBarco");
+    // ev.target.setAttribute("class","celdaBarco");
     console.log("DROP HECHO");
     console.log(ev);
 }
