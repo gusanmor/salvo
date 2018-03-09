@@ -120,6 +120,13 @@ else {
 
 //POSICIONAR BARCOS CON DRAG AND DROP////
 
+var arrayObjBarcPost = [
+    { tipoBarcoV: "Carrier", locBarcoV: []},
+    { tipoBarcoV: "Battleship", locBarcoV: []}
+];
+
+// enviarBarcos2(arrayObjBarcPost);
+
 function allowDrop(ev) {
     ev.preventDefault();
     console.log("PERMITIENDO DROP");
@@ -129,7 +136,7 @@ function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
     console.log("HACIENDO DRAG");
     // ev.target.removeAttribute("class","");
-    console.log(ev);
+    // console.log(ev);
 }
 
 function drop(ev) {
@@ -139,14 +146,28 @@ function drop(ev) {
     // ev.target.setAttribute("class","celdaBarco");
     console.log("DROP HECHO");
     console.log(ev);
+    console.log(ev.target.id);
+    console.log(ev.target.id);
+    // console.log(ev.dataTransfer.getData());
+    console.log(arrayObjBarcPost);
+    for (var ii = 0; ii < arrayObjBarcPost.length; ii++) {
+        if (arrayObjBarcPost[ii].tipoBarcoV==data){
+            console.log("barco igual");
+            arrayObjBarcPost[ii].locBarcoV = ev.target.id;
+            console.log(arrayObjBarcPost);
+        }
+    }
+
+
+
 }
 
-document.getElementById("carrier").onclick = function(){
-    girarVerHor("carrier");
+document.getElementById("Carrier").onclick = function(){
+    girarVerHor("Carrier");
     };
 
-document.getElementById("battleship").onclick = function(){
-    girarVerHor("battleship");
+document.getElementById("Battleship").onclick = function(){
+    girarVerHor("Battleship");
 };
 
 function girarVerHor(idAgirar) {
@@ -159,27 +180,16 @@ function girarVerHor(idAgirar) {
         console.log("hor");
         document.getElementById(idAgirar).setAttribute("class", idAgirar+"Hor");
     }
-
-
-
 };
-
-// $('#rejillaBarcosID').click(function(){
-//     console.log("girandoBarco1");
-// });
-
 
 
     // -----CREAR BARCOS PICANDO BOTON---------
 
-function enviarBarcos(){
+function enviarBarcos(arrayObjBarcPostPar){
     // console.log("barco");
     $.post({
         url: "/games/players/"+limpiarURL(document.location.search)+"/ships",
-        data: JSON.stringify([
-            { tipoBarcoV: "Submarine", locBarcoV: ["A1", "B1", "C1"]},
-            { tipoBarcoV: "Destroyer", locBarcoV: ["A3", "B3"]}
-        ]),
+        data: JSON.stringify(arrayObjBarcPostPar),
         dataType: "text",
         contentType: "application/json"
     })

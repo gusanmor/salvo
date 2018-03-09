@@ -29,7 +29,7 @@ td{
     border: 0.1rem solid black;
 }
 
-#carrier{
+#Carrier{
     background-color: gray;
     border: 0.1rem solid black;
     position: absolute;
@@ -37,7 +37,7 @@ td{
     margin-top: -0.85rem;
 }
 
-#battleship{
+#Battleship{
     background-color: gray;
     border: 0.1rem solid black;
     position: absolute;
@@ -45,22 +45,22 @@ td{
     margin-top: -0.85rem;
 }
 
-.carrierHor{
+.CarrierHor{
     width: 9.8rem;
     height: 1.8rem;
 }
 
-.carrierVer{
+.CarrierVer{
     width: 1.8rem;
     height: 9.8rem;
 }
 
-.battleshipHor{
+.BattleshipHor{
     width: 7.8rem;
     height: 1.8rem;
 }
 
-.battleshipVer{
+.BattleshipVer{
     width: 1.8rem;
     height: 7.8rem;
 }
