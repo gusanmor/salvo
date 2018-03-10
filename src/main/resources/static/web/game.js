@@ -145,21 +145,18 @@ function drop(ev) {
     ev.target.appendChild(document.getElementById(data));
     // ev.target.setAttribute("class","celdaBarco");
     console.log("DROP HECHO");
-    console.log(ev);
-    console.log(ev.target.id);
-    console.log(ev.target.id);
-    // console.log(ev.dataTransfer.getData());
     console.log(arrayObjBarcPost);
+    console.log(ev.target);
     for (var ii = 0; ii < arrayObjBarcPost.length; ii++) {
         if (arrayObjBarcPost[ii].tipoBarcoV==data){
-            console.log("barco igual");
-            arrayObjBarcPost[ii].locBarcoV = ev.target.id;
-            console.log(arrayObjBarcPost);
+            var letraCeld = ev.target.id.substring(0, 1);
+            var numCeld = ev.target.id.substring(1, 2);
+            console.log(letraCeld);
+            console.log(numCeld);
+
+            arrayObjBarcPost[ii].locBarcoV = [ev.target.id,ev.target.id];
         }
     }
-
-
-
 }
 
 document.getElementById("Carrier").onclick = function(){
@@ -194,23 +191,11 @@ function enviarBarcos(arrayObjBarcPostPar){
         contentType: "application/json"
     })
         .done(function () {
-            console.log( "barco añadido" );
+            console.log( "barcos añadido" );
             window.location.reload();
         })
         .fail(function () {
-            console.log("barco no añadido");
+            console.log("barcos no añadidos");
         })
 }
 
-// ---DRAG AND DROP-------------
-// function dragstart(caja, evento) {
-//     // el elemento a arrastrar
-//     event.dataTransfer.setData('Data', caja.id);
-// }
-//
-// function drop(target, evento) {
-//     // obtenemos los datos
-//     var caja = event.dataTransfer.getData('Data');
-//     // agregamos el elemento de arrastre al contenedor
-//     target.appendChild(document.getElementById(caja));
-// }
