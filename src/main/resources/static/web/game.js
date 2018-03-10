@@ -145,16 +145,20 @@ function drop(ev) {
     ev.target.appendChild(document.getElementById(data));
     // ev.target.setAttribute("class","celdaBarco");
     console.log("DROP HECHO");
-    console.log(arrayObjBarcPost);
-    console.log(ev.target);
+    // console.log(arrayObjBarcPost);
+    // console.log(ev.target);
+    // console.log(ev.dataTransfer);
     for (var ii = 0; ii < arrayObjBarcPost.length; ii++) {
         if (arrayObjBarcPost[ii].tipoBarcoV==data){
             var letraCeld = ev.target.id.substring(0, 1);
-            var numCeld = ev.target.id.substring(1, 2);
-            console.log(letraCeld);
-            console.log(numCeld);
-
-            arrayObjBarcPost[ii].locBarcoV = [ev.target.id,ev.target.id];
+            // var safs = letraCeld.keyCode;
+            console.log(letraCeld.charCodeAt(0));
+            // var numCeld = 10;f
+            numCeld = parseInt(ev.target.id.substring(1, 2));
+            var classVertOHor = document.getElementById(data).getAttribute("class");
+            if(classVertOHor=="CarrierHor") {
+                arrayObjBarcPost[ii].locBarcoV = [letraCeld + (numCeld + 0), letraCeld + (numCeld + 1), letraCeld + (numCeld + 2)];
+            }
         }
     }
 }
