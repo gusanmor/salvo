@@ -151,14 +151,20 @@ function drop(ev) {
     for (var ii = 0; ii < arrayObjBarcPost.length; ii++) {
         if (arrayObjBarcPost[ii].tipoBarcoV==data){
             var letraCeld = ev.target.id.substring(0, 1);
+            var letraCeldAscii = letraCeld.charCodeAt(0)
             // var safs = letraCeld.keyCode;
             console.log(letraCeld.charCodeAt(0));
             // var numCeld = 10;f
             numCeld = parseInt(ev.target.id.substring(1, 2));
             var classVertOHor = document.getElementById(data).getAttribute("class");
+            console.log(classVertOHor);
             if(classVertOHor=="CarrierHor") {
-                arrayObjBarcPost[ii].locBarcoV = [letraCeld + (numCeld + 0), letraCeld + (numCeld + 1), letraCeld + (numCeld + 2)];
+                arrayObjBarcPost[ii].locBarcoV = [letraCeld + (numCeld + 0), letraCeld + (numCeld + 1), letraCeld + (numCeld + 2),letraCeld + (numCeld + 3)];
             }
+            if(classVertOHor=="CarrierVer") {
+                arrayObjBarcPost[ii].locBarcoV = [letraCeld + numCeld, String.fromCharCode(letraCeldAscii+1) + numCeld, String.fromCharCode(letraCeldAscii+2) + numCeld,String.fromCharCode(letraCeldAscii+3) + numCeld,String.fromCharCode(letraCeldAscii+4) + numCeld];
+            }
+
         }
     }
 }
@@ -181,6 +187,7 @@ function girarVerHor(idAgirar) {
         console.log("hor");
         document.getElementById(idAgirar).setAttribute("class", idAgirar+"Hor");
     }
+    // drop(data);
 };
 
 
