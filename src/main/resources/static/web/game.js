@@ -135,44 +135,39 @@ function allowDrop(ev) {
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
     console.log("HACIENDO DRAG");
-    // ev.target.removeAttribute("class","");
-    // console.log(ev);
 }
 
 function drop(ev) {
     ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
-    // ev.target.setAttribute("class","celdaBarco");
+    var IDTipoBarco = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(IDTipoBarco));
     console.log("DROP HECHO");
-    // console.log(arrayObjBarcPost);
-    // console.log(ev.target);
-    // console.log(ev.dataTransfer);
-    for (var ii = 0; ii < arrayObjBarcPost.length; ii++) {
-        if (arrayObjBarcPost[ii].tipoBarcoV==data){
-            var letraCeld = ev.target.id.substring(0, 1);
-            var letraCeldAscii = letraCeld.charCodeAt(0)
-            // var safs = letraCeld.keyCode;
-            console.log(letraCeld.charCodeAt(0));
-            // var numCeld = 10;f
-            numCeld = parseInt(ev.target.id.substring(1, 2));
-            var classVertOHor = document.getElementById(data).getAttribute("class");
-            console.log(classVertOHor);
-            if(classVertOHor=="CarrierHor") {
-                arrayObjBarcPost[ii].locBarcoV = [letraCeld + (numCeld + 0), letraCeld + (numCeld + 1), letraCeld + (numCeld + 2),letraCeld + (numCeld + 3)];
-            }
-            if(classVertOHor=="CarrierVer") {
-                arrayObjBarcPost[ii].locBarcoV = [letraCeld + numCeld, String.fromCharCode(letraCeldAscii+1) + numCeld, String.fromCharCode(letraCeldAscii+2) + numCeld,String.fromCharCode(letraCeldAscii+3) + numCeld,String.fromCharCode(letraCeldAscii+4) + numCeld];
-            }
-
-        }
-    }
+    var idDeCelda = ev.target.id;
+    var classVertOHor = document.getElementById(IDTipoBarco).getAttribute("class");
+    document.getElementById(IDTipoBarco).setAttribute("ubicacion", idDeCelda);
+    rellenarPost(idDeCelda, IDTipoBarco, classVertOHor);
 }
 
+function rellenarPost(celdaID, tipoBarco, classVH){
+    for (var ii = 0; ii < arrayObjBarcPost.length; ii++) {
+        console.log("haciendo for");
+        if (arrayObjBarcPost[ii].tipoBarcoV==tipoBarco) {
+            var letraCeld = celdaID.substring(0, 1);
+            var letraCeldAscii = letraCeld.charCodeAt(0);
+            console.log(letraCeld.charCodeAt(0));
+            numCeld = parseInt(celdaID.substring(1, 2));
+            if (classVH == "CarrierHor") {
+                arrayObjBarcPost[ii].locBarcoV = [letraCeld + (numCeld + 0), letraCeld + (numCeld + 1), letraCeld + (numCeld + 2), letraCeld + (numCeld + 3),letraCeld + (numCeld + 4)];
+            }
+            if (classVH == "CarrierVer") {
+                arrayObjBarcPost[ii].locBarcoV = [letraCeld + numCeld, String.fromCharCode(letraCeldAscii + 1) + numCeld, String.fromCharCode(letraCeldAscii + 2) + numCeld, String.fromCharCode(letraCeldAscii + 3) + numCeld, String.fromCharCode(letraCeldAscii + 4) + numCeld];
+            }
+        }
+        }
+    }
 document.getElementById("Carrier").onclick = function(){
     girarVerHor("Carrier");
     };
-
 document.getElementById("Battleship").onclick = function(){
     girarVerHor("Battleship");
 };
@@ -181,20 +176,17 @@ function girarVerHor(idAgirar) {
     var vertOHor = document.getElementById(idAgirar).getAttribute("class");
     if (vertOHor == idAgirar+"Hor") {
         document.getElementById(idAgirar).setAttribute("class", idAgirar+"Ver");
-        console.log("ver");
     }
     else {
-        console.log("hor");
         document.getElementById(idAgirar).setAttribute("class", idAgirar+"Hor");
     }
-    // drop(data);
+    var ubicacionCelda = document.getElementById(idAgirar).getAttribute("ubicacion");
+    var classVertHor = document.getElementById(idAgirar).getAttribute("class");
+    rellenarPost(ubicacionCelda, idAgirar, classVertHor);
 };
-
-
     // -----CREAR BARCOS PICANDO BOTON---------
 
 function enviarBarcos(arrayObjBarcPostPar){
-    // console.log("barco");
     $.post({
         url: "/games/players/"+limpiarURL(document.location.search)+"/ships",
         data: JSON.stringify(arrayObjBarcPostPar),
