@@ -150,17 +150,21 @@ function drop(ev) {
 
 function rellenarPost(celdaID, tipoBarco, classVH){
     for (var ii = 0; ii < arrayObjBarcPost.length; ii++) {
-        console.log("haciendo for");
         if (arrayObjBarcPost[ii].tipoBarcoV==tipoBarco) {
             var letraCeld = celdaID.substring(0, 1);
             var letraCeldAscii = letraCeld.charCodeAt(0);
-            console.log(letraCeld.charCodeAt(0));
             numCeld = parseInt(celdaID.substring(1, 2));
             if (classVH == "CarrierHor") {
                 arrayObjBarcPost[ii].locBarcoV = [letraCeld + (numCeld + 0), letraCeld + (numCeld + 1), letraCeld + (numCeld + 2), letraCeld + (numCeld + 3),letraCeld + (numCeld + 4)];
             }
             if (classVH == "CarrierVer") {
                 arrayObjBarcPost[ii].locBarcoV = [letraCeld + numCeld, String.fromCharCode(letraCeldAscii + 1) + numCeld, String.fromCharCode(letraCeldAscii + 2) + numCeld, String.fromCharCode(letraCeldAscii + 3) + numCeld, String.fromCharCode(letraCeldAscii + 4) + numCeld];
+            }
+            if (classVH == "BattleshipHor") {
+                arrayObjBarcPost[ii].locBarcoV = [letraCeld + (numCeld + 0), letraCeld + (numCeld + 1), letraCeld + (numCeld + 2), letraCeld + (numCeld + 3)];
+            }
+            if (classVH == "BattleshipVer") {
+                arrayObjBarcPost[ii].locBarcoV = [letraCeld + numCeld, String.fromCharCode(letraCeldAscii + 1) + numCeld, String.fromCharCode(letraCeldAscii + 2) + numCeld, String.fromCharCode(letraCeldAscii + 3) + numCeld];
             }
         }
         }
