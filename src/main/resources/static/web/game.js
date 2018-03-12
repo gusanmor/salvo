@@ -143,6 +143,7 @@ function drag(ev) {
 function drop(ev) {
     ev.preventDefault();
     var IDTipoBarco = ev.dataTransfer.getData("text");
+
     ev.target.appendChild(document.getElementById(IDTipoBarco));
     console.log("DROP HECHO");
     var idDeCelda = ev.target.id;
@@ -156,7 +157,7 @@ function rellenarPost(celdaID, tipoBarco, classVH){
         if (arrayObjBarcPost[ii].tipoBarcoV==tipoBarco) {
             var letraCeld = celdaID.substring(0, 1);
             var letraCeldAscii = letraCeld.charCodeAt(0);
-            numCeld = parseInt(celdaID.substring(1, 2));
+            numCeld = parseInt(celdaID.substring(1));
             if (classVH == "CarrierHor") {
                 arrayObjBarcPost[ii].locBarcoV = [celdaID, letraCeld + (numCeld + 1), letraCeld + (numCeld + 2), letraCeld + (numCeld + 3),letraCeld + (numCeld + 4)];
             }
@@ -215,18 +216,55 @@ function girarVerHor(idAgirar) {
     // -----CREAR BARCOS PICANDO BOTON---------
 
 function enviarBarcos(arrayObjBarcPostPar){
-    $.post({
-        url: "/games/players/"+limpiarURL(document.location.search)+"/ships",
-        data: JSON.stringify(arrayObjBarcPostPar),
-        dataType: "text",
-        contentType: "application/json"
-    })
-        .done(function () {
-            console.log( "barcos añadido" );
-            window.location.reload();
-        })
-        .fail(function () {
-            console.log("barcos no añadidos");
-        })
-}
+    console.log(arrayObjBarcPostPar)
+    var localizacionesVac = [];
+    for (var jj=0; jj<arrayObjBarcPostPar.length; jj++){
+        for (var kk=0; kk<arrayObjBarcPostPar[jj].locBarcoV.length; kk++) {
+            localizacionesVac.push(arrayObjBarcPostPar[jj].locBarcoV[kk]);
+        }
+    }
+    // var norepetidos = new Set(localizacionesVac);
+    var norepetidos = localizacionesVac.filter(function (elem, pos) {
+        return localizacionesVac.indexOf(elem) == pos;
+    });
 
+    // -----SABER SI ESTÁS FUERA DE LA REJILLA---------
+    var fueraODentro="dentro";
+    for (var ll=0; ll<localizacionesVac.length; ll++){
+        console.log(localizacionesVac[ll]);
+        letraCelda = localizacionesVac[ll].substring(0 , 1);
+        numCelda = localizacionesVac[ll].substring(1);
+        if (numCelda>10) {
+            fueraODentro="fuera";
+            break;
+        }
+        if (letraCelda>"J"){
+            fueraODentro="fuera";
+            break;
+        }
+    }
+    if (fueraODentro=="fuera"){
+        alert("BARCO FUERA DE LA REJILLA");
+    }
+    if (norepetidos.length != localizacionesVac.length){
+        alert("BARCO SUPERPUESTO");
+    }
+    if (localizacionesVac.length < 17){
+        alert("NO HAS COLOCADO TODOS LOS BARCOS");
+    }
+    else {
+        $.post({
+            url: "/games/players/" + limpiarURL(document.location.search) + "/ships",
+            data: JSON.stringify(arrayObjBarcPostPar),
+            dataType: "text",
+            contentType: "application/json"
+        })
+            .done(function () {
+                console.log("barcos añadido");
+                window.location.reload();
+            })
+            .fail(function () {
+                console.log("barcos no añadidos");
+            })
+    }
+}
