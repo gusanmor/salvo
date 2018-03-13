@@ -30,6 +30,9 @@ public class SalvoController {
     @Autowired
     private ShipRepository repoShip;
 
+    @Autowired
+    private SalvoRepository repoSalvo;
+
 
     @RequestMapping("api/games")
     public Map<String, Object> IDyCreatedMetodo(Game game, Authentication authentication) {
@@ -242,5 +245,15 @@ public class SalvoController {
             else return new ResponseEntity<>("Error barco no añadido, Gameplayer no existe", HttpStatus.FORBIDDEN);
         }
         else return new ResponseEntity<>("Error barco no añadido, no login", HttpStatus.FORBIDDEN);
+    }
+
+    @RequestMapping(path = "/games/players/{gamePID}/salvos", method = RequestMethod.POST)
+    public ResponseEntity<String> colocarSalvos(@PathVariable Long gamePID , @RequestBody Set<Salvo> todosSalvos){
+        for (Salvo salvo : todosSalvos) {
+            GamePlayer GPcolocandoSalvos = repoGamePlayer.findOne(gamePID);
+            repoGamePlayer.save(GPcolocandoSalvos);
+            repoSalvo.save(salvo);
+        }
+        return new ResponseEntity<>("Salvos añadidos", HttpStatus.CREATED);
     }
 }
