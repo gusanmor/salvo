@@ -213,7 +213,7 @@ function girarVerHor(idAgirar) {
     var classVertHor = document.getElementById(idAgirar).getAttribute("class");
     rellenarPost(ubicacionCelda, idAgirar, classVertHor);
 };
-    // -----CREAR BARCOS PICANDO BOTON---------
+    // -----CREAR BARCOS PICANDO BOTON ENVIAR BARCOS---------
 
 function enviarBarcos(arrayObjBarcPostPar){
     console.log(arrayObjBarcPostPar)
@@ -267,4 +267,24 @@ function enviarBarcos(arrayObjBarcPostPar){
                 console.log("barcos no añadidos");
             })
     }
+}
+
+// -----CREAR SALVOS PICANDO BOTON ENVIAR SALVOS---------
+
+function enviarSalvos(arrayObjSalvosPostPar){
+
+    $.post({
+        url: "/games/players/" + limpiarURL(document.location.search) + "/salvos",
+        data: JSON.stringify(arrayObjBarcPostPar),
+        dataType: "text",
+        contentType: "application/json"
+    })
+        .done(function () {
+            console.log("salvo añadido");
+            window.location.reload();
+        })
+        .fail(function () {
+            console.log("salvo no añadidos");
+        })
+
 }

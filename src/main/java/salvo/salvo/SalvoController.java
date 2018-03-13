@@ -254,6 +254,6 @@ public class SalvoController {
             repoGamePlayer.save(GPcolocandoSalvos);
             repoSalvo.save(salvo);
         }
-        return new ResponseEntity<>("Salvos añadidos", HttpStatus.CREATED);
+        return new ResponseEntity<>("Salvo añadidos", HttpStatus.CREATED);
     }
 }
