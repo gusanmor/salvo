@@ -120,14 +120,6 @@ else {
 
 //POSICIONAR BARCOS CON DRAG AND DROP////
 
-var arrayObjBarcPost = [
-    { tipoBarcoV: "Carrier", locBarcoV: []},
-    { tipoBarcoV: "Battleship", locBarcoV: []},
-    { tipoBarcoV: "Submarine", locBarcoV: []},
-    { tipoBarcoV: "Destroyer", locBarcoV: []},
-    { tipoBarcoV: "PatrolBoat", locBarcoV: []}
-];
-
 // enviarBarcos2(arrayObjBarcPost);
 
 function allowDrop(ev) {
@@ -151,6 +143,14 @@ function drop(ev) {
     document.getElementById(IDTipoBarco).setAttribute("ubicacion", idDeCelda);
     rellenarPost(idDeCelda, IDTipoBarco, classVertOHor);
 }
+
+var arrayObjBarcPost = [
+    { tipoBarcoV: "Carrier", locBarcoV: []},
+    { tipoBarcoV: "Battleship", locBarcoV: []},
+    { tipoBarcoV: "Submarine", locBarcoV: []},
+    { tipoBarcoV: "Destroyer", locBarcoV: []},
+    { tipoBarcoV: "PatrolBoat", locBarcoV: []}
+];
 
 function rellenarPost(celdaID, tipoBarco, classVH){
     for (var ii = 0; ii < arrayObjBarcPost.length; ii++) {
@@ -271,11 +271,14 @@ function enviarBarcos(arrayObjBarcPostPar){
 
 // -----CREAR SALVOS PICANDO BOTON ENVIAR SALVOS---------
 
-function enviarSalvos(arrayObjSalvosPostPar){
-
+function enviarSalvos(){
+    // arrayObjSalvosPostPar
     $.post({
         url: "/games/players/" + limpiarURL(document.location.search) + "/salvos",
-        data: JSON.stringify(arrayObjBarcPostPar),
+        data: JSON.stringify(
+            { numeroTurnoV: 1, locSalvoV: ["D8","D9"]}
+
+        ),
         dataType: "text",
         contentType: "application/json"
     })

@@ -248,12 +248,13 @@ public class SalvoController {
     }
 
     @RequestMapping(path = "/games/players/{gamePID}/salvos", method = RequestMethod.POST)
-    public ResponseEntity<String> colocarSalvos(@PathVariable Long gamePID , @RequestBody Set<Salvo> todosSalvos){
-        for (Salvo salvo : todosSalvos) {
-            GamePlayer GPcolocandoSalvos = repoGamePlayer.findOne(gamePID);
-            repoGamePlayer.save(GPcolocandoSalvos);
-            repoSalvo.save(salvo);
-        }
-        return new ResponseEntity<>("Salvo añadidos", HttpStatus.CREATED);
+    public ResponseEntity<String> colocarSalvos(@PathVariable Long gamePID , @RequestBody Salvo salvoTurno){
+        GamePlayer GPcolocandoSalvos = repoGamePlayer.findOne(gamePID);
+//        for (Salvo salvo : todosSalvos) {
+        GPcolocandoSalvos.addSalvos(salvoTurno);
+        repoGamePlayer.save(GPcolocandoSalvos);
+        repoSalvo.save(salvoTurno);
+//        }
+        return new ResponseEntity<>("Salvo añadido", HttpStatus.CREATED);
     }
 }
