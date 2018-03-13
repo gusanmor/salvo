@@ -88,7 +88,7 @@ var stringIDcelda = "Ssf";
             contenidoRejillaBarcos1 += '<td id="' + idCelda + '" class="' + claseBarco + '"ondrop="drop(event)" ondragover="allowDrop(event)"></td>';
             contenidoRejillaSalvos1 += '<td id="S' + idCelda + '" class="' + claseSalvo +'"'+
 
-                ' onclick='+"enviarSalvo('hola')"+'>' + txCeldaTuSalvo + '</td>';
+                ' onclick='+"enviarSalvo('"+idCelda+"')"+'>' + txCeldaTuSalvo + '</td>';
         }
         contenidoRejillaBarcos1 += '</tr>';
         contenidoRejillaSalvos1 += '</tr>';
@@ -273,8 +273,8 @@ function enviarBarcos(arrayObjBarcPostPar){
 
 // -----CREAR SALVOS PICANDO BOTON ENVIAR SALVOS---------
 function enviarSalvo(casilla){
-    console.log("DDFD"+casilla);
-    console.log("casilla");
+    console.log(casilla);
+    // console.log("casilla");
 }
 function enviarSalvos(){
     // arrayObjSalvosPostPar
