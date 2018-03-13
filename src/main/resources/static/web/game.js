@@ -84,9 +84,11 @@ function crearRejiBarcosYsalvos(data) {
                     }
                 }
             }
-
+var stringIDcelda = "Ssf";
             contenidoRejillaBarcos1 += '<td id="' + idCelda + '" class="' + claseBarco + '"ondrop="drop(event)" ondragover="allowDrop(event)"></td>';
-            contenidoRejillaSalvos1 += '<td id="S' + idCelda + '" class="' + claseSalvo + '" onclick="enviarSalvo(S'+idCelda+')">' + txCeldaTuSalvo + '</td>';
+            contenidoRejillaSalvos1 += '<td id="S' + idCelda + '" class="' + claseSalvo +'"'+
+
+                ' onclick='+"enviarSalvo('hola')"+'>' + txCeldaTuSalvo + '</td>';
         }
         contenidoRejillaBarcos1 += '</tr>';
         contenidoRejillaSalvos1 += '</tr>';
