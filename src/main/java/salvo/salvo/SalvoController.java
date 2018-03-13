@@ -41,13 +41,13 @@ public class SalvoController {
         String nameAuth = "NombreSinLog";
         String IDAuth = "IDSinLog";
 
-        if (authentication !=null) {
+        if (authentication != null) {
             nameAuth = authentication.getName();
-            IDAuth = ""+repoPlayers.findByUserName(nameAuth).get(0).getId();
+            IDAuth = "" + repoPlayers.findByUserName(nameAuth).get(0).getId();
         }
         Set<GamePlayer> gamePlayers = game.getGamePlayers();
 
-        for(int i = 0; i<repoGamesfindAll.size(); i++){
+        for (int i = 0; i < repoGamesfindAll.size(); i++) {
             Map<String, Object> IDyCreatedMap = new HashMap<String, Object>();
             IDyCreatedMap.put("gameID", repoGamesfindAll.get(i).getId());
             IDyCreatedMap.put("gameCreated", repoGamesfindAll.get(i).getFechaVar());
@@ -62,24 +62,24 @@ public class SalvoController {
             IDyCreatedList.add(IDyCreatedMap);
 //            IDyCreatedMap.put("scores","hola");
         }
-        Map<String,String> playerLogueado = new HashMap<>();
+        Map<String, String> playerLogueado = new HashMap<>();
 
         playerLogueado.put("ID", IDAuth);
 
         playerLogueado.put("name", nameAuth);
 
-        Map<String,Object> gamesYplayLog = new HashMap<String, Object>();
+        Map<String, Object> gamesYplayLog = new HashMap<String, Object>();
 
-        gamesYplayLog.put("games",IDyCreatedList);
+        gamesYplayLog.put("games", IDyCreatedList);
 
-        gamesYplayLog.put("playerLogueado",playerLogueado);
+        gamesYplayLog.put("playerLogueado", playerLogueado);
 
 //        IDyCreatedList.add(playerLogueado);
 
         return gamesYplayLog;
     }
 
-//    @RequestMapping("/books")
+    //    @RequestMapping("/books")
     public List<Player> getAll(Authentication authentication) {
         return repoPlayers.findByUserName(authentication.getName());
     }
@@ -87,7 +87,7 @@ public class SalvoController {
     @RequestMapping("api/game_view/{gamePlayerId}")
     public Map<String, Object> metodoGameView(@PathVariable Long gamePlayerId) {
 
-        Map<String,Object> gameViewMap = new HashMap<>();
+        Map<String, Object> gameViewMap = new HashMap<>();
         gameViewMap.put("gameID", (repoGamePlayer.findOne(gamePlayerId).getGameEnGamePlayers().getId()));
         gameViewMap.put("creationDateGame", (repoGamePlayer.findOne(gamePlayerId).getGameEnGamePlayers().getFechaVar()));
         gameViewMap.put("gameplayers", (repoGamePlayer.findOne(gamePlayerId).getGameEnGamePlayers().getGamePlayers()
@@ -108,14 +108,13 @@ public class SalvoController {
     }
 
     public Map<String, Object> gamePlayerDTO(GamePlayer gamePlayerParam) {
-        Map<String,Object> gamePlayersMap = new HashMap<>();
+        Map<String, Object> gamePlayersMap = new HashMap<>();
         gamePlayersMap.put("gamePlayerID", gamePlayerParam.getId());
         gamePlayersMap.put("player", playersDTO(gamePlayerParam.getPlayerEnGameplayer()));
 //        Double scoreGamePlayer = gamePlayerParam.getPlayerEnGameplayer().get1Score(gamePlayerParam.getGameEnGamePlayers()).getScoreV();
-        if (gamePlayerParam.getPlayerEnGameplayer().get1Score(gamePlayerParam.getGameEnGamePlayers()) != null){
+        if (gamePlayerParam.getPlayerEnGameplayer().get1Score(gamePlayerParam.getGameEnGamePlayers()) != null) {
             gamePlayersMap.put("score", gamePlayerParam.getPlayerEnGameplayer().get1Score(gamePlayerParam.getGameEnGamePlayers()).getScoreV());
-        }
-        else gamePlayersMap.put("score", "null");
+        } else gamePlayersMap.put("score", "null");
         return gamePlayersMap;
     }
 
@@ -179,7 +178,7 @@ public class SalvoController {
             return new ResponseEntity<>(makeMap("error", "this username already exists"), HttpStatus.CONFLICT);
         }
         user = repoPlayers.save(new Player(username, password));
-        return new ResponseEntity<>(makeMap("success", "username " +username+ " has been created"), HttpStatus.CREATED);
+        return new ResponseEntity<>(makeMap("success", "username " + username + " has been created"), HttpStatus.CREATED);
     }
 
     private Map<String, Object> makeMap(String key, Object value) {
@@ -199,31 +198,29 @@ public class SalvoController {
             repoGames.save(gameprueb);
             repoGamePlayer.save(gpPrueb);
 
-            return new ResponseEntity<>(""+gpPrueb.getId(), HttpStatus.OK);
-        }
-        else return new ResponseEntity<>("Error, no login", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("" + gpPrueb.getId(), HttpStatus.OK);
+        } else return new ResponseEntity<>("Error, no login", HttpStatus.FORBIDDEN);
 
     }
+
     @RequestMapping(path = "/api/game/{IDgameP}/players", method = RequestMethod.POST)
-    public ResponseEntity<String> joinGame(@PathVariable Long IDgameP , Authentication authentication){
+    public ResponseEntity<String> joinGame(@PathVariable Long IDgameP, Authentication authentication) {
         if (authentication != null) {
             Player playerJoin = repoPlayers.findOneByUserName(authentication.getName());
             Game gameJoin = repoGames.findOne(IDgameP);
 
-            if (gameJoin.getGamePlayers().size()>1){
+            if (gameJoin.getGamePlayers().size() > 1) {
                 return new ResponseEntity<>("Game is full", HttpStatus.FORBIDDEN);
-            }
-            else {
+            } else {
                 GamePlayer gamePlayJoin = new GamePlayer(playerJoin, gameJoin);
                 repoGamePlayer.save(gamePlayJoin);
                 return new ResponseEntity<>("" + gamePlayJoin.getId(), HttpStatus.OK);
             }
-        }
-        else return new ResponseEntity<>("Error, no login", HttpStatus.FORBIDDEN);
+        } else return new ResponseEntity<>("Error, no login", HttpStatus.FORBIDDEN);
     }
 
     @RequestMapping(path = "/games/players/{IDGP}/ships", method = RequestMethod.POST)
-    public ResponseEntity<String> colocarBarcos(@PathVariable Long IDGP , @RequestBody Set<Ship> todosBarcos, Authentication authentication){
+    public ResponseEntity<String> colocarBarcos(@PathVariable Long IDGP, @RequestBody Set<Ship> todosBarcos, Authentication authentication) {
 ////LE PREGUNTO SI HAY ALGUIEN LOGUEADO///
         if (authentication != null) {
             GamePlayer GPcolocandoBarcos = repoGamePlayer.findOne(IDGP);
@@ -237,24 +234,26 @@ public class SalvoController {
                         repoShip.save(barco);
                     }
                     return new ResponseEntity<>("Barco añadido", HttpStatus.CREATED);
-                }
-                else return new ResponseEntity<>("Tu usuario no puede poner barcos en este juego", HttpStatus.FORBIDDEN);
+                } else
+                    return new ResponseEntity<>("Tu usuario no puede poner barcos en este juego", HttpStatus.FORBIDDEN);
 
             }
             ///GAMEPLAYER NO EXISTE///
             else return new ResponseEntity<>("Error barco no añadido, Gameplayer no existe", HttpStatus.FORBIDDEN);
         }
-        else return new ResponseEntity<>("Error barco no añadido, no login", HttpStatus.FORBIDDEN);
+        else return new ResponseEntity<>("Error barco no añadido, no login", HttpStatus.UNAUTHORIZED);
     }
 
     @RequestMapping(path = "/games/players/{gamePID}/salvos", method = RequestMethod.POST)
-    public ResponseEntity<String> colocarSalvos(@PathVariable Long gamePID , @RequestBody Salvo salvoTurno){
-        GamePlayer GPcolocandoSalvos = repoGamePlayer.findOne(gamePID);
-//        for (Salvo salvo : todosSalvos) {
-        GPcolocandoSalvos.addSalvos(salvoTurno);
-        repoGamePlayer.save(GPcolocandoSalvos);
-        repoSalvo.save(salvoTurno);
-//        }
-        return new ResponseEntity<>("Salvo añadido", HttpStatus.CREATED);
+    public ResponseEntity<String> colocarSalvos(@PathVariable Long gamePID, @RequestBody Salvo salvoTurno, Authentication authentication) {
+        ////LE PREGUNTO SI HAY ALGUIEN LOGUEADO///
+        if (authentication != null) {
+            GamePlayer GPcolocandoSalvos = repoGamePlayer.findOne(gamePID);
+            GPcolocandoSalvos.addSalvos(salvoTurno);
+            repoGamePlayer.save(GPcolocandoSalvos);
+            repoSalvo.save(salvoTurno);
+            return new ResponseEntity<>("Salvo añadido", HttpStatus.CREATED);
+        }
+        else return new ResponseEntity<>("Error, salvo no añadido, no login", HttpStatus.UNAUTHORIZED);
     }
 }

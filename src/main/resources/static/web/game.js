@@ -52,7 +52,7 @@ function crearRejiBarcosYsalvos(data) {
             var idCelda = arrayLetrasTabla[j] + arrayNumerosTabla[k];
             // var idCelda = idCelda;
             var txBarcoTocado = idCelda;
-            var txCeldaTuSalvo = idCelda;
+            var txCeldaTuSalvo = "";
 
             // --------PINTAR CELDAS CON BARCOS-----------
             for (var l = 0; l < data.ships.length; l++) {
@@ -86,7 +86,7 @@ function crearRejiBarcosYsalvos(data) {
             }
 
             contenidoRejillaBarcos1 += '<td id="' + idCelda + '" class="' + claseBarco + '"ondrop="drop(event)" ondragover="allowDrop(event)"></td>';
-            contenidoRejillaSalvos1 += '<td id="' + idCelda + '" class="' + claseSalvo + '">' + txCeldaTuSalvo + '</td>';
+            contenidoRejillaSalvos1 += '<td id="S' + idCelda + '" class="' + claseSalvo + '" onclick="enviarSalvo(S'+idCelda+')">' + txCeldaTuSalvo + '</td>';
         }
         contenidoRejillaBarcos1 += '</tr>';
         contenidoRejillaSalvos1 += '</tr>';
@@ -270,7 +270,10 @@ function enviarBarcos(arrayObjBarcPostPar){
 }
 
 // -----CREAR SALVOS PICANDO BOTON ENVIAR SALVOS---------
-
+function enviarSalvo(casilla){
+    console.log("DDFD"+casilla);
+    console.log("casilla");
+}
 function enviarSalvos(){
     // arrayObjSalvosPostPar
     $.post({
