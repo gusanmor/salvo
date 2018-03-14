@@ -304,22 +304,26 @@ function enviarSalvo(casilla) {
 
 function enviarSalvos(contenidoSalvo){
     console.log(contenidoSalvo);
-    // arrayObjSalvosPostPar
-    $.post({
-        url: "/games/players/" + limpiarURL(document.location.search) + "/salvos",
-        data: JSON.stringify(
-            {locSalvoV: contenidoSalvo}
-
-        ),
-        dataType: "text",
-        contentType: "application/json"
-    })
-        .done(function () {
-            console.log("salvo añadido");
-            window.location.reload();
+    if (contadorSalvos < 5){
+        alert("no has introducido todos los disparos");
+    }
+    else {
+        // arrayObjSalvosPostPar
+        $.post({
+            url: "/games/players/" + limpiarURL(document.location.search) + "/salvos",
+            data: JSON.stringify(
+                {locSalvoV: contenidoSalvo}
+            ),
+            dataType: "text",
+            contentType: "application/json"
         })
-        .fail(function () {
-            console.log("salvo no añadidos");
-        })
+            .done(function () {
+                console.log("salvo añadido");
+                window.location.reload();
+            })
+            .fail(function () {
+                console.log("salvo no añadidos");
+            })
+    }
 
 }
