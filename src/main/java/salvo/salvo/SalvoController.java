@@ -248,7 +248,11 @@ public class SalvoController {
     public ResponseEntity<String> colocarSalvos(@PathVariable Long gamePID, @RequestBody Salvo salvoTurno, Authentication authentication) {
         ////LE PREGUNTO SI HAY ALGUIEN LOGUEADO///
         if (authentication != null) {
+//            int dssd = 5;
             GamePlayer GPcolocandoSalvos = repoGamePlayer.findOne(gamePID);
+            int ultimoTurnoSalvo = GPcolocandoSalvos.getSalvos().size();
+            salvoTurno.setNumeroTurnoV(ultimoTurnoSalvo+1);
+
             GPcolocandoSalvos.addSalvos(salvoTurno);
             repoGamePlayer.save(GPcolocandoSalvos);
             repoSalvo.save(salvoTurno);

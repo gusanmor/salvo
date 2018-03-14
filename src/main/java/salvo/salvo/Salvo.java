@@ -37,6 +37,10 @@ public class Salvo {
         return locSalvoV;
     }
 
+    public void setNumeroTurnoV(int numeroTurnoV) {
+        this.numeroTurnoV = numeroTurnoV;
+    }
+
     public void setGamePlayerSalvo(GamePlayer gamePlayerSalvo) {
         this.gamePlayerSalvo = gamePlayerSalvo;
     }

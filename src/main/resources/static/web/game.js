@@ -275,10 +275,19 @@ var contadorSalvos = 0;
 var contenidoSalvo=[];
 // -----CREAR SALVOS PICANDO BOTON ENVIAR SALVOS---------
 function enviarSalvo(casilla) {
-    // var contadorSalvos = 5;
-    if (contadorSalvos > 4) {
+
+    if (contenidoSalvo.includes(casilla)==true){
+        // alert("casilla ocupada");
+        document.getElementById(casilla).style.backgroundColor = "cyan";
+        contadorSalvos--;
+        var indiceCasilla = contenidoSalvo.indexOf(casilla);
+        contenidoSalvo.splice(indiceCasilla,1);
+        console.log(contenidoSalvo);
+    }
+    else if (contadorSalvos > 4) {
         alert("no hay más disparos en este turno");
     }
+
     else {
         document.getElementById(casilla).style.backgroundColor = "yellow";
         console.log(casilla);
@@ -297,7 +306,7 @@ function enviarSalvos(contenidoSalvo){
     $.post({
         url: "/games/players/" + limpiarURL(document.location.search) + "/salvos",
         data: JSON.stringify(
-            { numeroTurnoV: 1, locSalvoV: contenidoSalvo}
+            {locSalvoV: contenidoSalvo}
 
         ),
         dataType: "text",
