@@ -249,10 +249,10 @@ function enviarBarcos(arrayObjBarcPostPar){
     if (fueraODentro=="fuera"){
         alert("BARCO FUERA DE LA REJILLA");
     }
-    if (norepetidos.length != localizacionesVac.length){
+    else if (norepetidos.length != localizacionesVac.length){
         alert("BARCO SUPERPUESTO");
     }
-    if (localizacionesVac.length < 17){
+    else if (localizacionesVac.length < 17){
         alert("NO HAS COLOCADO TODOS LOS BARCOS");
     }
     else {
@@ -275,7 +275,7 @@ var contadorSalvos = 0;
 var contenidoSalvo=[];
 // -----CREAR SALVOS PICANDO BOTON ENVIAR SALVOS---------
 function enviarSalvo(casilla) {
-
+;
     if (contenidoSalvo.includes(casilla)==true){
         // alert("casilla ocupada");
         document.getElementById(casilla).style.backgroundColor = "cyan";
@@ -284,10 +284,12 @@ function enviarSalvo(casilla) {
         contenidoSalvo.splice(indiceCasilla,1);
         console.log(contenidoSalvo);
     }
-    else if (contadorSalvos > 4) {
+    else if (contadorSalvos >= 5) {
         alert("no hay más disparos en este turno");
     }
-
+    else if (document.getElementById(casilla).getAttribute("class")=="celdaSalvo"){
+        alert("ya hay un disparo en esta casilla");
+    }
     else {
         document.getElementById(casilla).style.backgroundColor = "yellow";
         console.log(casilla);
