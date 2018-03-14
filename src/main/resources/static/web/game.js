@@ -273,26 +273,30 @@ function enviarBarcos(arrayObjBarcPostPar){
 var contadorSalvos = 0;
 var contenidoSalvo=[];
 // -----CREAR SALVOS PICANDO BOTON ENVIAR SALVOS---------
-function enviarSalvo(casilla){
+function enviarSalvo(casilla) {
     // var contadorSalvos = 5;
-    if (contadorSalvos<5){
-        document.getElementById(casilla).style.backgroundColor="yellow";
+    if (contadorSalvos > 4) {
+        alert("no hay más disparos en este turno");
+    }
+    else {
+        document.getElementById(casilla).style.backgroundColor = "yellow";
         console.log(casilla);
         contadorSalvos++;
         console.log(contadorSalvos);
+        contenidoSalvo.push(casilla);
+        console.log(contenidoSalvo);
         // console.log("casilla");
-    }
-    else {
-        alert("no hay más disparos en este turno");
     }
 
 }
-function enviarSalvos(){
+
+function enviarSalvos(contenidoSalvo){
+    console.log(contenidoSalvo);
     // arrayObjSalvosPostPar
     $.post({
         url: "/games/players/" + limpiarURL(document.location.search) + "/salvos",
         data: JSON.stringify(
-            { numeroTurnoV: 1, locSalvoV: ["D8","D9"]}
+            { numeroTurnoV: 1, locSalvoV: contenidoSalvo}
 
         ),
         dataType: "text",
@@ -300,7 +304,7 @@ function enviarSalvos(){
     })
         .done(function () {
             console.log("salvo añadido");
-            window.location.reload();
+            // window.location.reload();
         })
         .fail(function () {
             console.log("salvo no añadidos");
