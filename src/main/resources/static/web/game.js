@@ -88,7 +88,7 @@ var stringIDcelda = "Ssf";
             contenidoRejillaBarcos1 += '<td id="' + idCelda + '" class="' + claseBarco + '"ondrop="drop(event)" ondragover="allowDrop(event)"></td>';
             contenidoRejillaSalvos1 += '<td id="S' + idCelda + '" class="' + claseSalvo +'"'+
 
-                ' onclick='+"enviarSalvo('"+idCelda+"')"+'>' + txCeldaTuSalvo + '</td>';
+                ' onclick='+"enviarSalvo('"+"S"+idCelda+"')"+'>' + txCeldaTuSalvo + '</td>';
         }
         contenidoRejillaBarcos1 += '</tr>';
         contenidoRejillaSalvos1 += '</tr>';
@@ -270,11 +270,22 @@ function enviarBarcos(arrayObjBarcPostPar){
             })
     }
 }
-
+var contadorSalvos = 0;
+var contenidoSalvo=[];
 // -----CREAR SALVOS PICANDO BOTON ENVIAR SALVOS---------
 function enviarSalvo(casilla){
-    console.log(casilla);
-    // console.log("casilla");
+    // var contadorSalvos = 5;
+    if (contadorSalvos<5){
+        document.getElementById(casilla).style.backgroundColor="yellow";
+        console.log(casilla);
+        contadorSalvos++;
+        console.log(contadorSalvos);
+        // console.log("casilla");
+    }
+    else {
+        alert("no hay más disparos en este turno");
+    }
+
 }
 function enviarSalvos(){
     // arrayObjSalvosPostPar
