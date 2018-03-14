@@ -50,8 +50,9 @@ function crearRejiBarcosYsalvos(data) {
             var claseBarco = "celdaSinBarco";
             var claseSalvo = "celdaSinSalvo";
             var idCelda = arrayLetrasTabla[j] + arrayNumerosTabla[k];
+            var idCeldaSalvo = "S"+arrayLetrasTabla[j] + arrayNumerosTabla[k];
             // var idCelda = idCelda;
-            var txBarcoTocado = idCelda;
+            // var txBarcoTocado = idCelda;
             var txCeldaTuSalvo = "";
 
             // --------PINTAR CELDAS CON BARCOS-----------
@@ -78,7 +79,7 @@ function crearRejiBarcosYsalvos(data) {
                 // console.log(data.salvoes["0"].locations["0"].locations[n]);
                 for (var o = 0; o < data.salvoes[keyTuJugador].locations[n].length; o++) {
                     // console.log(data.salvoes["0"].locations[n][o]);
-                    if (data.salvoes[keyTuJugador].locations[n][o] == idCelda) {
+                    if (data.salvoes[keyTuJugador].locations[n][o] == idCeldaSalvo) {
                         var claseSalvo = "celdaSalvo";
                         var txCeldaTuSalvo = data.salvoes[keyTuJugador].turn[n];
                     }
@@ -86,9 +87,9 @@ function crearRejiBarcosYsalvos(data) {
             }
 var stringIDcelda = "Ssf";
             contenidoRejillaBarcos1 += '<td id="' + idCelda + '" class="' + claseBarco + '"ondrop="drop(event)" ondragover="allowDrop(event)"></td>';
-            contenidoRejillaSalvos1 += '<td id="S' + idCelda + '" class="' + claseSalvo +'"'+
+            contenidoRejillaSalvos1 += '<td id="' + idCeldaSalvo + '" class="' + claseSalvo +'"'+
 
-                ' onclick='+"enviarSalvo('"+"S"+idCelda+"')"+'>' + txCeldaTuSalvo + '</td>';
+                ' onclick='+"enviarSalvo('"+idCeldaSalvo+"')"+'>' + txCeldaTuSalvo + '</td>';
         }
         contenidoRejillaBarcos1 += '</tr>';
         contenidoRejillaSalvos1 += '</tr>';
