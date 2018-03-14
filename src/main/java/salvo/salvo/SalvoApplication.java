@@ -111,18 +111,18 @@ public class SalvoApplication {
             Ship ship13 = new Ship("Patrol Boat", localBarco13);
             gamePlayer6Var.addShips(ship13);
 
-            ArrayList<String> localSalvo1 = new ArrayList<String>(Arrays.asList("B5", "C5","F1"));
-            ArrayList<String> localSalvo2 = new ArrayList<String>(Arrays.asList("F2", "D5"));
-            ArrayList<String> localSalvo3 = new ArrayList<String>(Arrays.asList("A2", "A4","G6"));
-            ArrayList<String> localSalvo4 = new ArrayList<String>(Arrays.asList("A3", "H6"));
-            ArrayList<String> localSalvo5 = new ArrayList<String>(Arrays.asList("G6", "H6","A4"));
-            ArrayList<String> localSalvo6 = new ArrayList<String>(Arrays.asList("A2", "A3","D8"));
-            ArrayList<String> localSalvo7 = new ArrayList<String>(Arrays.asList("B4", "B5","B6"));
-            ArrayList<String> localSalvo8 = new ArrayList<String>(Arrays.asList("E1", "H3","A2"));
-            ArrayList<String> localSalvo9 = new ArrayList<String>(Arrays.asList("B5", "D5","C7"));
-            ArrayList<String> localSalvo10 = new ArrayList<String>(Arrays.asList("C5", "C6"));
-            ArrayList<String> localSalvo11 = new ArrayList<String>(Arrays.asList("H1", "H2","H3"));
-            ArrayList<String> localSalvo12 = new ArrayList<String>(Arrays.asList("E1", "F2","G3"));
+            ArrayList<String> localSalvo1 = new ArrayList<String>(Arrays.asList("B5s", "C5s","F1s"));
+            ArrayList<String> localSalvo2 = new ArrayList<String>(Arrays.asList("F2s", "D5s"));
+            ArrayList<String> localSalvo3 = new ArrayList<String>(Arrays.asList("A2s", "A4s","G6s"));
+            ArrayList<String> localSalvo4 = new ArrayList<String>(Arrays.asList("A3s", "H6s"));
+            ArrayList<String> localSalvo5 = new ArrayList<String>(Arrays.asList("G6s", "H6s","A4s"));
+            ArrayList<String> localSalvo6 = new ArrayList<String>(Arrays.asList("A2s", "A3s","D8s"));
+            ArrayList<String> localSalvo7 = new ArrayList<String>(Arrays.asList("B4s", "B5s","B6s"));
+            ArrayList<String> localSalvo8 = new ArrayList<String>(Arrays.asList("E1s", "H3s","A2s"));
+            ArrayList<String> localSalvo9 = new ArrayList<String>(Arrays.asList("B5s", "D5s","C7s"));
+            ArrayList<String> localSalvo10 = new ArrayList<String>(Arrays.asList("C5s", "C6s"));
+            ArrayList<String> localSalvo11 = new ArrayList<String>(Arrays.asList("H1s", "H2s","H3s"));
+            ArrayList<String> localSalvo12 = new ArrayList<String>(Arrays.asList("E1s", "F2s","G3s"));
 
             Salvo salvo1 = new Salvo(1, localSalvo1);
             gamePlayer1Var.addSalvos(salvo1);

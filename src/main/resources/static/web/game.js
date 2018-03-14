@@ -50,7 +50,7 @@ function crearRejiBarcosYsalvos(data) {
             var claseBarco = "celdaSinBarco";
             var claseSalvo = "celdaSinSalvo";
             var idCelda = arrayLetrasTabla[j] + arrayNumerosTabla[k];
-            var idCeldaSalvo = "S"+arrayLetrasTabla[j] + arrayNumerosTabla[k];
+            var idCeldaSalvo = arrayLetrasTabla[j] + arrayNumerosTabla[k]+"s";
             // var idCelda = idCelda;
             // var txBarcoTocado = idCelda;
             var txCeldaTuSalvo = "";
@@ -305,7 +305,7 @@ function enviarSalvos(contenidoSalvo){
     })
         .done(function () {
             console.log("salvo añadido");
-            // window.location.reload();
+            window.location.reload();
         })
         .fail(function () {
             console.log("salvo no añadidos");
