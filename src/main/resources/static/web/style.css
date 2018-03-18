@@ -15,6 +15,11 @@ td{
     /*background-color: aqua;*/
 }
 
+.celdaNormal {
+    width: 2rem;
+    height: 2rem;
+}
+
 .celdaSinBarco, .celdaSinSalvo{
     background-color: aqua;
     width: 2rem;

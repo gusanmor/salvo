@@ -35,7 +35,7 @@ function crearRejiBarcosYsalvos(data) {
 
     // ----------CONSTRUIR TABLA-------------------
     for (var i = 0; i < arrayNumerosTabla.length; i++) {
-        contenidoRejillaBarcos1 += '<td>' + arrayNumerosTabla[i] + '</td>';
+        contenidoRejillaBarcos1 += '<td class="celdaNormal">' + arrayNumerosTabla[i] + '</td>';
     }
 
     contenidoRejillaBarcos1 += "</tr><tr>";
