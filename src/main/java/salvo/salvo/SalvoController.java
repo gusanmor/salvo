@@ -4,8 +4,6 @@ package salvo.salvo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -108,7 +106,7 @@ public class SalvoController {
 
     }
 
-    public Long hitsAndSinksDTO(Long gamePlaContPar) {
+    public Set<Ship> hitsAndSinksDTO(Long gamePlaContPar) {
 //        String cont="";
 //        GamePlayer gamePlaContrario = null;
 //        Set<GamePlayer> GPgames = gamePlaContPar.getGameEnGamePlayers().getGamePlayers();
@@ -127,8 +125,8 @@ public class SalvoController {
 //                cont = "no contrario";
 //            }
         }
-
-        return gamePlaContrario;
+        Set<Ship> shipsContrario = repoGamePlayer.getOne(gamePlaContrario).getShips();
+        return shipsContrario;
 
     }
 
