@@ -102,8 +102,33 @@ public class SalvoController {
                 .stream()
                 .map(salvoLambda -> salvosDTO(salvoLambda))
                 .collect(Collectors.toList())));
+        gameViewMap.put("hits_and_sinks", hitsAndSinksDTO(gamePlayerId));
 
         return gameViewMap;
+
+    }
+
+    public Long hitsAndSinksDTO(Long gamePlaContPar) {
+//        String cont="";
+//        GamePlayer gamePlaContrario = null;
+//        Set<GamePlayer> GPgames = gamePlaContPar.getGameEnGamePlayers().getGamePlayers();
+//        long gamePlaContrario = 0;
+        Set<GamePlayer> gamePlayers = repoGamePlayer.getOne(gamePlaContPar).getGameEnGamePlayers().getGamePlayers();
+        Long gamePlaContrario = null;
+        for (GamePlayer GP : gamePlayers){
+            if (GP.getId() != gamePlaContPar){
+                gamePlaContrario = GP.getId();
+//                return "contrario";
+//                cont = "contrario"+GP;
+
+//                return GP;
+            }
+//            else {
+//                cont = "no contrario";
+//            }
+        }
+
+        return gamePlaContrario;
 
     }
 
