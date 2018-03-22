@@ -106,15 +106,15 @@ public class SalvoController {
 
     }
 
-    public Set<Ship> hitsAndSinksDTO(Long gamePlaContPar) {
+    public Map hitsAndSinksDTO(Long gamePlaContPar) {
 //        String cont="";
 //        GamePlayer gamePlaContrario = null;
 //        Set<GamePlayer> GPgames = gamePlaContPar.getGameEnGamePlayers().getGamePlayers();
 //        long gamePlaContrario = 0;
         Set<GamePlayer> gamePlayers = repoGamePlayer.getOne(gamePlaContPar).getGameEnGamePlayers().getGamePlayers();
         Long gamePlaContrario = null;
-        for (GamePlayer GP : gamePlayers){
-            if (GP.getId() != gamePlaContPar){
+        for (GamePlayer GP : gamePlayers) {
+            if (GP.getId() != gamePlaContPar) {
                 gamePlaContrario = GP.getId();
 //                return "contrario";
 //                cont = "contrario"+GP;
@@ -126,9 +126,24 @@ public class SalvoController {
 //            }
         }
         Set<Ship> shipsContrario = repoGamePlayer.getOne(gamePlaContrario).getShips();
-        return shipsContrario;
+        List listLocCont = new ArrayList<>();
+        List tipBarcCont = new ArrayList<>();
+        Map mapBarcCont = new HashMap();
+        for (Ship shipContrario : shipsContrario) {
+            listLocCont.add(shipContrario.getLocBarcoV());
+            tipBarcCont.add(shipContrario.getTipoBarcoV());
+            mapBarcCont.put(shipContrario.getTipoBarcoV(),shipContrario.getLocBarcoV());
+        }
+        for (int j=0; j<listLocCont.size(); j++){
+            Object pr = listLocCont.get(j);
+//            for (int k=0; k<listLocCont.; k++){
+////
+////            }
+        }
 
+        return mapBarcCont;
     }
+
 
     public Map<String, Object> gamePlayerDTO(GamePlayer gamePlayerParam) {
         Map<String, Object> gamePlayersMap = new HashMap<>();
