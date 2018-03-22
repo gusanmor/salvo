@@ -135,12 +135,24 @@ public class SalvoController {
 //            mapBarcCont.put(shipContrario.getTipoBarcoV(),shipContrario.getLocBarcoV());
         }
         ArrayList<String> CadaLocCont = new ArrayList<>();
-        Set<Salvo> LocMisSalvos = repoGamePlayer.getOne(gamePlaPar).getSalvos();
+        Set<Salvo> locMisSalvos = repoGamePlayer.getOne(gamePlaPar).getSalvos();
+
         for (int j=0; j<listLocCont.size(); j++){
             for (int k=0; k<listLocCont.get(j).size(); k++){
                 String UnaLocCont = listLocCont.get(j).get(k);
                 CadaLocCont.add(UnaLocCont);
-//                for (Int UnSalvo : LocMisSalvos){
+//                for (Salvo unSalvo : LocMisSalvos){
+//                    ArrayList<String> unaLocSalvo = unSalvo.getLocSalvoV()
+//                }
+                for (Salvo unSalvo : locMisSalvos){
+                    List<String> locUnSalvo = unSalvo.getLocSalvoV();
+                    for (int l=0; l<locUnSalvo.size(); l++){
+                        String cadaLocMisBarc = locUnSalvo.get(l);
+                        if (cadaLocMisBarc == UnaLocCont){
+
+                        }
+                    }
+                }
 //
 //                }
 //
