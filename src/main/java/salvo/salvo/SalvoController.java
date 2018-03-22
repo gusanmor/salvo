@@ -106,15 +106,15 @@ public class SalvoController {
 
     }
 
-    public Map hitsAndSinksDTO(Long gamePlaContPar) {
+    public ArrayList<String> hitsAndSinksDTO(Long gamePlaPar) {
 //        String cont="";
 //        GamePlayer gamePlaContrario = null;
-//        Set<GamePlayer> GPgames = gamePlaContPar.getGameEnGamePlayers().getGamePlayers();
+//        Set<GamePlayer> GPgames = gamePlaPar.getGameEnGamePlayers().getGamePlayers();
 //        long gamePlaContrario = 0;
-        Set<GamePlayer> gamePlayers = repoGamePlayer.getOne(gamePlaContPar).getGameEnGamePlayers().getGamePlayers();
+        Set<GamePlayer> gamePlayers = repoGamePlayer.getOne(gamePlaPar).getGameEnGamePlayers().getGamePlayers();
         Long gamePlaContrario = null;
         for (GamePlayer GP : gamePlayers) {
-            if (GP.getId() != gamePlaContPar) {
+            if (GP.getId() != gamePlaPar) {
                 gamePlaContrario = GP.getId();
 //                return "contrario";
 //                cont = "contrario"+GP;
@@ -126,22 +126,29 @@ public class SalvoController {
 //            }
         }
         Set<Ship> shipsContrario = repoGamePlayer.getOne(gamePlaContrario).getShips();
-        List listLocCont = new ArrayList<>();
-        List tipBarcCont = new ArrayList<>();
-        Map mapBarcCont = new HashMap();
+        List<List<String>> listLocCont = new ArrayList<>();
+//        List tipBarcCont = new ArrayList<>();
+//        Map mapBarcCont = new HashMap();
         for (Ship shipContrario : shipsContrario) {
             listLocCont.add(shipContrario.getLocBarcoV());
-            tipBarcCont.add(shipContrario.getTipoBarcoV());
-            mapBarcCont.put(shipContrario.getTipoBarcoV(),shipContrario.getLocBarcoV());
+//            tipBarcCont.add(shipContrario.getTipoBarcoV());
+//            mapBarcCont.put(shipContrario.getTipoBarcoV(),shipContrario.getLocBarcoV());
         }
+        ArrayList<String> CadaLocCont = new ArrayList<>();
+        Set<Salvo> LocMisSalvos = repoGamePlayer.getOne(gamePlaPar).getSalvos();
         for (int j=0; j<listLocCont.size(); j++){
-            Object pr = listLocCont.get(j);
-//            for (int k=0; k<listLocCont.; k++){
-////
-////            }
+            for (int k=0; k<listLocCont.get(j).size(); k++){
+                String UnaLocCont = listLocCont.get(j).get(k);
+                CadaLocCont.add(UnaLocCont);
+//                for (Int UnSalvo : LocMisSalvos){
+//
+//                }
+//
+            }
+//            Object pr = listLocCont.get(j);
         }
 
-        return mapBarcCont;
+        return CadaLocCont;
     }
 
 
