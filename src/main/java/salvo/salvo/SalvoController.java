@@ -106,7 +106,7 @@ public class SalvoController {
 
     }
 
-    public ArrayList<String> hitsAndSinksDTO(Long gamePlaPar) {
+    public ArrayList<Object> hitsAndSinksDTO(Long gamePlaPar) {
 //        String cont="";
 //        GamePlayer gamePlaContrario = null;
 //        Set<GamePlayer> GPgames = gamePlaPar.getGameEnGamePlayers().getGamePlayers();
@@ -136,20 +136,27 @@ public class SalvoController {
         }
         ArrayList<String> CadaLocCont = new ArrayList<>();
         Set<Salvo> locMisSalvos = repoGamePlayer.getOne(gamePlaPar).getSalvos();
+        ArrayList<Object> tocados = new ArrayList<>();
 
         for (int j=0; j<listLocCont.size(); j++){
             for (int k=0; k<listLocCont.get(j).size(); k++){
-                String UnaLocCont = listLocCont.get(j).get(k);
-                CadaLocCont.add(UnaLocCont);
+                String unaLocCont = listLocCont.get(j).get(k);
+                CadaLocCont.add(unaLocCont);
 //                for (Salvo unSalvo : LocMisSalvos){
 //                    ArrayList<String> unaLocSalvo = unSalvo.getLocSalvoV()
 //                }
                 for (Salvo unSalvo : locMisSalvos){
                     List<String> locUnSalvo = unSalvo.getLocSalvoV();
                     for (int l=0; l<locUnSalvo.size(); l++){
-                        String cadaLocMisBarc = locUnSalvo.get(l);
-                        if (cadaLocMisBarc == UnaLocCont){
-
+                        String unaLocMisSalvos = locUnSalvo.get(l);
+                        int turnoMisSalvos = unSalvo.getNumeroTurnoV();
+                        String unaLocContS = unaLocCont+"s";
+                        if (unaLocMisSalvos.equals(unaLocContS)) {
+                            tocados.add(unaLocMisSalvos);
+                            tocados.add(turnoMisSalvos);
+//                            tocados.add(CadaLocCont);
+//                            String dd = unaLocMisSalvos;
+//                            System.out.println(cadaLocMisBarc);
                         }
                     }
                 }
@@ -160,7 +167,7 @@ public class SalvoController {
 //            Object pr = listLocCont.get(j);
         }
 
-        return CadaLocCont;
+        return tocados;
     }
 
 
