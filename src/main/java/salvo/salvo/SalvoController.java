@@ -170,7 +170,7 @@ public class SalvoController {
 //        return tocados;
 //    }
 
-    public ArrayList<Object> hitsAndSinksDTO(Long gamePlaPar) {
+    public List<Map<String, Object>> hitsAndSinksDTO(Long gamePlaPar) {
 
 //        -----CONSEGUIR EL GAMEPLAYER CONTRARIO----------
         Set<GamePlayer> gamePlayers = repoGamePlayer.getOne(gamePlaPar).getGameEnGamePlayers().getGamePlayers();
@@ -183,23 +183,18 @@ public class SalvoController {
 //        -------CONSEGUIR BARCOS CONTRARIO-----------
         Set<Ship> shipsContrario = repoGamePlayer.getOne(gamePlaContrario).getShips();
         List<List<String>> listLocCont = new ArrayList<>();
-        ArrayList<Object> tocados = new ArrayList<>();
+
+        List<Map<String, Object>> tocadosArrayMap = new ArrayList<>();
 //----------ITERAR BARCO CONTRARIO-------------
         for (Ship shipContrario : shipsContrario) {
 //            -------CONSEGUIR TIPO BARCO CONTRARIO---------
             String tipoBarco = shipContrario.getTipoBarcoV();
 //            -------------ARRAY CON LAS LOCALIZACIONES DE UN BARCO CONTRARIO---------
             List<String> arrayLocBarco = shipContrario.getLocBarcoV();
-//            String unaLoc = arrayLocBarco.get(0);
-//            ArrayList<String> CadaLocCont = new ArrayList<>();
-//            Set<Salvo> locMisSalvos = repoGamePlayer.getOne(gamePlaPar).getSalvos();
-//            ArrayList<Object> tocados = new ArrayList<>();
 //------------ITERAR EL ARRAY DE LOCALIZACIONES DE UN BARCO CONTRARIO---------------
             for (int j = 0; j < arrayLocBarco.size(); j++) {
-//                for (int k = 0; k < listLocCont.get(j).size(); k++) {
 //                    ------------CONSIGO CADA UNA DE LAS LOCALIZACIONES DE UN BARCO CONTRARIO------
                     String unaLocCont = arrayLocBarco.get(j);
-//                    CadaLocCont.add(unaLocCont);
 //                    ---------CONSIGO LAS LICALIZACIONES DE MIS SALVOS------
                     Set<Salvo> locMisSalvos = repoGamePlayer.getOne(gamePlaPar).getSalvos();
 //                    -----ITERO MIS SALVOS-----------
@@ -212,18 +207,18 @@ public class SalvoController {
                             int turnoMisSalvos = unSalvo.getNumeroTurnoV();
                             String unaLocContS = unaLocCont + "s";
                             if (unaLocMisSalvos.equals(unaLocContS)) {
-                                tocados.add(unaLocMisSalvos);
-                                tocados.add(turnoMisSalvos);
-                                tocados.add(tipoBarco);
-//                            tocados.add(CadaLocCont);
-//                            String dd = unaLocMisSalvos;
-//                            System.out.println(cadaLocMisBarc);
+                                Map<String, Object> tocadosMap = new HashMap<>();
+                                tocadosMap.put("hit_turn", turnoMisSalvos);
+                                tocadosMap.put("hit_location", unaLocMisSalvos);
+                                tocadosMap.put("hit_ship", tipoBarco);
+
+                                tocadosArrayMap.add(tocadosMap);
                             }
                         }
                     }
                 }
             }
-        return tocados;
+        return tocadosArrayMap;
     }
 
 
