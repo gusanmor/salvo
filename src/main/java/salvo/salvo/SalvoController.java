@@ -106,67 +106,123 @@ public class SalvoController {
 
     }
 
+//    public ArrayList<Object> hitsAndSinksDTO(Long gamePlaPar) {
+////        String cont="";
+////        GamePlayer gamePlaContrario = null;
+////        Set<GamePlayer> GPgames = gamePlaPar.getGameEnGamePlayers().getGamePlayers();
+////        long gamePlaContrario = 0;
+//        Set<GamePlayer> gamePlayers = repoGamePlayer.getOne(gamePlaPar).getGameEnGamePlayers().getGamePlayers();
+//        Long gamePlaContrario = null;
+//        for (GamePlayer GP : gamePlayers) {
+//            if (GP.getId() != gamePlaPar) {
+//                gamePlaContrario = GP.getId();
+////                return "contrario";
+////                cont = "contrario"+GP;
+//
+////                return GP;
+//            }
+////            else {
+////                cont = "no contrario";
+////            }
+//        }
+//        Set<Ship> shipsContrario = repoGamePlayer.getOne(gamePlaContrario).getShips();
+//        List<List<String>> listLocCont = new ArrayList<>();
+////        List tipBarcCont = new ArrayList<>();
+////        Map mapBarcCont = new HashMap();
+//        for (Ship shipContrario : shipsContrario) {
+//            listLocCont.add(shipContrario.getLocBarcoV());
+////            tipBarcCont.add(shipContrario.getTipoBarcoV());
+////            mapBarcCont.put(shipContrario.getTipoBarcoV(),shipContrario.getLocBarcoV());
+//        }
+//        ArrayList<String> CadaLocCont = new ArrayList<>();
+//        Set<Salvo> locMisSalvos = repoGamePlayer.getOne(gamePlaPar).getSalvos();
+//        ArrayList<Object> tocados = new ArrayList<>();
+//
+//        for (int j=0; j<listLocCont.size(); j++){
+//            for (int k=0; k<listLocCont.get(j).size(); k++){
+//                String unaLocCont = listLocCont.get(j).get(k);
+//                CadaLocCont.add(unaLocCont);
+////                for (Salvo unSalvo : LocMisSalvos){
+////                    ArrayList<String> unaLocSalvo = unSalvo.getLocSalvoV()
+////                }
+//                for (Salvo unSalvo : locMisSalvos){
+//                    List<String> locUnSalvo = unSalvo.getLocSalvoV();
+//                    for (int l=0; l<locUnSalvo.size(); l++){
+//                        String unaLocMisSalvos = locUnSalvo.get(l);
+//                        int turnoMisSalvos = unSalvo.getNumeroTurnoV();
+//                        String unaLocContS = unaLocCont+"s";
+//                        if (unaLocMisSalvos.equals(unaLocContS)) {
+//                            tocados.add(unaLocMisSalvos);
+//                            tocados.add(turnoMisSalvos);
+////                            tocados.add(CadaLocCont);
+////                            String dd = unaLocMisSalvos;
+////                            System.out.println(cadaLocMisBarc);
+//                        }
+//                    }
+//                }
+////
+////                }
+////
+//            }
+////            Object pr = listLocCont.get(j);
+//        }
+//
+//        return tocados;
+//    }
+
     public ArrayList<Object> hitsAndSinksDTO(Long gamePlaPar) {
-//        String cont="";
-//        GamePlayer gamePlaContrario = null;
-//        Set<GamePlayer> GPgames = gamePlaPar.getGameEnGamePlayers().getGamePlayers();
-//        long gamePlaContrario = 0;
+
+//        -----CONSEGUIR EL GAMEPLAYER CONTRARIO----------
         Set<GamePlayer> gamePlayers = repoGamePlayer.getOne(gamePlaPar).getGameEnGamePlayers().getGamePlayers();
         Long gamePlaContrario = null;
         for (GamePlayer GP : gamePlayers) {
             if (GP.getId() != gamePlaPar) {
                 gamePlaContrario = GP.getId();
-//                return "contrario";
-//                cont = "contrario"+GP;
-
-//                return GP;
             }
-//            else {
-//                cont = "no contrario";
-//            }
         }
+//        -------CONSEGUIR BARCOS CONTRARIO-----------
         Set<Ship> shipsContrario = repoGamePlayer.getOne(gamePlaContrario).getShips();
         List<List<String>> listLocCont = new ArrayList<>();
-//        List tipBarcCont = new ArrayList<>();
-//        Map mapBarcCont = new HashMap();
-        for (Ship shipContrario : shipsContrario) {
-            listLocCont.add(shipContrario.getLocBarcoV());
-//            tipBarcCont.add(shipContrario.getTipoBarcoV());
-//            mapBarcCont.put(shipContrario.getTipoBarcoV(),shipContrario.getLocBarcoV());
-        }
-        ArrayList<String> CadaLocCont = new ArrayList<>();
-        Set<Salvo> locMisSalvos = repoGamePlayer.getOne(gamePlaPar).getSalvos();
         ArrayList<Object> tocados = new ArrayList<>();
-
-        for (int j=0; j<listLocCont.size(); j++){
-            for (int k=0; k<listLocCont.get(j).size(); k++){
-                String unaLocCont = listLocCont.get(j).get(k);
-                CadaLocCont.add(unaLocCont);
-//                for (Salvo unSalvo : LocMisSalvos){
-//                    ArrayList<String> unaLocSalvo = unSalvo.getLocSalvoV()
-//                }
-                for (Salvo unSalvo : locMisSalvos){
-                    List<String> locUnSalvo = unSalvo.getLocSalvoV();
-                    for (int l=0; l<locUnSalvo.size(); l++){
-                        String unaLocMisSalvos = locUnSalvo.get(l);
-                        int turnoMisSalvos = unSalvo.getNumeroTurnoV();
-                        String unaLocContS = unaLocCont+"s";
-                        if (unaLocMisSalvos.equals(unaLocContS)) {
-                            tocados.add(unaLocMisSalvos);
-                            tocados.add(turnoMisSalvos);
+//----------ITERAR BARCO CONTRARIO-------------
+        for (Ship shipContrario : shipsContrario) {
+//            -------CONSEGUIR TIPO BARCO CONTRARIO---------
+            String tipoBarco = shipContrario.getTipoBarcoV();
+//            -------------ARRAY CON LAS LOCALIZACIONES DE UN BARCO CONTRARIO---------
+            List<String> arrayLocBarco = shipContrario.getLocBarcoV();
+//            String unaLoc = arrayLocBarco.get(0);
+//            ArrayList<String> CadaLocCont = new ArrayList<>();
+//            Set<Salvo> locMisSalvos = repoGamePlayer.getOne(gamePlaPar).getSalvos();
+//            ArrayList<Object> tocados = new ArrayList<>();
+//------------ITERAR EL ARRAY DE LOCALIZACIONES DE UN BARCO CONTRARIO---------------
+            for (int j = 0; j < arrayLocBarco.size(); j++) {
+//                for (int k = 0; k < listLocCont.get(j).size(); k++) {
+//                    ------------CONSIGO CADA UNA DE LAS LOCALIZACIONES DE UN BARCO CONTRARIO------
+                    String unaLocCont = arrayLocBarco.get(j);
+//                    CadaLocCont.add(unaLocCont);
+//                    ---------CONSIGO LAS LICALIZACIONES DE MIS SALVOS------
+                    Set<Salvo> locMisSalvos = repoGamePlayer.getOne(gamePlaPar).getSalvos();
+//                    -----ITERO MIS SALVOS-----------
+                    for (Salvo unSalvo : locMisSalvos) {
+//                        ------CONSIGO LAS 5 LOCALIZACIONES DE UN SALVO----
+                        List<String> locUnSalvo = unSalvo.getLocSalvoV();
+                        for (int l = 0; l < locUnSalvo.size(); l++) {
+//                            ------CONSIGO UNA LOCALIZACION DE UN SALVO----
+                            String unaLocMisSalvos = locUnSalvo.get(l);
+                            int turnoMisSalvos = unSalvo.getNumeroTurnoV();
+                            String unaLocContS = unaLocCont + "s";
+                            if (unaLocMisSalvos.equals(unaLocContS)) {
+                                tocados.add(unaLocMisSalvos);
+                                tocados.add(turnoMisSalvos);
+                                tocados.add(tipoBarco);
 //                            tocados.add(CadaLocCont);
 //                            String dd = unaLocMisSalvos;
 //                            System.out.println(cadaLocMisBarc);
+                            }
                         }
                     }
                 }
-//
-//                }
-//
             }
-//            Object pr = listLocCont.get(j);
-        }
-
         return tocados;
     }
 
