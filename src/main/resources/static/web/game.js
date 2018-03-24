@@ -332,17 +332,28 @@ function crearTablaHits(data) {
 // ------------TABLA HISTORIAL HIT AND SINKS--------
 
     var turnMyHits = [];
-    for (var iii = 0; iii < data.hitsAndSinks.length; iii++) {
-        for (var jjj = 0; jjj < data.hitsAndSinks.length; jjj++) {
-            turnMyHits.push(data.hitsAndSinks[jjj].hitTurn);
+    var turnMyHitsObj = {};
+    var hitsBarco = "";
+    for (var contTurnoSalvo = 1; contTurnoSalvo < data.salvoes.length+1; contTurnoSalvo++) {
+        for (var iii = 0; iii < data.hitsAndSinks.length; iii++) {
+            turnMyHitsObj[data.hitsAndSinks[iii].hitShip] = 0;
+            if (contTurnoSalvo == data.hitsAndSinks[iii].hitTurn){
+                // turnMyHitsObj
+                console.log(contTurnoSalvo);
+                console.log(data.hitsAndSinks[iii].hitShip);
+                // hitsBarco = data.hitsAndSinks[iii].hitShip;
+                turnMyHitsObj.turn=contTurnoSalvo;
+                turnMyHitsObj[data.hitsAndSinks[iii].hitShip] += 1;
+                console.log(turnMyHitsObj);
+            }
         }
     }
-    var turnMyHitsNoRep = turnMyHits.filter(function (elem, pos) {
-        return turnMyHits.indexOf(elem) == pos;
-    });
-    turnMyHitsNoRep = turnMyHitsNoRep.sort();
-    console.log(turnMyHits);
-    console.log(turnMyHitsNoRep);
+    // var turnMyHitsNoRep = turnMyHits.filter(function (elem, pos) {
+    //     return turnMyHits.indexOf(elem) == pos;
+    // });
+    // turnMyHitsNoRep = turnMyHitsNoRep.sort();
+    // console.log(turnMyHits);
+    // console.log(turnMyHitsNoRep);
 
     /// for (var kkk = 0; kkk < turnMyHitsNoRep.length; kkk++) {
     //     if (turnMyHitsNoRep[kkk]=)
