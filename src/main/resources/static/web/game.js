@@ -329,19 +329,28 @@ function enviarSalvos(contenidoSalvo){
 }
 
 function crearTablaHits(data) {
+
+    if (limpiarURL(document.location.search) == data.gameplayers[0].gamePlayerID) {
+        var tuJugadorHits = 0;
+    }
+    else {
+        var tuJugadorHits = 1;
+    }
 // ------------TABLA HISTORIAL HIT AND SINKS--------
 
     var turnMyHits = [];
 
-    var hitsBarco = "";
     // -------EMPIEZO CONTANDO TURNO DESDE EL TURNO 1------
-    for (var contTurnoSalvo = 1; contTurnoSalvo < data.salvoes.length+1; contTurnoSalvo++) {
+    for (var contTurnoSalvo = 1; contTurnoSalvo < data.salvoes[tuJugadorHits].locations.length+1; contTurnoSalvo++) {
         var turnMyHitsObj = {};
-        // turnMyHitsObj.turn=contTurnoSalvo;
+        // -----INICIALIZO CONTADOR BARCOS-----
+        turnMyHitsObj.Destroyer = 0;
+        turnMyHitsObj.PatrolBoat = 0;
+        turnMyHitsObj.Submarine = 0;
+        turnMyHitsObj.Carrier = 0;
+        turnMyHitsObj.Battleship = 0;
         // ------ITERO LOS HITS-----
         for (var iii = 0; iii < data.hitsAndSinks.length; iii++) {
-            // -----INICIALIZO CONTADOR BARCOS-----
-            turnMyHitsObj[data.hitsAndSinks[iii].hitShip] = 0;
             // --------SI EL CONTADOR DE TURNOS COINCIDE CON TURNO JSON----
             if (contTurnoSalvo == data.hitsAndSinks[iii].hitTurn){
 
@@ -355,4 +364,9 @@ function crearTablaHits(data) {
         turnMyHits.push(turnMyHitsObj);
     }
     console.log(turnMyHits);
+    var datosTablaHits = "";
+    for (var jjj = 0; jjj < turnMyHits.length; jjj++) {
+
+
+    }
 }
