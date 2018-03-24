@@ -100,7 +100,7 @@ public class SalvoController {
                 .stream()
                 .map(salvoLambda -> salvosDTO(salvoLambda))
                 .collect(Collectors.toList())));
-        gameViewMap.put("hits_and_sinks", hitsAndSinksDTO(gamePlayerId));
+        gameViewMap.put("hitsAndSinks", hitsAndSinksDTO(gamePlayerId));
 
         return gameViewMap;
 
@@ -112,16 +112,22 @@ public class SalvoController {
 //        -----CONSEGUIR EL GAMEPLAYER CONTRARIO----------
         Set<GamePlayer> gamePlayers = repoGamePlayer.getOne(gamePlaPar).getGameEnGamePlayers().getGamePlayers();
         Long gamePlaContrario = null;
+        List<Map<String, Object>> tocadosArrayMap = new ArrayList<>();
         for (GamePlayer GP : gamePlayers) {
-            if (GP.getId() != gamePlaPar) {
-                gamePlaContrario = GP.getId();
+            if (GP != null) {
+                if (GP.getId() != gamePlaPar) {
+                    gamePlaContrario = GP.getId();
+                }
             }
+        }
+        if (gamePlaContrario == null) {
+            return tocadosArrayMap;
         }
 //        -------CONSEGUIR BARCOS CONTRARIO-----------
         Set<Ship> shipsContrario = repoGamePlayer.getOne(gamePlaContrario).getShips();
 //        List<List<String>> listLocCont = new ArrayList<>();
 
-        List<Map<String, Object>> tocadosArrayMap = new ArrayList<>();
+
 //----------ITERAR BARCO CONTRARIO-------------
         for (Ship shipContrario : shipsContrario) {
 //            -------CONSEGUIR TIPO BARCO CONTRARIO---------
@@ -145,9 +151,9 @@ public class SalvoController {
                             String unaLocContS = unaLocCont + "s";
                             if (unaLocMisSalvos.equals(unaLocContS)) {
                                 Map<String, Object> tocadosMap = new HashMap<>();
-                                tocadosMap.put("hit_turn", turnoMisSalvos);
-                                tocadosMap.put("hit_location", unaLocMisSalvos);
-                                tocadosMap.put("hit_ship", tipoBarco);
+                                tocadosMap.put("hitTurn", turnoMisSalvos);
+                                tocadosMap.put("hitLocation", unaLocMisSalvos);
+                                tocadosMap.put("hitShip", tipoBarco);
 
                                 tocadosArrayMap.add(tocadosMap);
                             }

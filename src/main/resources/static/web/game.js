@@ -2,6 +2,7 @@ $.getJSON("http://localhost:8080/api/game_view/"+limpiarURL(document.location.se
     console.log(data);
     crearRejiBarcosYsalvos(data);
     crearJugadoresGV(data);
+    crearTablaHits(data);
 });
 
 function limpiarURL(search) {
@@ -325,5 +326,26 @@ function enviarSalvos(contenidoSalvo){
                 console.log("salvo no añadidos");
             })
     }
+}
+
+function crearTablaHits(data) {
+// ------------TABLA HISTORIAL HIT AND SINKS--------
+
+    var turnMyHits = [];
+    for (var iii = 0; iii < data.hitsAndSinks.length; iii++) {
+        for (var jjj = 0; jjj < data.hitsAndSinks.length; jjj++) {
+            turnMyHits.push(data.hitsAndSinks[jjj].hitTurn);
+        }
+    }
+    var turnMyHitsNoRep = turnMyHits.filter(function (elem, pos) {
+        return turnMyHits.indexOf(elem) == pos;
+    });
+    turnMyHitsNoRep = turnMyHitsNoRep.sort();
+    console.log(turnMyHits);
+    console.log(turnMyHitsNoRep);
+
+    // for (var kkk = 0; kkk < turnMyHitsNoRep.length; kkk++) {
+    //     if (turnMyHitsNoRep[kkk]=)
+    // }
 
 }
