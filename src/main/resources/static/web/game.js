@@ -337,26 +337,22 @@ function crearTablaHits(data) {
     // -------EMPIEZO CONTANDO TURNO DESDE EL TURNO 1------
     for (var contTurnoSalvo = 1; contTurnoSalvo < data.salvoes.length+1; contTurnoSalvo++) {
         var turnMyHitsObj = {};
-        turnMyHitsObj.turn=contTurnoSalvo;
+        // turnMyHitsObj.turn=contTurnoSalvo;
         // ------ITERO LOS HITS-----
         for (var iii = 0; iii < data.hitsAndSinks.length; iii++) {
             // -----INICIALIZO CONTADOR BARCOS-----
             turnMyHitsObj[data.hitsAndSinks[iii].hitShip] = 0;
             // --------SI EL CONTADOR DE TURNOS COINCIDE CON TURNO JSON----
             if (contTurnoSalvo == data.hitsAndSinks[iii].hitTurn){
-                // turnMyHitsObj
-                // console.log(contTurnoSalvo);
-                // console.log(data.hitsAndSinks[iii].hitShip);
 
-                turnMyHitsObj[data.hitsAndSinks[iii].hitShip] += 1;
-                // console.log(turnMyHitsObj);
+                console.log(data.hitsAndSinks[iii].hitShip);
+                turnMyHitsObj[data.hitsAndSinks[iii].hitShip]++;
             }
 
         }
-        // console.log(contTurnoSalvo);
-        // turnMyHitsObj.turn = 3;
+        console.log(contTurnoSalvo);
         turnMyHitsObj.turn = contTurnoSalvo;
         turnMyHits.push(turnMyHitsObj);
-        console.log(turnMyHits);
     }
+    console.log(turnMyHits);
 }
