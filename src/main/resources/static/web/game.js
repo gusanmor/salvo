@@ -366,7 +366,7 @@ function crearTablaHits(data) {
     console.log(turnMyHits);
     var datosTablaHits = "";
     for (var jjj = 0; jjj < turnMyHits.length; jjj++) {
-
-
+        datosTablaHits += "<td>"+turnMyHits[jjj].turn+"</td>";
     }
+    document.getElementById("hitsTableID").innerHTML = datosTablaHits;
 }
