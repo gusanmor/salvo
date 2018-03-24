@@ -344,7 +344,7 @@ function crearTablaHits(data) {
     console.log(turnMyHits);
     console.log(turnMyHitsNoRep);
 
-    // for (var kkk = 0; kkk < turnMyHitsNoRep.length; kkk++) {
+    /// for (var kkk = 0; kkk < turnMyHitsNoRep.length; kkk++) {
     //     if (turnMyHitsNoRep[kkk]=)
     // }
 
