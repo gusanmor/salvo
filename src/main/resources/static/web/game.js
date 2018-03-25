@@ -378,17 +378,16 @@ function crearTablaHitsOnYou(data) {
         console.log(turnHitsOnMe);
     }
 
-    // // -------CREAR TABLAS HITS ON ME-------
-    // var datosTablaHits = "";
-    // for (var jjj = 0; jjj < turnMyHits.length; jjj++) {
-    //     var battleshipHits =
-    //         datosTablaHits += "<tr>"+
-    //             "<td>"+turnMyHits[jjj].turn+"</td>"+
-    //             "<td>"+"Bat:"+turnMyHits[jjj].Battleship+" Carr:"+turnMyHits[jjj].Carrier+" Des:"+turnMyHits[jjj].Destroyer+" Pat:"+turnMyHits[jjj].PatrolBoat+" Sub:"+turnMyHits[jjj].Submarine+"</td>"+
-    //             "</tr>";
-    //     // "<td>"+tunMyHits[jjj].Battleship+"</td></tr>";
-    // }
-    // document.getElementById("hitsTableID").innerHTML = datosTablaHits;
+    // -------CREAR TABLAS HITS ON ME-------
+    var datosTablaHitsOnMe = "";
+    for (var lll = 0; lll < turnHitsOnMe.length; lll++) {
+        datosTablaHitsOnMe += "<tr>"+
+                "<td>"+turnHitsOnMe[lll].turn+"</td>"+
+                "<td>"+"Bat:"+turnHitsOnMe[lll].Battleship+" Carr:"+turnHitsOnMe[lll].Carrier+" Des:"+turnHitsOnMe[lll].Destroyer+" Pat:"+turnHitsOnMe[lll].PatrolBoat+" Sub:"+turnHitsOnMe[lll].Submarine+"</td>"+
+                "</tr>";
+        // "<td>"+tunMyHits[jjj].Battleship+"</td></tr>";
+    }
+    document.getElementById("hitsOnYouTableID").innerHTML = datosTablaHitsOnMe;
 }
 
 function crearTablaHitsOpp(data) {
@@ -431,7 +430,6 @@ function crearTablaHitsOpp(data) {
     // -------CREAR TABLAS HITS-------
     var datosTablaHits = "";
     for (var jjj = 0; jjj < turnMyHits.length; jjj++) {
-        var battleshipHits =
         datosTablaHits += "<tr>"+
             "<td>"+turnMyHits[jjj].turn+"</td>"+
             "<td>"+"Bat:"+turnMyHits[jjj].Battleship+" Carr:"+turnMyHits[jjj].Carrier+" Des:"+turnMyHits[jjj].Destroyer+" Pat:"+turnMyHits[jjj].PatrolBoat+" Sub:"+turnMyHits[jjj].Submarine+"</td>"+
