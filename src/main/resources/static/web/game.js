@@ -364,9 +364,16 @@ function crearTablaHits(data) {
         turnMyHits.push(turnMyHitsObj);
     }
     console.log(turnMyHits);
+
+    // -------CREAR TABLAS HITS-------
     var datosTablaHits = "";
     for (var jjj = 0; jjj < turnMyHits.length; jjj++) {
-        datosTablaHits += "<td>"+turnMyHits[jjj].turn+"</td>";
+        var battleshipHits =
+        datosTablaHits += "<tr>"+
+            "<td>"+turnMyHits[jjj].turn+"</td>"+
+            "<td>"+"Bat:"+turnMyHits[jjj].Battleship+" Carr:"+turnMyHits[jjj].Carrier+" Des:"+turnMyHits[jjj].Destroyer+" Pat:"+turnMyHits[jjj].PatrolBoat+" Sub:"+turnMyHits[jjj].Submarine+"</td>"+
+            "</tr>";
+            // "<td>"+tunMyHits[jjj].Battleship+"</td></tr>";
     }
     document.getElementById("hitsTableID").innerHTML = datosTablaHits;
 }
