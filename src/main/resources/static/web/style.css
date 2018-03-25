@@ -106,4 +106,13 @@ td{
     display: none;
 }
 
+.hitOnYouCl {
+    display: inline;
+}
+
+.hitOpponentCl {
+    /*display: inline;*/
+    float: right;
+}
+
 
