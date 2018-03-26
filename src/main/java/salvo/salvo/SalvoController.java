@@ -113,8 +113,9 @@ public class SalvoController {
                 .stream()
                 .map(salvoLambda -> salvosDTO(salvoLambda))
                 .collect(Collectors.toList())));
-        gameViewMap.put("hitsAndSinks", hitsAndSinksDTO(gamePlayerId));
+        gameViewMap.put("hitsAndSinks", hitsAndSinksDTO(gamePlayerId , gamePlaContrarioID));
         gameViewMap.put("sinksOnMe", sinksOnMeDTO(gamePlayerId , gamePlaContrarioID));
+        gameViewMap.put("sinksOnOpponet", sinksOnMeDTO(gamePlaContrarioID , gamePlayerId ));
 
         return gameViewMap;
 
@@ -123,6 +124,9 @@ public class SalvoController {
     public List<Map<Object, String>> sinksOnMeDTO(Long gamePlayerP, Long GPContP) {
         List<String> locTodSalv = new ArrayList<>();
         List<Map<Object, String>> listBarcHund = new ArrayList<>();
+        if (GPContP == null) {
+            return listBarcHund;
+        }
         Set<Salvo> todSalvo = repoGamePlayer.getOne(GPContP).getSalvos();
         for (Salvo unSalvo : todSalvo) {
             for (int ttt = 0; ttt < unSalvo.getLocSalvoV().size(); ttt++) {
@@ -145,25 +149,16 @@ public class SalvoController {
 
     }
 
-    public List<Map<String, Object>> hitsAndSinksDTO(Long gamePlaPar) {
+    public List<Map<String, Object>> hitsAndSinksDTO(Long gamePlaPar , Long GPContID) {
 
-//        -----CONSEGUIR EL GAMEPLAYER CONTRARIO----------
-        Set<GamePlayer> gamePlayers = repoGamePlayer.getOne(gamePlaPar).getGameEnGamePlayers().getGamePlayers();
-        Long gamePlaContrario = null;
         List<Map<String, Object>> tocadosArrayMap = new ArrayList<>();
         List<String> todasLocalTodosMisSalvos = new ArrayList<>();
-        for (GamePlayer GP : gamePlayers) {
-            if (GP != null) {
-                if (GP.getId() != gamePlaPar) {
-                    gamePlaContrario = GP.getId();
-                }
-            }
-        }
-        if (gamePlaContrario == null) {
+
+        if (GPContID == null) {
             return tocadosArrayMap;
         }
 //        -------CONSEGUIR BARCOS CONTRARIO-----------
-        Set<Ship> shipsContrario = repoGamePlayer.getOne(gamePlaContrario).getShips();
+        Set<Ship> shipsContrario = repoGamePlayer.getOne(GPContID).getShips();
 
 //----------ITERAR BARCO CONTRARIO-------------
         for (Ship shipContrario : shipsContrario) {
