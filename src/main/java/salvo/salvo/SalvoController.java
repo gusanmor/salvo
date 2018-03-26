@@ -101,11 +101,18 @@ public class SalvoController {
                 .map(salvoLambda -> salvosDTO(salvoLambda))
                 .collect(Collectors.toList())));
         gameViewMap.put("hitsAndSinks", hitsAndSinksDTO(gamePlayerId));
+//        gameViewMap.put("sinks", sinksDTO(gamePlayerId));
 
         return gameViewMap;
 
     }
 
+//    public String sinksDTO(Long gamePlayerP){
+//        Set<Salvo> todSalvo = repoGamePlayer.getOne(gamePlayerP).getSalvos();
+//        for (Salvo uns : todSalvo){
+//            uns.getLocSalvoV()
+//        }
+//    }
 
     public List<Map<String, Object>> hitsAndSinksDTO(Long gamePlaPar) {
 
@@ -170,13 +177,13 @@ public class SalvoController {
     }
 
     private String shipIsSunk(List<String> playerSalvos, Ship ship) {
-        //Ahora miramos si la location de un Ship coincide con los salvos que hemos realizado con el .allMatch()
         boolean shipIsSunk = ship.getLocBarcoV().stream()
                 .allMatch(locations -> playerSalvos.contains(locations));
-        if (shipIsSunk != true) {
-            return "noSink";
+        if (shipIsSunk == true) {
+//            shipIsSunk = false;
+            return "sink";
         }
-        else return "Sink";
+        else return "noSink";
     }
 
 
