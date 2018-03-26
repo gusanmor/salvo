@@ -85,6 +85,19 @@ public class SalvoController {
     @RequestMapping("api/game_view/{gamePlayerId}")
     public Map<String, Object> metodoGameView(@PathVariable Long gamePlayerId) {
 
+        //        -----CONSEGUIR EL GAMEPLAYER CONTRARIO----------
+        Set<GamePlayer> gamePlayers = repoGamePlayer.getOne(gamePlayerId).getGameEnGamePlayers().getGamePlayers();
+        Long gamePlaContrarioID = null;
+//        List<Map<String, Object>> tocadosArrayMap = new ArrayList<>();
+//        List<String> todasLocalTodosMisSalvos = new ArrayList<>();
+        for (GamePlayer GP : gamePlayers) {
+            if (GP != null) {
+                if (GP.getId() != gamePlayerId) {
+                    gamePlaContrarioID = GP.getId();
+                }
+            }
+        }
+
         Map<String, Object> gameViewMap = new HashMap<>();
         gameViewMap.put("gameID", (repoGamePlayer.findOne(gamePlayerId).getGameEnGamePlayers().getId()));
         gameViewMap.put("creationDateGame", (repoGamePlayer.findOne(gamePlayerId).getGameEnGamePlayers().getFechaVar()));
@@ -101,18 +114,36 @@ public class SalvoController {
                 .map(salvoLambda -> salvosDTO(salvoLambda))
                 .collect(Collectors.toList())));
         gameViewMap.put("hitsAndSinks", hitsAndSinksDTO(gamePlayerId));
-//        gameViewMap.put("sinks", sinksDTO(gamePlayerId));
+        gameViewMap.put("sinksOnMe", sinksOnMeDTO(gamePlayerId , gamePlaContrarioID));
 
         return gameViewMap;
 
     }
 
-//    public String sinksDTO(Long gamePlayerP){
-//        Set<Salvo> todSalvo = repoGamePlayer.getOne(gamePlayerP).getSalvos();
-//        for (Salvo uns : todSalvo){
-//            uns.getLocSalvoV()
-//        }
-//    }
+    public List<Map<Object, String>> sinksOnMeDTO(Long gamePlayerP, Long GPContP) {
+        List<String> locTodSalv = new ArrayList<>();
+        List<Map<Object, String>> listBarcHund = new ArrayList<>();
+        Set<Salvo> todSalvo = repoGamePlayer.getOne(GPContP).getSalvos();
+        for (Salvo unSalvo : todSalvo) {
+            for (int ttt = 0; ttt < unSalvo.getLocSalvoV().size(); ttt++) {
+                String strinUnSalvo = unSalvo.getLocSalvoV().get(ttt);
+                String strinUnSalvoSinS = strinUnSalvo.substring(0,2);
+                locTodSalv.add(strinUnSalvoSinS);
+            }
+        }
+        System.out.println(locTodSalv);
+        Set<Ship> barcos = repoGamePlayer.getOne(gamePlayerP).getShips();
+
+        for (Ship barco : barcos) {
+            Map<Object, String> barcHund = new HashMap<>();
+            barcHund.put(barco.getTipoBarcoV(), shipIsSunk(locTodSalv, barco));
+
+            listBarcHund.add(barcHund);
+//            System.out.println(listBarcHund);
+        }
+        return listBarcHund;
+
+    }
 
     public List<Map<String, Object>> hitsAndSinksDTO(Long gamePlaPar) {
 
@@ -133,8 +164,6 @@ public class SalvoController {
         }
 //        -------CONSEGUIR BARCOS CONTRARIO-----------
         Set<Ship> shipsContrario = repoGamePlayer.getOne(gamePlaContrario).getShips();
-//        List<List<String>> listLocCont = new ArrayList<>();
-
 
 //----------ITERAR BARCO CONTRARIO-------------
         for (Ship shipContrario : shipsContrario) {
