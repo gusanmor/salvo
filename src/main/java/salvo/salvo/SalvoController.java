@@ -113,6 +113,10 @@ public class SalvoController {
                 .stream()
                 .map(salvoLambda -> salvosDTO(salvoLambda))
                 .collect(Collectors.toList())));
+
+        if (gamePlaContrarioID == null) {
+            return gameViewMap;
+        }
         gameViewMap.put("hitsAndSinks", hitsAndSinksDTO(gamePlayerId , gamePlaContrarioID));
         gameViewMap.put("sinksOnMe", sinksOnMeDTO(gamePlayerId , gamePlaContrarioID));
         gameViewMap.put("sinksOnOpponet", sinksOnMeDTO(gamePlaContrarioID , gamePlayerId ));
@@ -124,9 +128,9 @@ public class SalvoController {
     public List<Map<Object, String>> sinksOnMeDTO(Long gamePlayerP, Long GPContP) {
         List<String> locTodSalv = new ArrayList<>();
         List<Map<Object, String>> listBarcHund = new ArrayList<>();
-        if (GPContP == null) {
-            return listBarcHund;
-        }
+//        if (GPContP == null) {
+//            return listBarcHund;
+//        }
         Set<Salvo> todSalvo = repoGamePlayer.getOne(GPContP).getSalvos();
         for (Salvo unSalvo : todSalvo) {
             for (int ttt = 0; ttt < unSalvo.getLocSalvoV().size(); ttt++) {
@@ -154,9 +158,9 @@ public class SalvoController {
         List<Map<String, Object>> tocadosArrayMap = new ArrayList<>();
         List<String> todasLocalTodosMisSalvos = new ArrayList<>();
 
-        if (GPContID == null) {
-            return tocadosArrayMap;
-        }
+//        if (GPContID == null) {
+//            return tocadosArrayMap;
+//        }
 //        -------CONSEGUIR BARCOS CONTRARIO-----------
         Set<Ship> shipsContrario = repoGamePlayer.getOne(GPContID).getShips();
 
@@ -201,6 +205,11 @@ public class SalvoController {
     }
 
     private String shipIsSunk(List<String> playerSalvos, Ship ship) {
+
+        if (playerSalvos == null) {
+            return "noOpponent";
+        }
+
         boolean shipIsSunk = ship.getLocBarcoV().stream()
                 .allMatch(locations -> playerSalvos.contains(locations));
         if (shipIsSunk == true) {
