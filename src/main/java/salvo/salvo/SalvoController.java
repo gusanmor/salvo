@@ -154,6 +154,7 @@ public class SalvoController {
                                 tocadosMap.put("hitTurn", turnoMisSalvos);
                                 tocadosMap.put("hitLocation", unaLocMisSalvos);
                                 tocadosMap.put("hitShip", tipoBarco);
+                                tocadosMap.put("sunkShip", shipIsSunk(locUnSalvo, shipContrario));
 
                                 tocadosArrayMap.add(tocadosMap);
                             }
@@ -162,6 +163,17 @@ public class SalvoController {
                 }
             }
         return tocadosArrayMap;
+    }
+
+    private boolean shipIsSunk(List<String> playerSalvos, Ship ship) {
+        //Ahora miramos si la location de un Ship coincide con los salvos que hemos realizado con el .allMatch()
+        boolean shipIsSunk = ship.getLocBarcoV().stream()
+                .allMatch(locations -> playerSalvos.contains(locations));
+        if (shipIsSunk) {
+            ship.setSunk(true);
+            shipRepo.save(ship);
+        }
+        return shipIsSunk;
     }
 
 

@@ -340,10 +340,6 @@ function crearTablaHitsOnYou(data) {
 
     var turnHitsOnMe = [];
 
-    // -------EMPIEZO CONTANDO TURNO DESDE EL TURNO 1------
-    // for (var contTurnoSalvoCont = 1; contTurnoSalvoCont < data.salvoes[contHitOnYou].locations.length+1; contTurnoSalvoCont++) {
-    //     console.log(contTurnoSalvoCont);
-    // }
     for (var nnn=0; nnn<data.salvoes[contHitOnYou].locations.length; nnn++){
         var turnHitsOnMeObj = {};
         turnHitsOnMeObj.Destroyer = 0;
@@ -353,29 +349,26 @@ function crearTablaHitsOnYou(data) {
         turnHitsOnMeObj.Battleship = 0;
         var turnOpp = data.salvoes[contHitOnYou].turn[nnn];
         turnHitsOnMeObj.turn = turnOpp;
-    console.log(data.salvoes[contHitOnYou].turn[nnn]);
+    // console.log(data.salvoes[contHitOnYou].turn[nnn]);
         for (var ooo=0; ooo<data.salvoes[contHitOnYou].locations[nnn].length; ooo++){
             var locSalvCont = data.salvoes[contHitOnYou].locations[nnn][ooo];
-            console.log(data.salvoes[contHitOnYou].locations[nnn][ooo]);
+            // console.log(data.salvoes[contHitOnYou].locations[nnn][ooo]);
             for (var ppp=0; ppp<data.ships.length; ppp++){
                 var tipoMiBarco = data.ships[ppp].type;
-            console.log(data.ships[ppp].type);
+            // console.log(data.ships[ppp].type);
                 for (var qqq=0; qqq<data.ships[ppp].locations.length; qqq++){
                     var locMisBarc = data.ships[ppp].locations[qqq];
-                    console.log(data.ships[ppp].locations[qqq]);
+                    // console.log(data.ships[ppp].locations[qqq]);
                     if (locSalvCont == locMisBarc+"s") {
-                        console.log("igual");
+                        // console.log("igual");
                         turnHitsOnMeObj[tipoMiBarco]++;
-
                     }
-
                 }
-
             }
         }
-        console.log(turnHitsOnMeObj);
+        // console.log(turnHitsOnMeObj);
         turnHitsOnMe.push(turnHitsOnMeObj);
-        console.log(turnHitsOnMe);
+        // console.log(turnHitsOnMe);
     }
 
     // -------CREAR TABLAS HITS ON ME-------
@@ -398,7 +391,7 @@ function crearTablaHitsOpp(data) {
     else {
         var tuJugadorHits = 1;
     }
-// ------------TABLA HISTORIAL HIT AND SINKS--------
+// ------------TABLA HISTORIAL HIT AND SINKS OPONENTE--------
 
     var turnMyHits = [];
 
