@@ -113,6 +113,7 @@ public class SalvoController {
         Set<GamePlayer> gamePlayers = repoGamePlayer.getOne(gamePlaPar).getGameEnGamePlayers().getGamePlayers();
         Long gamePlaContrario = null;
         List<Map<String, Object>> tocadosArrayMap = new ArrayList<>();
+        List<String> todasLocalTodosMisSalvos = new ArrayList<>();
         for (GamePlayer GP : gamePlayers) {
             if (GP != null) {
                 if (GP.getId() != gamePlaPar) {
@@ -144,9 +145,12 @@ public class SalvoController {
                     for (Salvo unSalvo : locMisSalvos) {
 //                        ------CONSIGO LAS 5 LOCALIZACIONES DE UN SALVO----
                         List<String> locUnSalvo = unSalvo.getLocSalvoV();
+
                         for (int l = 0; l < locUnSalvo.size(); l++) {
 //                            ------CONSIGO UNA LOCALIZACION DE UN SALVO----
                             String unaLocMisSalvos = locUnSalvo.get(l);
+                            String unaLocSinS = unaLocMisSalvos.substring(0,2);
+                            todasLocalTodosMisSalvos.add(unaLocSinS);
                             int turnoMisSalvos = unSalvo.getNumeroTurnoV();
                             String unaLocContS = unaLocCont + "s";
                             if (unaLocMisSalvos.equals(unaLocContS)) {
@@ -154,7 +158,7 @@ public class SalvoController {
                                 tocadosMap.put("hitTurn", turnoMisSalvos);
                                 tocadosMap.put("hitLocation", unaLocMisSalvos);
                                 tocadosMap.put("hitShip", tipoBarco);
-                                tocadosMap.put("sunkShip", shipIsSunk(locUnSalvo, shipContrario));
+                                tocadosMap.put("sunkShip", shipIsSunk(todasLocalTodosMisSalvos, shipContrario));
 
                                 tocadosArrayMap.add(tocadosMap);
                             }
@@ -165,15 +169,14 @@ public class SalvoController {
         return tocadosArrayMap;
     }
 
-    private boolean shipIsSunk(List<String> playerSalvos, Ship ship) {
+    private String shipIsSunk(List<String> playerSalvos, Ship ship) {
         //Ahora miramos si la location de un Ship coincide con los salvos que hemos realizado con el .allMatch()
         boolean shipIsSunk = ship.getLocBarcoV().stream()
                 .allMatch(locations -> playerSalvos.contains(locations));
-        if (shipIsSunk) {
-            ship.setSunk(true);
-            shipRepo.save(ship);
+        if (shipIsSunk != true) {
+            return "noSink";
         }
-        return shipIsSunk;
+        else return "Sink";
     }
 
 
