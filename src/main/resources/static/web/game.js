@@ -4,6 +4,7 @@ $.getJSON("http://localhost:8080/api/game_view/"+limpiarURL(document.location.se
     crearJugadoresGV(data);
     crearTablaHitsOnYou(data);
     crearTablaHitsOpp(data);
+    crearTablaSinksOnMe(data);
 });
 
 function limpiarURL(search) {
@@ -391,7 +392,7 @@ function crearTablaHitsOpp(data) {
     else {
         var tuJugadorHits = 1;
     }
-// ------------TABLA HISTORIAL HIT AND SINKS OPONENTE--------
+// ------------TABLA HISTORIAL HITS OPONENTE--------
 
     var turnMyHits = [];
 
@@ -430,4 +431,28 @@ function crearTablaHitsOpp(data) {
             // "<td>"+tunMyHits[jjj].Battleship+"</td></tr>";
     }
     document.getElementById("hitsTableID").innerHTML = datosTablaHits;
+}
+
+// ------CREAR TABLA SINKS ON ME----
+function crearTablaSinksOnMe(data) {
+    console.log("sinksOnMe");
+    var txSinksOnMe = "";
+    var txSinksOnMeLeft = "";
+    // console.log(Object.keys(data.sinksOnMe[1]));
+    for (var kkk = 0; kkk < data.sinksOnMe.length; kkk++) {
+
+        // var nombreBarco = ""
+        var nombreBarcoO = Object.keys(data.sinksOnMe[kkk]);
+        var nombreBarco = nombreBarcoO[0];
+        // console.log(nombreBarco);
+        if (data.sinksOnMe[kkk][nombreBarco]=="sink"){
+            txSinksOnMe += nombreBarco + " sink "+"<br>";
+            console.log(txSinksOnMe);
+        }
+        else {
+            txSinksOnMeLeft += nombreBarco +"<br>";
+        }
+    }
+    document.getElementById("sinksOnYouID").innerHTML = txSinksOnMe;
+    document.getElementById("sinksOnYouLeftID").innerHTML = txSinksOnMeLeft;
 }

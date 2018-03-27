@@ -115,4 +115,13 @@ td{
     float: right;
 }
 
+.sinksOnYouCl{
+    display: inline;
+}
+
+.sinksOnOpponCl{
+    display: inline;
+    float: right;
+}
+
 
