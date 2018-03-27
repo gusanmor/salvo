@@ -4,7 +4,9 @@ $.getJSON("http://localhost:8080/api/game_view/"+limpiarURL(document.location.se
     crearJugadoresGV(data);
     crearTablaHitsOnYou(data);
     crearTablaHitsOpp(data);
-    crearTablaSinksOnMe(data);
+    crearTablaSinksOn(data , "sinksOnMe");
+    crearTablaSinksOn(data , "sinksOnOpponent");
+
 });
 
 function limpiarURL(search) {
@@ -434,25 +436,25 @@ function crearTablaHitsOpp(data) {
 }
 
 // ------CREAR TABLA SINKS ON ME----
-function crearTablaSinksOnMe(data) {
-    console.log("sinksOnMe");
-    var txSinksOnMe = "";
-    var txSinksOnMeLeft = "";
+function crearTablaSinksOn(data, sinkOn) {
+    console.log("sinksOn");
+    var txSinksOn = "";
+    var txSinksLeft = "";
     // console.log(Object.keys(data.sinksOnMe[1]));
-    for (var kkk = 0; kkk < data.sinksOnMe.length; kkk++) {
+    for (var kkk = 0; kkk < data[sinkOn].length; kkk++) {
 
         // var nombreBarco = ""
-        var nombreBarcoO = Object.keys(data.sinksOnMe[kkk]);
+        var nombreBarcoO = Object.keys(data[sinkOn][kkk]);
         var nombreBarco = nombreBarcoO[0];
         // console.log(nombreBarco);
-        if (data.sinksOnMe[kkk][nombreBarco]=="sink"){
-            txSinksOnMe += nombreBarco + " sink "+"<br>";
-            console.log(txSinksOnMe);
+        if (data[sinkOn][kkk][nombreBarco]=="sink"){
+            txSinksOn += nombreBarco + " sink "+"<br>";
+            console.log(txSinksOn);
         }
         else {
-            txSinksOnMeLeft += nombreBarco +"<br>";
+            txSinksLeft += nombreBarco +"<br>";
         }
     }
-    document.getElementById("sinksOnYouID").innerHTML = txSinksOnMe;
-    document.getElementById("sinksOnYouLeftID").innerHTML = txSinksOnMeLeft;
+    document.getElementById(sinkOn+"ID").innerHTML = txSinksOn;
+    document.getElementById(sinkOn+"LeftID").innerHTML = txSinksLeft;
 }

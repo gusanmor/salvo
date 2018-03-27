@@ -110,18 +110,22 @@ td{
     display: inline;
 }
 
-.hitOpponentCl {
-    /*display: inline;*/
-    float: right;
-}
 
 .sinksOnYouCl{
     display: inline;
 }
 
+.hitOpponentCl {
+    display: inline;
+    /*float: right;*/
+    margin-left: 2rem;
+}
+
 .sinksOnOpponCl{
     display: inline;
-    float: right;
+    /*float: right;*/
 }
+
+
 
 
