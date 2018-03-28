@@ -114,6 +114,8 @@ public class SalvoController {
                 .map(salvoLambda -> salvosDTO(salvoLambda))
                 .collect(Collectors.toList())));
 
+//        gameViewMap.put("gameStatus",gameStatusDTO(gamePlayerId , gamePlaContrarioID));
+
         if (gamePlaContrarioID == null) {
             return gameViewMap;
         }
@@ -121,8 +123,23 @@ public class SalvoController {
         gameViewMap.put("sinksOnMe", sinksOnMeDTO(gamePlayerId , gamePlaContrarioID));
         gameViewMap.put("sinksOnOpponent", sinksOnMeDTO(gamePlaContrarioID , gamePlayerId ));
 
+
         return gameViewMap;
 
+    }
+
+    public String gameStatusDTO(Long GP, Long GPCont){
+        Set<Ship> shipsGP = repoGamePlayer.getOne(GP).getShips();
+        int numeroGPs = repoGamePlayer.getOne(GP).getGameEnGamePlayers().getGamePlayers().size();
+        System.out.println(shipsGP);
+        if (shipsGP.size() == 0){
+            return "1-start";
+        }
+        else if (numeroGPs<2){
+            System.out.println(numeroGPs);
+            return "2-noOpponent";
+        }
+        else return "?";
     }
 
     public List<Map<Object, String>> sinksOnMeDTO(Long gamePlayerP, Long GPContP) {
