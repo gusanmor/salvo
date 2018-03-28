@@ -114,7 +114,7 @@ public class SalvoController {
                 .map(salvoLambda -> salvosDTO(salvoLambda))
                 .collect(Collectors.toList())));
 
-//        gameViewMap.put("gameStatus",gameStatusDTO(gamePlayerId , gamePlaContrarioID));
+        gameViewMap.put("gameStatus",gameStatusDTO(gamePlayerId , gamePlaContrarioID));
 
         if (gamePlaContrarioID == null) {
             return gameViewMap;
