@@ -66,6 +66,9 @@ function crearRejiBarcosYsalvos(data) {
                     if (data.ships[l].locations[m] == idCelda) {
                         var claseBarco = "celdaBarco";
                         // ----PINTAR LOS IMPACTOS DE LOS DISPAROS EN TUS BARCOS--------------
+                        if (data.salvoes.length<2){
+                            break;
+                        }
                         for (var p = 0; p < data.salvoes[keyContrario].locations.length; p++) {
                             for (var q = 0; q < data.salvoes[keyContrario].locations[p].length; q++) {
                                 if (data.salvoes[keyContrario].locations[p][q] == idCeldaSalvo) {
