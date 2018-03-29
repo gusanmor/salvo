@@ -139,6 +139,12 @@ public class SalvoController {
             System.out.println(numeroGPs);
             return "2-noOpponent";
         }
+        else if (repoGamePlayer.getOne(GPCont).getShips().size()<5){
+            return "3-opponentNoShips";
+        }
+        else if (repoGamePlayer.getOne(GP).getSalvos().size()<=repoGamePlayer.getOne(GPCont).getSalvos().size()){
+            return "4-addSalvos";
+        }
         else return "?";
     }
 
