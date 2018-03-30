@@ -2,6 +2,7 @@ $.getJSON("http://localhost:8080/api/game_view/"+limpiarURL(document.location.se
     console.log(data);
     crearRejiBarcosYsalvos(data);
     crearJugadoresGV(data);
+    crearStatus(data);
     crearTablaHitsOnYou(data);
     crearTablaHitsOpp(data);
     crearTablaSinksOn(data , "sinksOnMe");
@@ -19,6 +20,10 @@ function limpiarURL(search) {
     var obj2 = "";
     obj2 = obj.gp;
     return obj2;
+}
+
+function crearStatus(data){
+    document.getElementById("statusID").innerHTML = "Status "+data.gameStatus;
 }
 
 function crearRejiBarcosYsalvos(data) {
@@ -411,15 +416,17 @@ function crearTablaHitsOpp(data) {
         turnMyHitsObj.Carrier = 0;
         turnMyHitsObj.Battleship = 0;
         // ------ITERO LOS HITS-----
-        for (var iii = 0; iii < data.hitsAndSinks.length; iii++) {
-            // --------SI EL CONTADOR DE TURNOS COINCIDE CON TURNO JSON----
-            if (contTurnoSalvo == data.hitsAndSinks[iii].hitTurn){
+        // data.hitsAndSinks =
+        // var hithis;
+        for (var iii = 0; data.hitsOnOppHistory.length > iii; iii++) {
+    // --------SI EL CONTADOR DE TURNOS COINCIDE CON TURNO JSON----
+    if (contTurnoSalvo == data.hitsOnOppHistory[iii].hitTurn) {
 
-                // console.log(data.hitsAndSinks[iii].hitShip);
-                turnMyHitsObj[data.hitsAndSinks[iii].hitShip]++;
-            }
+        // console.log(data.hitsAndSinks[iii].hitShip);
+        turnMyHitsObj[data.hitsOnOppHistory[iii].hitShip]++;
+    }
 
-        }
+}
         // console.log(contTurnoSalvo);
         turnMyHitsObj.turn = contTurnoSalvo;
         turnMyHits.push(turnMyHitsObj);
@@ -445,7 +452,13 @@ function crearTablaSinksOn(data, sinkOn) {
     var txSinksLeft = "";
     // console.log(Object.keys(data.sinksOnMe[1]));
     for (var kkk = 0; kkk < data[sinkOn].length; kkk++) {
-
+        // for (var key in data[sinkOn][kkk]){
+        //     console.log("FOR IN");
+        //     console.log(key);
+        //     console.log(data[sinkOn][kkk][key]);
+        //
+        //
+        // }
         // var nombreBarco = ""
         var nombreBarcoO = Object.keys(data[sinkOn][kkk]);
         var nombreBarco = nombreBarcoO[0];

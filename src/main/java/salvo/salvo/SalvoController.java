@@ -120,7 +120,7 @@ public class SalvoController {
         if (gamePlaContrarioID == null) {
             return gameViewMap;
         }
-        gameViewMap.put("hitsAndSinks", hitsAndSinksDTO(gamePlayerId , gamePlaContrarioID));
+        gameViewMap.put("hitsOnOppHistory", hitsAndSinksDTO(gamePlayerId , gamePlaContrarioID));
         gameViewMap.put("sinksOnMe", sinksOnDTO(gamePlayerId , gamePlaContrarioID));
         gameViewMap.put("sinksOnOpponent", sinksOnDTO(gamePlaContrarioID , gamePlayerId ));
 
