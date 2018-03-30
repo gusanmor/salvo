@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Key;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -130,41 +131,56 @@ public class SalvoController {
 
     public String gameStatusDTO(Long GP, Long GPCont){
         Set<Ship> shipsGP = repoGamePlayer.getOne(GP).getShips();
-        int numeroGPs = repoGamePlayer.getOne(GP).getGameEnGamePlayers().getGamePlayers().size();
+//        int numeroGPs = repoGamePlayer.getOne(GP).getGameEnGamePlayers().getGamePlayers().size();
 
 
-        System.out.println(shipsGP);
-        if (shipsGP.size() == 0){
+//        System.out.println(shipsGP);
+        if (repoGamePlayer.getOne(GP).getShips().size() == 0){
             return "1-startPlaceShips";
         }
-        else if (numeroGPs<2){
-            System.out.println(numeroGPs);
+        else if (repoGamePlayer.getOne(GP).getGameEnGamePlayers().getGamePlayers().size()<2){
+//            System.out.println(numeroGPs);
             return "2-noOpponent";
         }
         else if (repoGamePlayer.getOne(GPCont).getShips().size()<2){
             return "3-opponentNoShips";
         }
-        else if (numBarcoHund(GP, GPCont)==true){
-            return "6-YouLose";
-        }
-        else if (repoGamePlayer.getOne(GP).getSalvos().size()<=repoGamePlayer.getOne(GPCont).getSalvos().size()){
+
+        else if (repoGamePlayer.getOne(GP).getSalvos().size()<repoGamePlayer.getOne(GPCont).getSalvos().size()){
             return "4-addSalvos";
         }
         else if (repoGamePlayer.getOne(GP).getSalvos().size()>repoGamePlayer.getOne(GPCont).getSalvos().size()){
             return "5-whaitOppSalvo";
         }
-        else return "?";
+        else if (numBarcoHund(GP, GPCont)==true && numBarcoHund(GPCont, GP)==true){
+            return "6-Tie";
+        }
+        else if (numBarcoHund(GP, GPCont)==true){
+            return "7-YouLose";
+        }
+        else if (numBarcoHund(GPCont, GP)==true){
+            return "8-YouWin";
+        }
+        else if (repoGamePlayer.getOne(GP).getSalvos().size()==repoGamePlayer.getOne(GPCont).getSalvos().size()){
+            return "4-addSalvosMismoTurno";
+        }
+        else return "unknown status";
     }
 
     public boolean numBarcoHund(long GPP, long GPcontP){
         int contadorBarcosHund = 0;
         List<Map<Object, String>> misBarcosHund = sinksOnDTO(GPP , GPcontP);
+        String barcHund = "";
         for (int uuu = 0; uuu < misBarcosHund.size(); uuu++) {
-            String sdsaf = misBarcosHund.get(uuu).get("Destroyer");
-            System.out.println(sdsaf);
-            Map ffds = misBarcosHund.get(uuu);
-            System.out.println(ffds);
-            if (sdsaf== "sink"){
+//            Map asfd = misBarcosHund.get(uuu);
+            for (Object key : misBarcosHund.get(uuu).keySet()){
+//                System.out.println(key);
+                barcHund = misBarcosHund.get(uuu).get(key);
+                System.out.println(barcHund);
+//                String ffff = asfd.get(key);
+                }
+//            String barcHund;
+            if (barcHund == "sink"){
                 contadorBarcosHund++;
             }
         }
