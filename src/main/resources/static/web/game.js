@@ -433,7 +433,7 @@ function crearTablaHitsOpp(data) {
     }
     // console.log(turnMyHits);
 
-    // -------CREAR TABLAS HITS-------
+    // -------CREAR TABLAS HITS--------
     var datosTablaHits = "";
     for (var jjj = 0; jjj < turnMyHits.length; jjj++) {
         datosTablaHits += "<tr>"+
