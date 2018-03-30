@@ -120,8 +120,8 @@ public class SalvoController {
             return gameViewMap;
         }
         gameViewMap.put("hitsAndSinks", hitsAndSinksDTO(gamePlayerId , gamePlaContrarioID));
-        gameViewMap.put("sinksOnMe", sinksOnMeDTO(gamePlayerId , gamePlaContrarioID));
-        gameViewMap.put("sinksOnOpponent", sinksOnMeDTO(gamePlaContrarioID , gamePlayerId ));
+        gameViewMap.put("sinksOnMe", sinksOnDTO(gamePlayerId , gamePlaContrarioID));
+        gameViewMap.put("sinksOnOpponent", sinksOnDTO(gamePlaContrarioID , gamePlayerId ));
 
 
         return gameViewMap;
@@ -131,24 +131,53 @@ public class SalvoController {
     public String gameStatusDTO(Long GP, Long GPCont){
         Set<Ship> shipsGP = repoGamePlayer.getOne(GP).getShips();
         int numeroGPs = repoGamePlayer.getOne(GP).getGameEnGamePlayers().getGamePlayers().size();
+
+
         System.out.println(shipsGP);
         if (shipsGP.size() == 0){
-            return "1-start";
+            return "1-startPlaceShips";
         }
         else if (numeroGPs<2){
             System.out.println(numeroGPs);
             return "2-noOpponent";
         }
-        else if (repoGamePlayer.getOne(GPCont).getShips().size()<5){
+        else if (repoGamePlayer.getOne(GPCont).getShips().size()<2){
             return "3-opponentNoShips";
+        }
+        else if (numBarcoHund(GP, GPCont)==true){
+            return "6-YouLose";
         }
         else if (repoGamePlayer.getOne(GP).getSalvos().size()<=repoGamePlayer.getOne(GPCont).getSalvos().size()){
             return "4-addSalvos";
         }
+        else if (repoGamePlayer.getOne(GP).getSalvos().size()>repoGamePlayer.getOne(GPCont).getSalvos().size()){
+            return "5-whaitOppSalvo";
+        }
         else return "?";
     }
 
-    public List<Map<Object, String>> sinksOnMeDTO(Long gamePlayerP, Long GPContP) {
+    public boolean numBarcoHund(long GPP, long GPcontP){
+        int contadorBarcosHund = 0;
+        List<Map<Object, String>> misBarcosHund = sinksOnDTO(GPP , GPcontP);
+        for (int uuu = 0; uuu < misBarcosHund.size(); uuu++) {
+            String sdsaf = misBarcosHund.get(uuu).get("Destroyer");
+            System.out.println(sdsaf);
+            Map ffds = misBarcosHund.get(uuu);
+            System.out.println(ffds);
+            if (sdsaf== "sink"){
+                contadorBarcosHund++;
+            }
+        }
+        System.out.println(contadorBarcosHund);
+        System.out.println(misBarcosHund.size());
+        if (contadorBarcosHund == misBarcosHund.size()){
+            return true;
+        }
+        else return false;
+
+    }
+
+    public List<Map<Object, String>> sinksOnDTO(Long gamePlayerP, Long GPContP) {
         List<String> locTodSalv = new ArrayList<>();
         List<Map<Object, String>> listBarcHund = new ArrayList<>();
 //        if (GPContP == null) {
