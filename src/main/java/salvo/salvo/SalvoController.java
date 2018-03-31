@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Key;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -153,28 +152,15 @@ public class SalvoController {
             return "5-whaitOppSalvo";
         }
         else if (numBarcoHund(GP, GPCont)==true && numBarcoHund(GPCont, GP)==true){
+            sumarPuntos(0.5 , GP);
             return "6-Tie";
         }
         else if (numBarcoHund(GP, GPCont)==true){
-            if (repoGamePlayer.getOne(GP).getPlayerEnGameplayer().get1Score(repoGamePlayer.getOne(GP).getGameEnGamePlayers()) != null){
-                return "7-YouLose";
-            }
-            else {
-                Score scoreLose = new Score(0.0, new Date());
-                Game gameLose = repoGamePlayer.getOne(GP).getGameEnGamePlayers();
-                Player playerLose = repoGamePlayer.getOne(GP).getPlayerEnGameplayer();
-
-                gameLose.addScore(scoreLose);
-                playerLose.addScore(scoreLose);
-                repoPlayers.save(playerLose);
-                repoGames.save(gameLose);
-                repoScore.save(scoreLose);
-                return "7-YouLose";
-
-            }
-
+            sumarPuntos(0.0 , GP);
+            return "7-YouLose";
         }
         else if (numBarcoHund(GPCont, GP)==true){
+            sumarPuntos(1.0 , GP);
             return "8-YouWin";
         }
         else if (repoGamePlayer.getOne(GP).getSalvos().size()==repoGamePlayer.getOne(GPCont).getSalvos().size()){
@@ -183,9 +169,22 @@ public class SalvoController {
         else return "unknown status";
     }
 
-//    public String sumarPuntos(Double puntos, GamePlayer GPP){
-//
-//    }
+    public void sumarPuntos(Double puntos, Long GPP){
+        if (repoGamePlayer.getOne(GPP).getPlayerEnGameplayer().get1Score(repoGamePlayer.getOne(GPP).getGameEnGamePlayers()) != null){
+            System.out.println("yaTienenPunt");
+        }
+        else {
+            Score scoreLose = new Score(puntos, new Date());
+            Game gameLose = repoGamePlayer.getOne(GPP).getGameEnGamePlayers();
+            Player playerLose = repoGamePlayer.getOne(GPP).getPlayerEnGameplayer();
+            gameLose.addScore(scoreLose);
+            playerLose.addScore(scoreLose);
+            repoPlayers.save(playerLose);
+            repoGames.save(gameLose);
+            repoScore.save(scoreLose);
+
+        }
+    }
 
     public boolean numBarcoHund(long GPP, long GPcontP){
         int contadorBarcosHund = 0;
