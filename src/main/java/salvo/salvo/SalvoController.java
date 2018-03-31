@@ -156,7 +156,23 @@ public class SalvoController {
             return "6-Tie";
         }
         else if (numBarcoHund(GP, GPCont)==true){
-            return "7-YouLose";
+            if (repoGamePlayer.getOne(GP).getPlayerEnGameplayer().get1Score(repoGamePlayer.getOne(GP).getGameEnGamePlayers()) != null){
+                return "7-YouLose";
+            }
+            else {
+                Score scoreLose = new Score(0.0, new Date());
+                Game gameLose = repoGamePlayer.getOne(GP).getGameEnGamePlayers();
+                Player playerLose = repoGamePlayer.getOne(GP).getPlayerEnGameplayer();
+
+                gameLose.addScore(scoreLose);
+                playerLose.addScore(scoreLose);
+                repoPlayers.save(playerLose);
+                repoGames.save(gameLose);
+                repoScore.save(scoreLose);
+                return "7-YouLose";
+
+            }
+
         }
         else if (numBarcoHund(GPCont, GP)==true){
             return "8-YouWin";
@@ -166,6 +182,10 @@ public class SalvoController {
         }
         else return "unknown status";
     }
+
+//    public String sumarPuntos(Double puntos, GamePlayer GPP){
+//
+//    }
 
     public boolean numBarcoHund(long GPP, long GPcontP){
         int contadorBarcosHund = 0;
