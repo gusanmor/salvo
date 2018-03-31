@@ -1,5 +1,6 @@
 $.getJSON("http://localhost:8080/api/game_view/"+limpiarURL(document.location.search), function (data) {
     console.log(data);
+    verPorStatus(data);
     crearRejiBarcosYsalvos(data);
     crearJugadoresGV(data);
     crearStatus(data);
@@ -9,6 +10,15 @@ $.getJSON("http://localhost:8080/api/game_view/"+limpiarURL(document.location.se
     crearTablaSinksOn(data , "sinksOnOpponent");
 
 });
+
+function verPorStatus(data){
+    var status = data.gameStatus;
+    if (status == "1-startPlaceShips"){
+        // $("#rejillaSalvosID").hide();
+        $(".hitOnYouCl,.sinksOnYouCl,.hitOpponentCl,.sinksOnOpponCl,#rejillaSalvosID").hide();
+
+    }
+}
 
 function limpiarURL(search) {
     var obj = {};
@@ -351,47 +361,52 @@ function crearTablaHitsOnYou(data) {
 
     var turnHitsOnMe = [];
 
-    for (var nnn=0; nnn<data.salvoes[contHitOnYou].locations.length; nnn++){
-        var turnHitsOnMeObj = {};
-        turnHitsOnMeObj.Destroyer = 0;
-        turnHitsOnMeObj.PatrolBoat = 0;
-        turnHitsOnMeObj.Submarine = 0;
-        turnHitsOnMeObj.Carrier = 0;
-        turnHitsOnMeObj.Battleship = 0;
-        var turnOpp = data.salvoes[contHitOnYou].turn[nnn];
-        turnHitsOnMeObj.turn = turnOpp;
-    // console.log(data.salvoes[contHitOnYou].turn[nnn]);
-        for (var ooo=0; ooo<data.salvoes[contHitOnYou].locations[nnn].length; ooo++){
-            var locSalvCont = data.salvoes[contHitOnYou].locations[nnn][ooo];
-            // console.log(data.salvoes[contHitOnYou].locations[nnn][ooo]);
-            for (var ppp=0; ppp<data.ships.length; ppp++){
-                var tipoMiBarco = data.ships[ppp].type;
-            // console.log(data.ships[ppp].type);
-                for (var qqq=0; qqq<data.ships[ppp].locations.length; qqq++){
-                    var locMisBarc = data.ships[ppp].locations[qqq];
-                    // console.log(data.ships[ppp].locations[qqq]);
-                    if (locSalvCont == locMisBarc+"s") {
-                        // console.log("igual");
-                        turnHitsOnMeObj[tipoMiBarco]++;
+    if (data.gameplayers.length <2){
+        document.getElementById("hitsOnYouTableID").innerHTML = "";
+    }
+    else {
+        for (var nnn = 0; nnn < data.salvoes[contHitOnYou].locations.length; nnn++) {
+            var turnHitsOnMeObj = {};
+            turnHitsOnMeObj.Destroyer = 0;
+            turnHitsOnMeObj.PatrolBoat = 0;
+            turnHitsOnMeObj.Submarine = 0;
+            turnHitsOnMeObj.Carrier = 0;
+            turnHitsOnMeObj.Battleship = 0;
+            var turnOpp = data.salvoes[contHitOnYou].turn[nnn];
+            turnHitsOnMeObj.turn = turnOpp;
+            // console.log(data.salvoes[contHitOnYou].turn[nnn]);
+            for (var ooo = 0; ooo < data.salvoes[contHitOnYou].locations[nnn].length; ooo++) {
+                var locSalvCont = data.salvoes[contHitOnYou].locations[nnn][ooo];
+                // console.log(data.salvoes[contHitOnYou].locations[nnn][ooo]);
+                for (var ppp = 0; ppp < data.ships.length; ppp++) {
+                    var tipoMiBarco = data.ships[ppp].type;
+                    // console.log(data.ships[ppp].type);
+                    for (var qqq = 0; qqq < data.ships[ppp].locations.length; qqq++) {
+                        var locMisBarc = data.ships[ppp].locations[qqq];
+                        // console.log(data.ships[ppp].locations[qqq]);
+                        if (locSalvCont == locMisBarc + "s") {
+                            // console.log("igual");
+                            turnHitsOnMeObj[tipoMiBarco]++;
+                        }
                     }
                 }
             }
+            // console.log(turnHitsOnMeObj);
+            turnHitsOnMe.push(turnHitsOnMeObj);
+            // console.log(turnHitsOnMe);
         }
-        // console.log(turnHitsOnMeObj);
-        turnHitsOnMe.push(turnHitsOnMeObj);
-        // console.log(turnHitsOnMe);
-    }
 
-    // -------CREAR TABLAS HITS ON ME-------
-    var datosTablaHitsOnMe = "";
-    for (var lll = 0; lll < turnHitsOnMe.length; lll++) {
-        datosTablaHitsOnMe += "<tr>"+
-                "<td>"+turnHitsOnMe[lll].turn+"</td>"+
-                "<td>"+"Bat:"+turnHitsOnMe[lll].Battleship+" Carr:"+turnHitsOnMe[lll].Carrier+" Des:"+turnHitsOnMe[lll].Destroyer+" Pat:"+turnHitsOnMe[lll].PatrolBoat+" Sub:"+turnHitsOnMe[lll].Submarine+"</td>"+
+        // -------CREAR TABLAS HITS ON ME-------
+        var datosTablaHitsOnMe = "";
+        for (var lll = 0; lll < turnHitsOnMe.length; lll++) {
+            datosTablaHitsOnMe += "<tr>" +
+                "<td>" + turnHitsOnMe[lll].turn + "</td>" +
+                "<td>" + "Bat:" + turnHitsOnMe[lll].Battleship + " Carr:" + turnHitsOnMe[lll].Carrier + " Des:" + turnHitsOnMe[lll].Destroyer + " Pat:" + turnHitsOnMe[lll].PatrolBoat + " Sub:" + turnHitsOnMe[lll].Submarine + "</td>" +
                 "</tr>";
-        // "<td>"+tunMyHits[jjj].Battleship+"</td></tr>";
+            // "<td>"+tunMyHits[jjj].Battleship+"</td></tr>";
+        }
+        document.getElementById("hitsOnYouTableID").innerHTML = datosTablaHitsOnMe;
     }
-    document.getElementById("hitsOnYouTableID").innerHTML = datosTablaHitsOnMe;
 }
 
 function crearTablaHitsOpp(data) {
@@ -447,30 +462,38 @@ function crearTablaHitsOpp(data) {
 
 // ------CREAR TABLA SINKS ON ME----
 function crearTablaSinksOn(data, sinkOn) {
-    console.log("sinksOn");
-    var txSinksOn = "";
-    var txSinksLeft = "";
-    // console.log(Object.keys(data.sinksOnMe[1]));
-    for (var kkk = 0; kkk < data[sinkOn].length; kkk++) {
-        // for (var key in data[sinkOn][kkk]){
-        //     console.log("FOR IN");
-        //     console.log(key);
-        //     console.log(data[sinkOn][kkk][key]);
-        //
-        //
-        // }
-        // var nombreBarco = ""
-        var nombreBarcoO = Object.keys(data[sinkOn][kkk]);
-        var nombreBarco = nombreBarcoO[0];
-        // console.log(nombreBarco);
-        if (data[sinkOn][kkk][nombreBarco]=="sink"){
-            txSinksOn += nombreBarco + " sink "+"<br>";
-            console.log(txSinksOn);
-        }
-        else {
-            txSinksLeft += nombreBarco +"<br>";
-        }
+
+    if (data.gameplayers.length <2){
+        document.getElementById(sinkOn+"ID").innerHTML = "";
+        document.getElementById(sinkOn+"LeftID").innerHTML = "";
     }
-    document.getElementById(sinkOn+"ID").innerHTML = txSinksOn;
-    document.getElementById(sinkOn+"LeftID").innerHTML = txSinksLeft;
+    else {
+
+        console.log("sinksOn");
+        var txSinksOn = "";
+        var txSinksLeft = "";
+        // console.log(Object.keys(data.sinksOnMe[1]));
+        for (var kkk = 0; kkk < data[sinkOn].length; kkk++) {
+            // for (var key in data[sinkOn][kkk]){
+            //     console.log("FOR IN");
+            //     console.log(key);
+            //     console.log(data[sinkOn][kkk][key]);
+            //
+            //
+            // }
+            // var nombreBarco = ""
+            var nombreBarcoO = Object.keys(data[sinkOn][kkk]);
+            var nombreBarco = nombreBarcoO[0];
+            // console.log(nombreBarco);
+            if (data[sinkOn][kkk][nombreBarco] == "sink") {
+                txSinksOn += nombreBarco + " sink " + "<br>";
+                console.log(txSinksOn);
+            }
+            else {
+                txSinksLeft += nombreBarco + "<br>";
+            }
+        }
+        document.getElementById(sinkOn + "ID").innerHTML = txSinksOn;
+        document.getElementById(sinkOn + "LeftID").innerHTML = txSinksLeft;
+    }
 }

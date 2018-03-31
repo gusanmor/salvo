@@ -126,7 +126,7 @@ public class SalvoController {
     }
 
     public String gameStatusDTO(Long GP, Long GPCont){
-        Set<Ship> shipsGP = repoGamePlayer.getOne(GP).getShips();
+//        Set<Ship> shipsGP = repoGamePlayer.getOne(GP).getShips();
 //        int numeroGPs = repoGamePlayer.getOne(GP).getGameEnGamePlayers().getGamePlayers().size();
 
 
