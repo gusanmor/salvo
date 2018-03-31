@@ -53,9 +53,6 @@ public class SalvoController {
             IDyCreatedMap.put("gamePlayers", repoGamesfindAll.get(i).getGamePlayers().stream()
                     .map(gameLambda -> gamePlayerDTO(gameLambda))
                     .collect(Collectors.toList()));
-//            IDyCreatedMap.put("scores",repoGamesfindAll.get(i).getScores().stream()
-//                    .map(scoreLambda -> gamePlayerDTO(scoreLambda))
-//                    .collect(Collectors.toList()));
 
             IDyCreatedList.add(IDyCreatedMap);
 //            IDyCreatedMap.put("scores","hola");
