@@ -1,11 +1,11 @@
-/*.fotarIzquierda {*/
-/*!*    float: right;*!*/
-/*!*    background-color: red;*!*/
-/*}*/
+#statusID{
+    /*align-self: center;*/
+    /*align-self: right;*/
+    text-align: center;
+}
 
-h1{
-    /*background-color: blue;*/
-    /*color: red;*/
+#jugadoresGamesviewID{
+    text-align: center;
 }
 
 td{
@@ -91,12 +91,30 @@ td{
     background-color: orange;
     border: 0.1rem solid black;
 }
+
+.boxRejillas{
+    display: flex;
+    justify-content: space-around;
+}
+
 #rejillaBarcosID{
     display: inline;
+    /*background-color: grey;*/
 }
 
 #rejillaSalvosID{
-    float: right;
+    display: inline;
+}
+
+.allShips{
+    display: inline;
+    margin-top: -3rem;
+    /*background-color: cyan;*/
+}
+
+.nomShips{
+    margin-top: 3rem;
+    margin-bottom: 1rem;
 }
 
 #divLogOut{

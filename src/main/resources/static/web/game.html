@@ -24,33 +24,39 @@
 <body>
     
     <header>
-    <h1 class="prueba2">Game view</h1>
+    <!--<h1 class="prueba2">Game view</h1>-->
+        <h3 id="statusID"></h3>
     </header>
 
-    <h3 id="statusID"></h3>
-
     <h3 id="jugadoresGamesviewID"></h3>
-    <table id="rejillaBarcosID" class=""></table>
-    <table id="rejillaSalvosID" class=""></table>
+
+    <div class="boxRejillas">
+
+        <table id="rejillaBarcosID" class=""></table>
+        <table id="rejillaSalvosID" class=""></table>
+        <div class="allShips">
+            <h5 class="nomShips">CARRIER</h5>
+            <div id="Carrier" class="CarrierHor" ubicacion="horizontal" draggable="true" ondragstart="drag(event)"></div>
+
+            <h5 class="nomShips">BATTLESHIP</h5>
+            <div id="Battleship" class="BattleshipHor" ubicacion="horizontal" draggable="true" ondragstart="drag(event)"></div>
+
+            <h5 class="nomShips">SUBMARINE</h5>
+            <div id="Submarine" class="SubmarineHor" ubicacion="horizontal" draggable="true" ondragstart="drag(event)"></div>
+
+            <h5 class="nomShips">DESTROYER</h5>
+            <div id="Destroyer" class="DestroyerHor" ubicacion="horizontal" draggable="true" ondragstart="drag(event)"></div>
+
+            <h5 class="nomShips">PATROLBOAT</h5>
+            <div id="PatrolBoat" class="PatrolBoatHor" ubicacion="horizontal" draggable="true" ondragstart="drag(event)"></div>
+    </div>
+</div>
 
     <button id="crearShipsID" onclick="enviarBarcos(arrayObjBarcPost)">ADD SHIPS</button>
 
     <button id="crearSalvosID" onclick="enviarSalvos(contenidoSalvo)">ADD SALVOS</button>
 
-    <h5>CARRIER</h5>
-    <div id="Carrier" class="CarrierHor" ubicacion="horizontal" draggable="true" ondragstart="drag(event)"></div>
 
-    <h5>BATTLESHIP</h5>
-    <div id="Battleship" class="BattleshipHor" ubicacion="horizontal" draggable="true" ondragstart="drag(event)"></div>
-
-    <h5>SUBMARINE</h5>
-    <div id="Submarine" class="SubmarineHor" ubicacion="horizontal" draggable="true" ondragstart="drag(event)"></div>
-
-    <h5>DESTROYER</h5>
-    <div id="Destroyer" class="DestroyerHor" ubicacion="horizontal" draggable="true" ondragstart="drag(event)"></div>
-
-    <h5>PATROLBOAT</h5>
-    <div id="PatrolBoat" class="PatrolBoatHor" ubicacion="horizontal" draggable="true" ondragstart="drag(event)"></div>
 
     <!----------TABLA HITS------------->
 
@@ -59,10 +65,6 @@
         <tr>
             <td>Turn</td>
             <td>Hits on You</td>
-            <!--<td>Sinks on You</td>-->
-            <!--<td>Left</td>-->
-            <!--<td>Hits</td>-->
-            <!--<td>Left</td>-->
         </tr>
         </thead>
         <tbody id="hitsOnYouTableID"></tbody>
@@ -88,10 +90,6 @@
         <tr>
             <td>Turn</td>
             <td>Hits on opponent</td>
-            <!--<td>Sinks on opponent</td>-->
-            <!--<td>Left</td>-->
-            <!--<td>Hits</td>-->
-            <!--<td>Left</td>-->
         </tr>
         </thead>
         <tbody id="hitsTableID"></tbody>
