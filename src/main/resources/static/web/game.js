@@ -24,12 +24,15 @@ function verPorStatus(data) {
         $(".hitOnYouCl,.sinksOnYouCl,.hitOpponentCl,.sinksOnOpponCl,#rejillaSalvosID, #crearShipsID, #crearSalvosID, .allShips").hide();
         setInterval(function () {
             reloadPage("2-noOpponent");
-            // console.log(data);
         }, 5000);
     }
     else if (status == "3-opponentNoShips") {
         $("#statusID, #jugadoresGamesviewID, #rejillaBarcosID").show();
         $(".hitOnYouCl,.sinksOnYouCl,.hitOpponentCl,.sinksOnOpponCl,#rejillaSalvosID, #crearShipsID, #crearSalvosID, .allShips").hide();
+        setInterval(function () {
+            reloadPage("3-opponentNoShips");
+        }, 5000);
+
     }
     else if (status == "4-addSalvos" || status == "4-addSalvosMismoTurno") {
         $("#statusID, #jugadoresGamesviewID, #rejillaBarcosID, #rejillaSalvosID, #crearSalvosID, .hitOnYouCl,.sinksOnYouCl,.hitOpponentCl,.sinksOnOpponCl").show();
