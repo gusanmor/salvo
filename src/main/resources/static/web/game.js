@@ -2,6 +2,7 @@ $.getJSON("http://localhost:8080/api/game_view/"+limpiarURL(document.location.se
     console.log(data);
     verPorStatus(data);
     crearRejiBarcosYsalvos(data);
+    pintarMisHits(data);
     crearJugadoresGV(data);
     crearStatus(data);
     crearTablaHitsOnYou(data);
@@ -11,49 +12,65 @@ $.getJSON("http://localhost:8080/api/game_view/"+limpiarURL(document.location.se
 
 });
 
-function verPorStatus(data){
+function verPorStatus(data) {
     var status = data.gameStatus;
-    if (status == "1-startPlaceShips"){
+    if (status == "1-startPlaceShips") {
         $("#statusID, #jugadoresGamesviewID, #rejillaBarcosID, .allShips, #crearShipsID").show();
         $(".hitOnYouCl,.sinksOnYouCl,.hitOpponentCl,.sinksOnOpponCl,#rejillaSalvosID, #crearSalvosID").hide();
 
     }
-    else if (status == "2-noOpponent"){
+    else if (status == "2-noOpponent") {
+        $("#statusID, #jugadoresGamesviewID, #rejillaBarcosID").show();
+        $(".hitOnYouCl,.sinksOnYouCl,.hitOpponentCl,.sinksOnOpponCl,#rejillaSalvosID, #crearShipsID, #crearSalvosID, .allShips").hide();
+        setInterval(function () {
+            reloadPage("2-noOpponent");
+            // console.log(data);
+        }, 5000);
+    }
+    else if (status == "3-opponentNoShips") {
         $("#statusID, #jugadoresGamesviewID, #rejillaBarcosID").show();
         $(".hitOnYouCl,.sinksOnYouCl,.hitOpponentCl,.sinksOnOpponCl,#rejillaSalvosID, #crearShipsID, #crearSalvosID, .allShips").hide();
     }
-    else if (status == "3-opponentNoShips"){
-        $("#statusID, #jugadoresGamesviewID, #rejillaBarcosID").show();
-        $(".hitOnYouCl,.sinksOnYouCl,.hitOpponentCl,.sinksOnOpponCl,#rejillaSalvosID, #crearShipsID, #crearSalvosID, .allShips").hide();
-    }
-    else if (status == "4-addSalvos" || status == "4-addSalvosMismoTurno"){
+    else if (status == "4-addSalvos" || status == "4-addSalvosMismoTurno") {
         $("#statusID, #jugadoresGamesviewID, #rejillaBarcosID, #rejillaSalvosID, #crearSalvosID, .hitOnYouCl,.sinksOnYouCl,.hitOpponentCl,.sinksOnOpponCl").show();
         $("#crearShipsID, .allShips").hide();
     }
 
-    else if (status == "5-whaitOppSalvo"){
+    else if (status == "5-whaitOppSalvo") {
         $("#statusID, #jugadoresGamesviewID, #rejillaBarcosID, #rejillaSalvosID, .hitOnYouCl,.sinksOnYouCl,.hitOpponentCl,.sinksOnOpponCl").show();
         $("#crearShipsID, .allShips, #crearSalvosID").hide();
+    }
+
+    else if (status == "6-Tie") {
+        tieWinLose();
+    }
+
+    else if (status == "7-YouLose") {
+        tieWinLose();
+    }
+
+    else if (status == "8-YouWin") {
+        tieWinLose();
+    }
 }
 
-    else if (status == "6-Tie"){
-        tieWinLose();
-    }
+function reloadPage(statusP) {
+    $.getJSON("http://localhost:8080/api/game_view/"+limpiarURL(document.location.search), function (data) {
+        console.log(data.gameStatus);
+        console.log(statusP);
+        if (statusP != data.gameStatus){
+            window.location.reload();
+        }
+    });
+}
 
-    else if (status == "7-YouLose"){
-        tieWinLose();
-    }
-
-    else if (status == "8-YouWin"){
-        tieWinLose();
-    }
 
 function tieWinLose(){
     $("#statusID, #jugadoresGamesviewID, #rejillaBarcosID, #rejillaSalvosID, .hitOnYouCl,.sinksOnYouCl,.hitOpponentCl,.sinksOnOpponCl").show();
     $("#crearShipsID, .allShips, #crearSalvosID").hide();
 }
 
-}
+
 
 function crearStatus(data){
     document.getElementById("statusID").innerHTML = "Status "+data.gameStatus;
@@ -70,8 +87,6 @@ function limpiarURL(search) {
     obj2 = obj.gp;
     return obj2;
 }
-
-
 
 function crearRejiBarcosYsalvos(data) {
 
@@ -108,8 +123,6 @@ function crearRejiBarcosYsalvos(data) {
             var claseSalvo = "celdaSinSalvo";
             var idCelda = arrayLetrasTabla[j] + arrayNumerosTabla[k];
             var idCeldaSalvo = arrayLetrasTabla[j] + arrayNumerosTabla[k]+"s";
-            // var idCelda = idCelda;
-            // var txBarcoTocado = idCelda;
             var txCeldaTuSalvo = "";
 
             // --------PINTAR CELDAS CON BARCOS-----------
@@ -159,6 +172,16 @@ var stringIDcelda = "Ssf";
 
     document.getElementById("rejillaBarcosID").innerHTML = contenidoRejillaBarcos1;
     document.getElementById("rejillaSalvosID").innerHTML = contenidoRejillaSalvos1;
+}
+
+// -------PINTAR HITS EN TABLA CONTRARIO-------
+function pintarMisHits(data) {
+    if (data.gameplayers.length > 1) {
+
+        for (var aa = 0; aa < data.hitsOnOppHistory.length; aa++) {
+            document.getElementById(data.hitsOnOppHistory[aa].hitLocation).setAttribute("class", "celdaSalvoTocado");
+        }
+    }
 }
 
     // ---------------JUGADORES--------------
@@ -511,14 +534,7 @@ function crearTablaSinksOn(data, sinkOn) {
         var txSinksLeft = "";
         // console.log(Object.keys(data.sinksOnMe[1]));
         for (var kkk = 0; kkk < data[sinkOn].length; kkk++) {
-            // for (var key in data[sinkOn][kkk]){
-            //     console.log("FOR IN");
-            //     console.log(key);
-            //     console.log(data[sinkOn][kkk][key]);
-            //
-            //
-            // }
-            // var nombreBarco = ""
+
             var nombreBarcoO = Object.keys(data[sinkOn][kkk]);
             var nombreBarco = nombreBarcoO[0];
             // console.log(nombreBarco);

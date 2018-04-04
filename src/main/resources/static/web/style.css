@@ -84,7 +84,11 @@ td{
 
 
 .celdaSalvo{
-    background-color: red;
+    background-color: blue;
+}
+
+.celdaSalvoTocado{
+    background-color: orange;
 }
 
 .celdaTocado{
