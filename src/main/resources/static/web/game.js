@@ -24,14 +24,14 @@ function verPorStatus(data) {
         $(".hitOnYouCl,.sinksOnYouCl,.hitOpponentCl,.sinksOnOpponCl,#rejillaSalvosID, #crearShipsID, #crearSalvosID, .allShips").hide();
         setInterval(function () {
             reloadPage("2-noOpponent");
-        }, 5000);
+        }, 10000);
     }
     else if (status == "3-opponentNoShips") {
         $("#statusID, #jugadoresGamesviewID, #rejillaBarcosID").show();
         $(".hitOnYouCl,.sinksOnYouCl,.hitOpponentCl,.sinksOnOpponCl,#rejillaSalvosID, #crearShipsID, #crearSalvosID, .allShips").hide();
         setInterval(function () {
             reloadPage("3-opponentNoShips");
-        }, 5000);
+        }, 10000);
 
     }
     else if (status == "4-addSalvos" || status == "4-addSalvosMismoTurno") {
@@ -42,6 +42,9 @@ function verPorStatus(data) {
     else if (status == "5-whaitOppSalvo") {
         $("#statusID, #jugadoresGamesviewID, #rejillaBarcosID, #rejillaSalvosID, .hitOnYouCl,.sinksOnYouCl,.hitOpponentCl,.sinksOnOpponCl").show();
         $("#crearShipsID, .allShips, #crearSalvosID").hide();
+        setInterval(function () {
+            reloadPage("5-whaitOppSalvo");
+        }, 10000);
     }
 
     else if (status == "6-Tie") {
@@ -59,8 +62,8 @@ function verPorStatus(data) {
 
 function reloadPage(statusP) {
     $.getJSON("http://localhost:8080/api/game_view/"+limpiarURL(document.location.search), function (data) {
-        console.log(data.gameStatus);
-        console.log(statusP);
+        // console.log(data.gameStatus);
+        // console.log(statusP);
         if (statusP != data.gameStatus){
             window.location.reload();
         }
