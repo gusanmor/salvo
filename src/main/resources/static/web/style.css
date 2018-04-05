@@ -34,6 +34,10 @@ td{
     border: 0.1rem solid black;
 }
 
+/*.botCreBarc{*/
+
+/*}*/
+
 #Carrier, #Battleship, #Submarine, #Destroyer, #PatrolBoat{
     background-color: gray;
     border: 0.1rem solid black;
@@ -113,6 +117,7 @@ td{
 .allShips{
     display: inline;
     margin-top: -3rem;
+    width: 15rem;
     /*background-color: cyan;*/
 }
 
@@ -131,7 +136,6 @@ td{
 .hitOnYouCl {
     display: inline;
 }
-
 
 .sinksOnYouCl{
     display: inline;
