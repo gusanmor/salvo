@@ -161,12 +161,6 @@ public class SalvoApplication {
             Score score4 = new Score(0.5, date3V);
             game2V.addScore(score4);
             player2V.addScore(score4);
-//            Score score5 = new Score();
-//            game3V.addScore(score5);
-//            player2V.addScore(score5);
-//            Score score6 = new Score();
-//            game3V.addScore(score6);
-//            player4V.addScore(score6);
 
             playerRepository.save(player1V);
             playerRepository.save(player2V);
@@ -217,12 +211,8 @@ public class SalvoApplication {
             scoreRepository.save(score2);
             scoreRepository.save(score3);
             scoreRepository.save(score4);
-//            scoreRepository.save(score5);
-//            scoreRepository.save(score6);
         };
     }
-
-
 }
 
 @Configuration
@@ -295,8 +285,6 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         if (session != null) {
             session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
         }
-
-
     }
 }
 

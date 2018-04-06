@@ -25,14 +25,14 @@ public class Player {
 
     public Player() { }
 
-    public Player(String argUserName, String passwordPar) {
-        this.userName = argUserName;
-        this.password = passwordPar;
+    public Player(String userNameP, String passwordP) {
+        this.userName = userNameP;
+        this.password = passwordP;
     }
 
-    public void addScore(Score scorePar) {
-        scorePar.setPlayerEnScore(this);
-        this.scores.add(scorePar);
+    public void addScore(Score scoreP) {
+        scoreP.setPlayerEnScore(this);
+        this.scores.add(scoreP);
     }
 
 //    public void setScores(Set<Score> scores) {

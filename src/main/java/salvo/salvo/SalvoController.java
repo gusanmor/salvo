@@ -85,8 +85,6 @@ public class SalvoController {
         //        -----CONSEGUIR EL GAMEPLAYER CONTRARIO----------
         Set<GamePlayer> gamePlayers = repoGamePlayer.getOne(gamePlayerId).getGame().getGamePlayers();
         Long gamePlaContrarioID = null;
-//        List<Map<String, Object>> tocadosArrayMap = new ArrayList<>();
-//        List<String> todasLocalTodosMisSalvos = new ArrayList<>();
         for (GamePlayer GP : gamePlayers) {
             if (GP != null) {
                 if (GP.getId() != gamePlayerId) {
@@ -119,29 +117,19 @@ public class SalvoController {
         gameViewMap.put("hitsOnOppHistory", hitsAndSinksDTO(gamePlayerId , gamePlaContrarioID));
         gameViewMap.put("sinksOnMe", sinksOnDTO(gamePlayerId , gamePlaContrarioID));
         gameViewMap.put("sinksOnOpponent", sinksOnDTO(gamePlaContrarioID , gamePlayerId ));
-
-
         return gameViewMap;
-
     }
 
     public String gameStatusDTO(Long GP, Long GPCont){
-//        Set<Ship> shipsGP = repoGamePlayer.getOne(GP).getShips();
-//        int numeroGPs = repoGamePlayer.getOne(GP).getGame().getGamePlayers().size();
-
-
-//        System.out.println(shipsGP);
         if (repoGamePlayer.getOne(GP).getShips().size() == 0){
             return "1-startPlaceShips";
         }
         else if (repoGamePlayer.getOne(GP).getGame().getGamePlayers().size()<2){
-//            System.out.println(numeroGPs);
             return "2-noOpponent";
         }
         else if (repoGamePlayer.getOne(GPCont).getShips().size()<2){
             return "3-opponentNoShips";
         }
-
         else if (repoGamePlayer.getOne(GP).getSalvos().size()<repoGamePlayer.getOne(GPCont).getSalvos().size()){
             return "4-addSalvos";
         }
@@ -179,7 +167,6 @@ public class SalvoController {
             repoPlayers.save(playerLose);
             repoGames.save(gameLose);
             repoScore.save(scoreLose);
-
         }
     }
 
@@ -188,20 +175,14 @@ public class SalvoController {
         List<Map<Object, String>> misBarcosHund = sinksOnDTO(GPP , GPcontP);
         String barcHund = "";
         for (int uuu = 0; uuu < misBarcosHund.size(); uuu++) {
-//            Map asfd = misBarcosHund.get(uuu);
             for (Object key : misBarcosHund.get(uuu).keySet()){
-//                System.out.println(key);
                 barcHund = misBarcosHund.get(uuu).get(key);
                 System.out.println(barcHund);
-//                String ffff = asfd.get(key);
                 }
-//            String barcHund;
             if (barcHund == "sink"){
                 contadorBarcosHund++;
             }
         }
-        System.out.println(contadorBarcosHund);
-        System.out.println(misBarcosHund.size());
         if (contadorBarcosHund == misBarcosHund.size()){
             return true;
         }
@@ -212,9 +193,6 @@ public class SalvoController {
     public List<Map<Object, String>> sinksOnDTO(Long gamePlayerP, Long GPContP) {
         List<String> locTodSalv = new ArrayList<>();
         List<Map<Object, String>> listBarcHund = new ArrayList<>();
-//        if (GPContP == null) {
-//            return listBarcHund;
-//        }
         Set<Salvo> todSalvo = repoGamePlayer.getOne(GPContP).getSalvos();
         for (Salvo unSalvo : todSalvo) {
             for (int ttt = 0; ttt < unSalvo.getLocSalvoV().size(); ttt++) {
@@ -231,7 +209,6 @@ public class SalvoController {
             barcHund.put(barco.getTipoBarcoV(), shipIsSunk(locTodSalv, barco));
 
             listBarcHund.add(barcHund);
-//            System.out.println(listBarcHund);
         }
         return listBarcHund;
 
@@ -242,9 +219,6 @@ public class SalvoController {
         List<Map<String, Object>> tocadosArrayMap = new ArrayList<>();
         List<String> todasLocalTodosMisSalvos = new ArrayList<>();
 
-//        if (GPContID == null) {
-//            return tocadosArrayMap;
-//        }
 //        -------CONSEGUIR BARCOS CONTRARIO-----------
         Set<Ship> shipsContrario = repoGamePlayer.getOne(GPContID).getShips();
 
@@ -278,7 +252,6 @@ public class SalvoController {
                                 tocadosMap.put("hitLocation", unaLocMisSalvos);
                                 tocadosMap.put("hitShip", tipoBarco);
                                 tocadosMap.put("sunkShip", shipIsSunk(todasLocalTodosMisSalvos, shipContrario));
-
                                 tocadosArrayMap.add(tocadosMap);
                             }
                         }
@@ -293,7 +266,6 @@ public class SalvoController {
         if (playerSalvos == null) {
             return "noOpponent";
         }
-
         boolean shipIsSunk = ship.getLocBarcoV().stream()
                 .allMatch(locations -> playerSalvos.contains(locations));
         if (shipIsSunk == true) {
@@ -303,15 +275,14 @@ public class SalvoController {
         else return "noSink";
     }
 
-
     public Map<String, Object> gamePlayerDTO(GamePlayer gamePlayerParam) {
         Map<String, Object> gamePlayersMap = new HashMap<>();
         gamePlayersMap.put("gamePlayerID", gamePlayerParam.getId());
         gamePlayersMap.put("player", playersDTO(gamePlayerParam.getPlayer()));
-//        Double scoreGamePlayer = gamePlayerParam.getPlayer().get1Score(gamePlayerParam.getGame()).getScoreV();
         if (gamePlayerParam.getPlayer().get1Score(gamePlayerParam.getGame()) != null) {
             gamePlayersMap.put("score", gamePlayerParam.getPlayer().get1Score(gamePlayerParam.getGame()).getScoreV());
         } else gamePlayersMap.put("score", "null");
+
         return gamePlayersMap;
     }
 
@@ -319,7 +290,6 @@ public class SalvoController {
         Map<String, Object> playerMap = new HashMap<>();
         playerMap.put("playerId", playerParam.getId());
         playerMap.put("playerEmail", playerParam.getUserName());
-//        playerMap.put("playerScore", playerParam.getScores());
 
         return playerMap;
     }
@@ -348,22 +318,12 @@ public class SalvoController {
     }
 
     public int salvoDTO2(Salvo salvoPar2) {
-//        Map<Object, Object> shipsMap = new HashMap<>();
-//        shipsMap.put(salvoPar2.getLocSalvoV(), salvoPar2.getNumeroTurnoV());
-//        shipsMap.put(salvoPar2.getNumeroTurnoV(), salvoPar2.getLocSalvoV());
-//        shipsMap.put("turn", salvoPar2.getNumeroTurnoV());
-
         return salvoPar2.getNumeroTurnoV();
     }
 
     public List salvoDTO3(Salvo salvoPar3) {
-//        ArrayList shipsMap = new HashMap<>();
-//        shipsMap.put(salvoPar2.getLocSalvoV(), salvoPar2.getNumeroTurnoV());
-//        shipsMap.put("locations", salvoPar3.getLocSalvoV());
-
         return salvoPar3.getLocSalvoV();
     }
-
 
     @RequestMapping(path = "api/players", method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> createUser(@RequestParam String username, @RequestParam String password) {
@@ -397,7 +357,6 @@ public class SalvoController {
 
             return new ResponseEntity<>("" + gpPrueb.getId(), HttpStatus.OK);
         } else return new ResponseEntity<>("Error, no login", HttpStatus.FORBIDDEN);
-
     }
 
     @RequestMapping(path = "/api/game/{IDgameP}/players", method = RequestMethod.POST)
@@ -445,7 +404,6 @@ public class SalvoController {
     public ResponseEntity<String> colocarSalvos(@PathVariable Long gamePID, @RequestBody Salvo salvoTurno, Authentication authentication) {
         ////LE PREGUNTO SI HAY ALGUIEN LOGUEADO///
         if (authentication != null) {
-//            int dssd = 5;
             GamePlayer GPcolocandoSalvos = repoGamePlayer.findOne(gamePID);
             int ultimoTurnoSalvo = GPcolocandoSalvos.getSalvos().size();
             salvoTurno.setNumeroTurnoV(ultimoTurnoSalvo+1);

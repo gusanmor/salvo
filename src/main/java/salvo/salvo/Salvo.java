@@ -24,9 +24,9 @@ public class Salvo {
     public Salvo() {
     }
 
-    public Salvo(int numeroTurnoPar, ArrayList<String> locSalvoPar) {
-        this.numeroTurnoV = numeroTurnoPar;
-        this.locSalvoV = locSalvoPar;
+    public Salvo(int numeroTurnoP, ArrayList<String> locSalvoP) {
+        this.numeroTurnoV = numeroTurnoP;
+        this.locSalvoV = locSalvoP;
     }
 
     public int getNumeroTurnoV() {

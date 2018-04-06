@@ -28,18 +28,18 @@ public class GamePlayer {
 
     public GamePlayer() { }
 
-    public GamePlayer(Player argGamePlayerUserName,
-                      Game argGameGamePlayer) {
-        this.playerEnGameplayer = argGamePlayerUserName;
-        this.gameEnGamePlayer = argGameGamePlayer;
+    public GamePlayer(Player gpUserNameP,
+                      Game gameEnGPp) {
+        this.playerEnGameplayer = gpUserNameP;
+        this.gameEnGamePlayer = gameEnGPp;
     }
 
     public Player getPlayer() {
         return playerEnGameplayer;
     }
-    public void setGamePlayerUserName(Player gamePlayerUserName) {
-        this.playerEnGameplayer = gamePlayerUserName;
-    }
+//    public void setGamePlayerUserName(Player gamePlayerUserName) {
+//        this.playerEnGameplayer = gamePlayerUserName;
+//    }
 
     public Game getGame() {
         return gameEnGamePlayer;
@@ -57,14 +57,14 @@ public class GamePlayer {
         return id;
     }
 
-    public void addShips(Ship parShipenGamePlayer) {
-        parShipenGamePlayer.setGamePlayerShip(this);
-        this.ships.add(parShipenGamePlayer);
+    public void addShips(Ship shipenGPp) {
+        shipenGPp.setGamePlayerShip(this);
+        this.ships.add(shipenGPp);
         }
 
-    public void addSalvos(Salvo parSalvoEnGamePlayer) {
-        parSalvoEnGamePlayer.setGamePlayerSalvo(this);
-        this.salvos.add(parSalvoEnGamePlayer);
+    public void addSalvos(Salvo salvoEnGPp) {
+        salvoEnGPp.setGamePlayerSalvo(this);
+        this.salvos.add(salvoEnGPp);
     }
 
     public Set<Salvo> getSalvos() {
