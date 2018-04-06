@@ -68,16 +68,20 @@ function reloadPage(statusP) {
     });
 }
 
-
 function tieWinLose(){
     $("#statusID, #jugadoresGamesviewID, #rejillaBarcosID, #rejillaSalvosID, .hitOnYouCl,.sinksOnYouCl,.hitOpponentCl,.sinksOnOpponCl").show();
     $("#crearShipsID, .allShips, #crearSalvosID").hide();
 }
 
-
-
 function crearStatus(data){
-    document.getElementById("statusID").innerHTML = "Status "+data.gameStatus;
+    var contTextStat;
+    if (data.gameStatus =="5-whaitOppSalvo"){
+        contTextStat = "PLEASE WAIT FOR OTHER PLAYER TO ENTER SALVO";
+    }
+    else {
+        contTextStat = "Status "+data.gameStatus;
+    }
+    document.getElementById("statusID").innerHTML = contTextStat;
 }
 
 function limpiarURL(search) {
@@ -96,7 +100,6 @@ function crearRejiBarcosYsalvos(data) {
 
     var contenidoRejillaBarcos1 = "";
     arrayNumerosTabla = [" ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
-
     arrayLetrasTabla = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
 
     contenidoRejillaBarcos1 += "<tr>";
@@ -119,8 +122,8 @@ function crearRejiBarcosYsalvos(data) {
 
     for (var j = 0; j < arrayLetrasTabla.length; j++) {
 
-        contenidoRejillaBarcos1 += '<td>' + arrayLetrasTabla[j] + '</td>';
-        contenidoRejillaSalvos1 += '<td>' + arrayLetrasTabla[j] + '</td>';
+        contenidoRejillaBarcos1 += '<td class="celdaNormal">' + arrayLetrasTabla[j] + '</td>';
+        contenidoRejillaSalvos1 += '<td class="celdaNormal">' + arrayLetrasTabla[j] + '</td>';
 
         for (var k = 1; k < arrayNumerosTabla.length; k++) {
             var claseBarco = "celdaSinBarco";
@@ -133,7 +136,7 @@ function crearRejiBarcosYsalvos(data) {
             for (var l = 0; l < data.ships.length; l++) {
                 for (var m = 0; m < data.ships[l].locations.length; m++) {
                     if (data.ships[l].locations[m] == idCelda) {
-                        var claseBarco = "celdaBarco";
+                        claseBarco = "celdaBarco";
                         // ----PINTAR LOS IMPACTOS DE LOS DISPAROS EN TUS BARCOS--------------
                         if (data.salvoes.length<2){
                             break;
@@ -142,7 +145,7 @@ function crearRejiBarcosYsalvos(data) {
                             for (var q = 0; q < data.salvoes[keyContrario].locations[p].length; q++) {
                                 if (data.salvoes[keyContrario].locations[p][q] == idCeldaSalvo) {
                                     var claseBarco = "celdaTocado";
-                                    var txBarcoTocado = data.salvoes[keyContrario].turn[p];
+                                    // var txBarcoTocado = data.salvoes[keyContrario].turn[p];
                                 }
                             }
                         }
@@ -153,19 +156,15 @@ function crearRejiBarcosYsalvos(data) {
             // -------------PINTAR CELDAS CON TUS SALVOS------------
 
             for (var n = 0; n < data.salvoes[keyTuJugador].locations.length; n++) {
-                // console.log(data.salvoes["0"].locations["0"].locations[n]);
                 for (var o = 0; o < data.salvoes[keyTuJugador].locations[n].length; o++) {
-                    // console.log(data.salvoes["0"].locations[n][o]);
                     if (data.salvoes[keyTuJugador].locations[n][o] == idCeldaSalvo) {
-                        var claseSalvo = "celdaSalvo";
-                        var txCeldaTuSalvo = data.salvoes[keyTuJugador].turn[n];
+                        claseSalvo = "celdaSalvo";
+                        txCeldaTuSalvo = data.salvoes[keyTuJugador].turn[n];
                     }
                 }
             }
-var stringIDcelda = "Ssf";
             contenidoRejillaBarcos1 += '<td id="' + idCelda + '" class="' + claseBarco + '"ondrop="drop(event)" ondragover="allowDrop(event)"></td>';
             contenidoRejillaSalvos1 += '<td id="' + idCeldaSalvo + '" class="' + claseSalvo +'"'+
-
                 ' onclick='+"enviarSalvo('"+idCeldaSalvo+"')"+'>' + txCeldaTuSalvo + '</td>';
         }
         contenidoRejillaBarcos1 += '</tr>';
@@ -181,7 +180,6 @@ var stringIDcelda = "Ssf";
 // -------PINTAR HITS EN TABLA CONTRARIO-------
 function pintarMisHits(data) {
     if (data.gameplayers.length > 1) {
-
         for (var aa = 0; aa < data.hitsOnOppHistory.length; aa++) {
             document.getElementById(data.hitsOnOppHistory[aa].hitLocation).setAttribute("class", "celdaSalvoTocado");
         }
@@ -189,37 +187,32 @@ function pintarMisHits(data) {
 }
 
     // ---------------JUGADORES--------------
-    function crearJugadoresGV(data) {
 
-        var datosJugadoresGamesView = "";
-if (data.gameplayers[0]!= null && data.gameplayers[1]!= null) {
-    if (limpiarURL(document.location.search) == data.gameplayers[0].gamePlayerID) {
-        datosJugadoresGamesView = data.gameplayers[0].player.playerEmail + "(YOU) VS. " + data.gameplayers[1].player.playerEmail;
+function crearJugadoresGV(data) {
+    var datosJugadoresGamesView = "";
+    if (data.gameplayers[0] != null && data.gameplayers[1] != null) {
+        if (limpiarURL(document.location.search) == data.gameplayers[0].gamePlayerID) {
+            datosJugadoresGamesView = data.gameplayers[0].player.playerEmail + "(YOU) VS. " + data.gameplayers[1].player.playerEmail;
+        }
+        else {
+            datosJugadoresGamesView = data.gameplayers[1].player.playerEmail + "(YOU) VS. " + data.gameplayers[0].player.playerEmail;
+        }
     }
     else {
-        datosJugadoresGamesView = data.gameplayers[1].player.playerEmail + "(YOU) VS. " + data.gameplayers[0].player.playerEmail;
+        datosJugadoresGamesView = data.gameplayers[0].player.playerEmail + "(YOU) VS. NO PLAYER";
     }
-}
-else {
-    datosJugadoresGamesView = data.gameplayers[0].player.playerEmail + "(YOU) VS. NO PLAYER";
-}
 
-        document.getElementById("jugadoresGamesviewID").innerHTML = datosJugadoresGamesView;
-
-    }
+    document.getElementById("jugadoresGamesviewID").innerHTML = datosJugadoresGamesView;
+}
 
 //POSICIONAR BARCOS CON DRAG AND DROP////
-
-// enviarBarcos2(arrayObjBarcPost);
-
 function allowDrop(ev) {
     ev.preventDefault();
-    console.log("PERMITIENDO DROP");
+    // console.log("PERMITIENDO DROP");
 }
 
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
-    console.log("HACIENDO DRAG");
 }
 
 function drop(ev) {
@@ -227,7 +220,6 @@ function drop(ev) {
     var IDTipoBarco = ev.dataTransfer.getData("text");
 
     ev.target.appendChild(document.getElementById(IDTipoBarco));
-    console.log("DROP HECHO");
     var idDeCelda = ev.target.id;
     var classVertOHor = document.getElementById(IDTipoBarco).getAttribute("class");
     document.getElementById(IDTipoBarco).setAttribute("ubicacion", idDeCelda);
@@ -242,14 +234,14 @@ var arrayObjBarcPost = [
     { tipoBarcoV: "PatrolBoat", locBarcoV: []}
 ];
 
-function rellenarPost(celdaID, tipoBarco, classVH){
+function rellenarPost(celdaID, tipoBarco, classVH) {
     for (var ii = 0; ii < arrayObjBarcPost.length; ii++) {
-        if (arrayObjBarcPost[ii].tipoBarcoV==tipoBarco) {
+        if (arrayObjBarcPost[ii].tipoBarcoV == tipoBarco) {
             var letraCeld = celdaID.substring(0, 1);
             var letraCeldAscii = letraCeld.charCodeAt(0);
             numCeld = parseInt(celdaID.substring(1));
             if (classVH == "CarrierHor") {
-                arrayObjBarcPost[ii].locBarcoV = [celdaID, letraCeld + (numCeld + 1), letraCeld + (numCeld + 2), letraCeld + (numCeld + 3),letraCeld + (numCeld + 4)];
+                arrayObjBarcPost[ii].locBarcoV = [celdaID, letraCeld + (numCeld + 1), letraCeld + (numCeld + 2), letraCeld + (numCeld + 3), letraCeld + (numCeld + 4)];
             }
             if (classVH == "CarrierVer") {
                 arrayObjBarcPost[ii].locBarcoV = [celdaID, String.fromCharCode(letraCeldAscii + 1) + numCeld, String.fromCharCode(letraCeldAscii + 2) + numCeld, String.fromCharCode(letraCeldAscii + 3) + numCeld, String.fromCharCode(letraCeldAscii + 4) + numCeld];
@@ -264,7 +256,7 @@ function rellenarPost(celdaID, tipoBarco, classVH){
                 arrayObjBarcPost[ii].locBarcoV = [celdaID, letraCeld + (numCeld + 1), letraCeld + (numCeld + 2)];
             }
             if (classVH == "SubmarineVer" || classVH == "DestroyerVer") {
-                arrayObjBarcPost[ii].locBarcoV = [celdaID, String.fromCharCode(letraCeldAscii + 1) + numCeld, String.fromCharCode(letraCeldAscii + 2)+ numCeld];
+                arrayObjBarcPost[ii].locBarcoV = [celdaID, String.fromCharCode(letraCeldAscii + 1) + numCeld, String.fromCharCode(letraCeldAscii + 2) + numCeld];
             }
             if (classVH == "PatrolBoatHor") {
                 arrayObjBarcPost[ii].locBarcoV = [celdaID, letraCeld + (numCeld + 1)];
@@ -273,8 +265,9 @@ function rellenarPost(celdaID, tipoBarco, classVH){
                 arrayObjBarcPost[ii].locBarcoV = [celdaID, String.fromCharCode(letraCeldAscii + 1) + numCeld];
             }
         }
-        }
     }
+}
+
 document.getElementById("Carrier").onclick = function(){
     girarVerHor("Carrier");
     };
@@ -306,7 +299,6 @@ function girarVerHor(idAgirar) {
     // -----CREAR BARCOS PICANDO BOTON ENVIAR BARCOS---------
 
 function enviarBarcos(arrayObjBarcPostPar){
-    console.log(arrayObjBarcPostPar)
     var localizacionesVac = [];
     for (var jj=0; jj<arrayObjBarcPostPar.length; jj++){
         for (var kk=0; kk<arrayObjBarcPostPar[jj].locBarcoV.length; kk++) {
@@ -321,7 +313,6 @@ function enviarBarcos(arrayObjBarcPostPar){
     // -----SABER SI ESTÁS FUERA DE LA REJILLA---------
     var fueraODentro="dentro";
     for (var ll=0; ll<localizacionesVac.length; ll++){
-        console.log(localizacionesVac[ll]);
         letraCelda = localizacionesVac[ll].substring(0 , 1);
         numCelda = localizacionesVac[ll].substring(1);
         if (numCelda>10) {
@@ -350,7 +341,6 @@ function enviarBarcos(arrayObjBarcPostPar){
             contentType: "application/json"
         })
             .done(function () {
-                console.log("barcos añadido");
                 window.location.reload();
             })
             .fail(function () {
@@ -364,12 +354,10 @@ var contenidoSalvo=[];
 function enviarSalvo(casilla) {
 ;
     if (contenidoSalvo.includes(casilla)==true){
-        // alert("casilla ocupada");
         document.getElementById(casilla).style.backgroundColor = "cyan";
         contadorSalvos--;
         var indiceCasilla = contenidoSalvo.indexOf(casilla);
         contenidoSalvo.splice(indiceCasilla,1);
-        console.log(contenidoSalvo);
     }
     else if (contadorSalvos >= 5) {
         alert("no hay más disparos en este turno");
@@ -379,12 +367,8 @@ function enviarSalvo(casilla) {
     }
     else {
         document.getElementById(casilla).style.backgroundColor = "yellow";
-        console.log(casilla);
         contadorSalvos++;
-        console.log(contadorSalvos);
         contenidoSalvo.push(casilla);
-        console.log(contenidoSalvo);
-        // console.log("casilla");
     }
 
 }
@@ -463,7 +447,7 @@ function crearTablaHitsOnYou(data) {
         // -------CREAR TABLAS HITS ON ME-------
         var datosTablaHitsOnMe = "";
         for (var lll = 0; lll < turnHitsOnMe.length; lll++) {
-            datosTablaHitsOnMe += "<tr>" +
+            datosTablaHitsOnMe += "<tr hitsOnYouTableID>" +
                 "<td>" + turnHitsOnMe[lll].turn + "</td>" +
                 "<td>" + "Bat:" + turnHitsOnMe[lll].Battleship + " Carr:" + turnHitsOnMe[lll].Carrier + " Des:" + turnHitsOnMe[lll].Destroyer + " Pat:" + turnHitsOnMe[lll].PatrolBoat + " Sub:" + turnHitsOnMe[lll].Submarine + "</td>" +
                 "</tr>";

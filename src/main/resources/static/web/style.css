@@ -1,23 +1,36 @@
-#statusID{
-    /*align-self: center;*/
-    /*align-self: right;*/
-    text-align: center;
+.bodyGameCl{
+    background-image: url("images/fondo.jpg");
+    background-size: cover;
+    /*background-color: orange;*/
 }
+
 
 #jugadoresGamesviewID{
+    background-color: black;
+    margin-top: 1rem;
+    opacity: 0.7;
+    color: white;
     text-align: center;
 }
 
-td{
-    /*width: 2rem;*/
-    /*height: 2rem;*/
-    border: 0.1rem solid black;
-    /*background-color: aqua;*/
+#statusID{
+    /*background-color: black;*/
+    /*opacity: 0.7;*/
+    color: white;
+    text-align: center;
 }
+
+/*td{*/
+    /*!*width: 2rem;*!*/
+    /*!*height: 2rem;*!*/
+    /*border: 0.1rem solid black;*/
+    /*!*background-color: aqua;*!*/
+/*}*/
 
 .celdaNormal {
     width: 2rem;
     height: 2rem;
+    text-align: center;
 }
 
 .celdaSinBarco, .celdaSinSalvo{
@@ -137,6 +150,18 @@ td{
     display: inline;
 }
 
+.table{
+    color: white;
+    /*border-color: orange;*/
+}
+
+.cajaTablasHits{
+    display: flex;
+    justify-content: space-around;
+    background-color: black;
+    opacity: 0.7;
+}
+
 .sinksOnYouCl{
     display: inline;
 }
@@ -145,6 +170,7 @@ td{
     display: inline;
     /*float: right;*/
     margin-left: 2rem;
+    /*border-color: aqua;*/
 }
 
 .sinksOnOpponCl{
