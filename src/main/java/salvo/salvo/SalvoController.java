@@ -48,7 +48,7 @@ public class SalvoController {
         for (int i = 0; i < repoGamesfindAll.size(); i++) {
             Map<String, Object> IDyCreatedMap = new HashMap<String, Object>();
             IDyCreatedMap.put("gameID", repoGamesfindAll.get(i).getId());
-            IDyCreatedMap.put("gameCreated", repoGamesfindAll.get(i).getFechaVar());
+            IDyCreatedMap.put("gameCreated", repoGamesfindAll.get(i).getFechaV());
 
             IDyCreatedMap.put("gamePlayers", repoGamesfindAll.get(i).getGamePlayers().stream()
                     .map(gameLambda -> gamePlayerDTO(gameLambda))
@@ -83,7 +83,7 @@ public class SalvoController {
     public Map<String, Object> metodoGameView(@PathVariable Long gamePlayerId) {
 
         //        -----CONSEGUIR EL GAMEPLAYER CONTRARIO----------
-        Set<GamePlayer> gamePlayers = repoGamePlayer.getOne(gamePlayerId).getGameEnGamePlayers().getGamePlayers();
+        Set<GamePlayer> gamePlayers = repoGamePlayer.getOne(gamePlayerId).getGame().getGamePlayers();
         Long gamePlaContrarioID = null;
 //        List<Map<String, Object>> tocadosArrayMap = new ArrayList<>();
 //        List<String> todasLocalTodosMisSalvos = new ArrayList<>();
@@ -96,9 +96,9 @@ public class SalvoController {
         }
 
         Map<String, Object> gameViewMap = new HashMap<>();
-        gameViewMap.put("gameID", (repoGamePlayer.findOne(gamePlayerId).getGameEnGamePlayers().getId()));
-        gameViewMap.put("creationDateGame", (repoGamePlayer.findOne(gamePlayerId).getGameEnGamePlayers().getFechaVar()));
-        gameViewMap.put("gameplayers", (repoGamePlayer.findOne(gamePlayerId).getGameEnGamePlayers().getGamePlayers()
+        gameViewMap.put("gameID", (repoGamePlayer.findOne(gamePlayerId).getGame().getId()));
+        gameViewMap.put("creationDateGame", (repoGamePlayer.findOne(gamePlayerId).getGame().getFechaV()));
+        gameViewMap.put("gameplayers", (repoGamePlayer.findOne(gamePlayerId).getGame().getGamePlayers()
                 .stream()
                 .map(gpLambda -> gamePlayerDTO(gpLambda))
                 .collect(Collectors.toList())));
@@ -106,7 +106,7 @@ public class SalvoController {
                 .stream()
                 .map(shLambda -> shipsDTO(shLambda))
                 .collect(Collectors.toList())));
-        gameViewMap.put("salvoes", (repoGamePlayer.findOne(gamePlayerId).getGameEnGamePlayers().getGamePlayers()
+        gameViewMap.put("salvoes", (repoGamePlayer.findOne(gamePlayerId).getGame().getGamePlayers()
                 .stream()
                 .map(salvoLambda -> salvosDTO(salvoLambda))
                 .collect(Collectors.toList())));
@@ -127,14 +127,14 @@ public class SalvoController {
 
     public String gameStatusDTO(Long GP, Long GPCont){
 //        Set<Ship> shipsGP = repoGamePlayer.getOne(GP).getShips();
-//        int numeroGPs = repoGamePlayer.getOne(GP).getGameEnGamePlayers().getGamePlayers().size();
+//        int numeroGPs = repoGamePlayer.getOne(GP).getGame().getGamePlayers().size();
 
 
 //        System.out.println(shipsGP);
         if (repoGamePlayer.getOne(GP).getShips().size() == 0){
             return "1-startPlaceShips";
         }
-        else if (repoGamePlayer.getOne(GP).getGameEnGamePlayers().getGamePlayers().size()<2){
+        else if (repoGamePlayer.getOne(GP).getGame().getGamePlayers().size()<2){
 //            System.out.println(numeroGPs);
             return "2-noOpponent";
         }
@@ -167,13 +167,13 @@ public class SalvoController {
     }
 
     public void sumarPuntos(Double puntos, Long GPP){
-        if (repoGamePlayer.getOne(GPP).getPlayerEnGameplayer().get1Score(repoGamePlayer.getOne(GPP).getGameEnGamePlayers()) != null){
+        if (repoGamePlayer.getOne(GPP).getPlayer().get1Score(repoGamePlayer.getOne(GPP).getGame()) != null){
             System.out.println("yaTienenPunt");
         }
         else {
             Score scoreLose = new Score(puntos, new Date());
-            Game gameLose = repoGamePlayer.getOne(GPP).getGameEnGamePlayers();
-            Player playerLose = repoGamePlayer.getOne(GPP).getPlayerEnGameplayer();
+            Game gameLose = repoGamePlayer.getOne(GPP).getGame();
+            Player playerLose = repoGamePlayer.getOne(GPP).getPlayer();
             gameLose.addScore(scoreLose);
             playerLose.addScore(scoreLose);
             repoPlayers.save(playerLose);
@@ -307,10 +307,10 @@ public class SalvoController {
     public Map<String, Object> gamePlayerDTO(GamePlayer gamePlayerParam) {
         Map<String, Object> gamePlayersMap = new HashMap<>();
         gamePlayersMap.put("gamePlayerID", gamePlayerParam.getId());
-        gamePlayersMap.put("player", playersDTO(gamePlayerParam.getPlayerEnGameplayer()));
-//        Double scoreGamePlayer = gamePlayerParam.getPlayerEnGameplayer().get1Score(gamePlayerParam.getGameEnGamePlayers()).getScoreV();
-        if (gamePlayerParam.getPlayerEnGameplayer().get1Score(gamePlayerParam.getGameEnGamePlayers()) != null) {
-            gamePlayersMap.put("score", gamePlayerParam.getPlayerEnGameplayer().get1Score(gamePlayerParam.getGameEnGamePlayers()).getScoreV());
+        gamePlayersMap.put("player", playersDTO(gamePlayerParam.getPlayer()));
+//        Double scoreGamePlayer = gamePlayerParam.getPlayer().get1Score(gamePlayerParam.getGame()).getScoreV();
+        if (gamePlayerParam.getPlayer().get1Score(gamePlayerParam.getGame()) != null) {
+            gamePlayersMap.put("score", gamePlayerParam.getPlayer().get1Score(gamePlayerParam.getGame()).getScoreV());
         } else gamePlayersMap.put("score", "null");
         return gamePlayersMap;
     }
@@ -334,7 +334,7 @@ public class SalvoController {
 
     public Map<Object, Object> salvosDTO(GamePlayer salvoParam) {
         Map<Object, Object> shipsMap = new HashMap<>();
-        shipsMap.put("playerId", salvoParam.getPlayerEnGameplayer().getId());
+        shipsMap.put("playerId", salvoParam.getPlayer().getId());
         shipsMap.put("turn", salvoParam.getSalvos()
                 .stream()
                 .map(salvo2Lambda -> salvoDTO2(salvo2Lambda))
@@ -424,7 +424,7 @@ public class SalvoController {
             ///SI EL GAMEPLAYER EXISTE///
             if (GPcolocandoBarcos != null) {
                 //SI EL GAMEPLAYER AUTHENTIFICADO ES IGUAL QUE EL QUE HA HECHO EL POST///
-                if (GPcolocandoBarcos.getPlayerEnGameplayer().getUserName() == repoPlayers.findOneByUserName(authentication.getName()).getUserName()) {
+                if (GPcolocandoBarcos.getPlayer().getUserName() == repoPlayers.findOneByUserName(authentication.getName()).getUserName()) {
                     for (Ship barco : todosBarcos) {
                         GPcolocandoBarcos.addShips(barco);
                         repoGamePlayer.save(GPcolocandoBarcos);

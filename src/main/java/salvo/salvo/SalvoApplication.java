@@ -62,13 +62,13 @@ public class SalvoApplication {
             Game game5V = new Game(date5V);
             Game game6V = new Game(date6V);
 
-            GamePlayer gamePlayer1Var = new GamePlayer(player1V, game1V);
-            GamePlayer gamePlayer2Var = new GamePlayer(player2V, game1V);
-            GamePlayer gamePlayer3Var = new GamePlayer(player1V, game2V);
-            GamePlayer gamePlayer4Var = new GamePlayer(player2V, game2V);
-            GamePlayer gamePlayer5Var = new GamePlayer(player2V, game3V);
-            GamePlayer gamePlayer6Var = new GamePlayer(player4V, game3V);
-            GamePlayer gamePlayer9Var = new GamePlayer(player3V, game6V);
+            GamePlayer gamePlayer1V = new GamePlayer(player1V, game1V);
+            GamePlayer gamePlayer2V = new GamePlayer(player2V, game1V);
+            GamePlayer gamePlayer3V = new GamePlayer(player1V, game2V);
+            GamePlayer gamePlayer4V = new GamePlayer(player2V, game2V);
+            GamePlayer gamePlayer5V = new GamePlayer(player2V, game3V);
+            GamePlayer gamePlayer6V = new GamePlayer(player4V, game3V);
+            GamePlayer gamePlayer9V = new GamePlayer(player3V, game6V);
 
             ArrayList<String> localBarco1 = new ArrayList<String>(Arrays.asList("H2", "H3", "H4"));
             ArrayList<String> localBarco2 = new ArrayList<String>(Arrays.asList("E1", "F1", "G1"));
@@ -85,31 +85,31 @@ public class SalvoApplication {
             ArrayList<String> localBarco13 = new ArrayList<String>(Arrays.asList("G6", "H6"));
 
             Ship ship1 = new Ship("Destroyer", localBarco1);
-            gamePlayer1Var.addShips(ship1);
+            gamePlayer1V.addShips(ship1);
             Ship ship2 = new Ship("Submarine", localBarco2);
-            gamePlayer1Var.addShips(ship2);
+            gamePlayer1V.addShips(ship2);
             Ship ship3 = new Ship("PatrolBoat", localBarco3);
-            gamePlayer1Var.addShips(ship3);
+            gamePlayer1V.addShips(ship3);
             Ship ship4 = new Ship("Destroyer", localBarco4);
-            gamePlayer2Var.addShips(ship4);
+            gamePlayer2V.addShips(ship4);
             Ship ship5 = new Ship("PatrolBoat", localBarco5);
-            gamePlayer2Var.addShips(ship5);
+            gamePlayer2V.addShips(ship5);
             Ship ship6 = new Ship("Destroyer", localBarco6);
-            gamePlayer3Var.addShips(ship6);
+            gamePlayer3V.addShips(ship6);
             Ship ship7 = new Ship("PatrolBoat", localBarco7);
-            gamePlayer3Var.addShips(ship7);
+            gamePlayer3V.addShips(ship7);
             Ship ship8 = new Ship("Submarine", localBarco8);
-            gamePlayer4Var.addShips(ship8);
+            gamePlayer4V.addShips(ship8);
             Ship ship9 = new Ship("PatrolBoat", localBarco9);
-            gamePlayer4Var.addShips(ship9);
+            gamePlayer4V.addShips(ship9);
             Ship ship10 = new Ship("Destroyer", localBarco10);
-            gamePlayer5Var.addShips(ship10);
+            gamePlayer5V.addShips(ship10);
             Ship ship11 = new Ship("PatrolBoat", localBarco11);
-            gamePlayer5Var.addShips(ship11);
+            gamePlayer5V.addShips(ship11);
             Ship ship12 = new Ship("Submarine", localBarco12);
-            gamePlayer6Var.addShips(ship12);
+            gamePlayer6V.addShips(ship12);
             Ship ship13 = new Ship("PatrolBoat", localBarco13);
-            gamePlayer6Var.addShips(ship13);
+            gamePlayer6V.addShips(ship13);
 
             ArrayList<String> localSalvo1 = new ArrayList<String>(Arrays.asList("B5s", "C5s","F1s"));
             ArrayList<String> localSalvo2 = new ArrayList<String>(Arrays.asList("F2s", "D5s"));
@@ -125,29 +125,29 @@ public class SalvoApplication {
             ArrayList<String> localSalvo12 = new ArrayList<String>(Arrays.asList("E1s", "F2s","G3s"));
 
             Salvo salvo1 = new Salvo(1, localSalvo1);
-            gamePlayer1Var.addSalvos(salvo1);
+            gamePlayer1V.addSalvos(salvo1);
             Salvo salvo2 = new Salvo(2, localSalvo2);
-            gamePlayer1Var.addSalvos(salvo2);
+            gamePlayer1V.addSalvos(salvo2);
             Salvo salvo3 = new Salvo(1, localSalvo3);
-            gamePlayer3Var.addSalvos(salvo3);
+            gamePlayer3V.addSalvos(salvo3);
             Salvo salvo4 = new Salvo(2, localSalvo4);
-            gamePlayer3Var.addSalvos(salvo4);
+            gamePlayer3V.addSalvos(salvo4);
             Salvo salvo5 = new Salvo(1, localSalvo5);
-            gamePlayer5Var.addSalvos(salvo5);
+            gamePlayer5V.addSalvos(salvo5);
             Salvo salvo6 = new Salvo(2, localSalvo6);
-            gamePlayer5Var.addSalvos(salvo6);
+            gamePlayer5V.addSalvos(salvo6);
             Salvo salvo7 = new Salvo(1, localSalvo7);
-            gamePlayer2Var.addSalvos(salvo7);
+            gamePlayer2V.addSalvos(salvo7);
             Salvo salvo8 = new Salvo(2, localSalvo8);
-            gamePlayer2Var.addSalvos(salvo8);
+            gamePlayer2V.addSalvos(salvo8);
             Salvo salvo9 = new Salvo(1, localSalvo9);
-            gamePlayer4Var.addSalvos(salvo9);
+            gamePlayer4V.addSalvos(salvo9);
             Salvo salvo10 = new Salvo(2, localSalvo10);
-            gamePlayer4Var.addSalvos(salvo10);
+            gamePlayer4V.addSalvos(salvo10);
             Salvo salvo11 = new Salvo(1, localSalvo11);
-            gamePlayer6Var.addSalvos(salvo11);
+            gamePlayer6V.addSalvos(salvo11);
             Salvo salvo12 = new Salvo(2, localSalvo12);
-            gamePlayer6Var.addSalvos(salvo12);
+            gamePlayer6V.addSalvos(salvo12);
 
             Score score1 = new Score(1.0, date2V);
             game1V.addScore(score1);
@@ -178,13 +178,13 @@ public class SalvoApplication {
             gameRepository.save(game3V);
             gameRepository.save(game6V);
 
-            gamePlayerRepository.save(gamePlayer1Var);
-            gamePlayerRepository.save(gamePlayer2Var);
-            gamePlayerRepository.save(gamePlayer3Var);
-            gamePlayerRepository.save(gamePlayer4Var);
-            gamePlayerRepository.save(gamePlayer5Var);
-            gamePlayerRepository.save(gamePlayer6Var);
-            gamePlayerRepository.save(gamePlayer9Var);
+            gamePlayerRepository.save(gamePlayer1V);
+            gamePlayerRepository.save(gamePlayer2V);
+            gamePlayerRepository.save(gamePlayer3V);
+            gamePlayerRepository.save(gamePlayer4V);
+            gamePlayerRepository.save(gamePlayer5V);
+            gamePlayerRepository.save(gamePlayer6V);
+            gamePlayerRepository.save(gamePlayer9V);
 
             shipRepository.save(ship1);
             shipRepository.save(ship2);

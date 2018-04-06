@@ -34,14 +34,14 @@ public class GamePlayer {
         this.gameEnGamePlayer = argGameGamePlayer;
     }
 
-    public Player getPlayerEnGameplayer() {
+    public Player getPlayer() {
         return playerEnGameplayer;
     }
     public void setGamePlayerUserName(Player gamePlayerUserName) {
         this.playerEnGameplayer = gamePlayerUserName;
     }
 
-    public Game getGameEnGamePlayers() {
+    public Game getGame() {
         return gameEnGamePlayer;
     }
 
@@ -49,9 +49,9 @@ public class GamePlayer {
         return ships;
     }
 
-    public void setGameEnGamePlayers(Game argGameNiIdea) {
-        this.gameEnGamePlayer = argGameNiIdea;
-    }
+//    public void setGameEnGamePlayers(Game argGameNiIdea) {
+//        this.gameEnGamePlayer = argGameNiIdea;
+//    }
 
     public long getId() {
         return id;

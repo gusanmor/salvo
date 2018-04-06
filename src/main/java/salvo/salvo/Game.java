@@ -13,7 +13,7 @@ public class Game {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
-    public Date fechaVar;
+    public Date fechaV;
 
     @JsonIgnore
     @OneToMany(mappedBy="gameEnGamePlayer", fetch=FetchType.EAGER)
@@ -24,8 +24,8 @@ public class Game {
 
     public Game() { }
 
-    public Game(Date fechaArg) {
-        this.fechaVar = fechaArg;
+    public Game(Date fechaP) {
+        this.fechaV = fechaP;
 
     }
 
@@ -33,28 +33,28 @@ public class Game {
         return id;
     }
 
-    public Date getFechaVar() {
-        return fechaVar;
+    public Date getFechaV() {
+        return fechaV;
     }
 
     public Set<GamePlayer> getGamePlayers() {
         return gamePlayers;
     }
 
-    public void setFechaVar(Date fechaVar) {
-        this.fechaVar = fechaVar;
+//    public void setFechaV(Date fechaV) {
+//        this.fechaV = fechaV;
+//    }
+
+    public void addScore(Score scoreP) {
+        scoreP.setGameEnScore(this);
+        this.scores.add(scoreP);
     }
 
-    public void addScore(Score scorePar) {
-        scorePar.setGameEnScore(this);
-        this.scores.add(scorePar);
-    }
-
-    public Set<Score> getScores() {
-        return scores;
-    }
+//    public Set<Score> getScores() {
+//        return scores;
+//    }
 
     public String toString() {
-        return ""+fechaVar;
+        return ""+ fechaV;
     }
 }
