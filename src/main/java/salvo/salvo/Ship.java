@@ -23,10 +23,9 @@ public class Ship {
 
     public Ship() { }
 
-    public Ship(String tipoBarcoPar, ArrayList<String> locBarcoPar) {
-        this.tipoBarcoV = tipoBarcoPar;
-        this.locBarcoV = locBarcoPar;
-
+    public Ship(String tipoBarcoP, ArrayList<String> locBarcoP) {
+        this.tipoBarcoV = tipoBarcoP;
+        this.locBarcoV = locBarcoP;
     }
 
     public long getId() {

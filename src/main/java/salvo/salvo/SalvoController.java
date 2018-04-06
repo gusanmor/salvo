@@ -63,18 +63,15 @@ public class SalvoController {
 
         playerLogueado.put("name", nameAuth);
 
-        Map<String, Object> gamesYplayLog = new HashMap<String, Object>();
+        Map<String, Object> gamesYplayLog = new HashMap<>();
 
         gamesYplayLog.put("games", IDyCreatedList);
 
         gamesYplayLog.put("playerLogueado", playerLogueado);
 
-//        IDyCreatedList.add(playerLogueado);
-
         return gamesYplayLog;
     }
 
-    //    @RequestMapping("/books")
     public List<Player> getAll(Authentication authentication) {
         return repoPlayers.findByUserName(authentication.getName());
     }
@@ -367,7 +364,8 @@ public class SalvoController {
 
             if (gameJoin.getGamePlayers().size() > 1) {
                 return new ResponseEntity<>("Game is full", HttpStatus.FORBIDDEN);
-            } else {
+            }
+            else {
                 GamePlayer gamePlayJoin = new GamePlayer(playerJoin, gameJoin);
                 repoGamePlayer.save(gamePlayJoin);
                 return new ResponseEntity<>("" + gamePlayJoin.getId(), HttpStatus.OK);

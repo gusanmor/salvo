@@ -23,9 +23,9 @@ public class Score {
     public Score() {
     }
 
-    public Score(Double parScore, Date parFinishDate){
-        this.scoreV = parScore;
-        this.finishDateV = parFinishDate;
+    public Score(Double scoreP, Date finishDateP){
+        this.scoreV = scoreP;
+        this.finishDateV = finishDateP;
     }
 
     public long getId() {

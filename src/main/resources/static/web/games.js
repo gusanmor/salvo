@@ -46,9 +46,6 @@ function loginCorrecto(nombLogPar) {
     document.getElementById("welcUsuar").innerHTML = "<p>Welcome "+nombLogPar+"</p>";
     $("#usarCreatID").hide();
     $("#crearGameID").show();
-
-    // location.reload();
-// crearTablaGames();
 }
 
 function funcionLogOut(){
@@ -129,18 +126,18 @@ function crearTablaGames(data){
         var playerEmail2 = "NO_PLAYER";
         // console.log(data.games[p].gamePlayers[1].player.playerEmail);
         if (data.games[p].gamePlayers[0] != null){
-            var playerEmail1 = data.games[p].gamePlayers[0].player.playerEmail;
+            playerEmail1 = data.games[p].gamePlayers[0].player.playerEmail;
         }
         if (data.games[p].gamePlayers[1] != null) {
-            var playerEmail2 = data.games[p].gamePlayers[1].player.playerEmail;
+            playerEmail2 = data.games[p].gamePlayers[1].player.playerEmail;
         }
         var gamePlayerGP1 ="";
         var gamePlayerGP2 ="";
         if (data.games[p].gamePlayers[0] !=null){
-            var gamePlayerGP1 = data.games[p].gamePlayers[0].gamePlayerID;
+            gamePlayerGP1 = data.games[p].gamePlayers[0].gamePlayerID;
         }
         if (data.games[p].gamePlayers[1] !=null) {
-            var gameplayerGP2 = data.games[p].gamePlayers[1].gamePlayerID;
+            gameplayerGP2 = data.games[p].gamePlayers[1].gamePlayerID;
         }
         if (playerEmail1==data.playerLogueado.name){
             // console.log("boton");
@@ -150,7 +147,7 @@ function crearTablaGames(data){
             // console.log("boton");
             boton2 = '<a class="btn btn-primary" href="/web/game.html?gp='+gameplayerGP2+'">GO TO GAME</a></td>';
         }
-        if (playerEmail2=="NO_PLAYER" && data.playerLogueado.name !="NombreSinLog") {
+        if (playerEmail2=="NO_PLAYER" && data.playerLogueado.name !="NombreSinLog" && data.playerLogueado.name != playerEmail1) {
             boton2 = '<button id="" onclick="joinGameBoton('+data.games[p].gameID+')">JOIN GAME</button>';
         }
         tablaGames += "<tr>"+
