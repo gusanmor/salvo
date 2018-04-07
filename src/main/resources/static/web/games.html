@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="mobile-web-app-capable" content="yes">
-    <!--<link rel="shortcut icon" sizes="196x196" href="nysl_logo.png">-->
     <title>Games</title>
     <!--	estilo Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
@@ -22,7 +20,6 @@
 </head>
 
 <body>
-
     <header>
         <div id="divLogin">
             <H2>LOG IN</H2>
@@ -30,13 +27,12 @@
             <input type="text" name="username" id="usernameID">
             <span>password</span>
             <input type="text" name="password" id="passwordID">
-            <!--<button id="botonLogIn">LOG IN</button>-->
-            <button onclick="funcionLogIn()">LOG IN</button>
+            <button class="btn btn-success" onclick="funcionLogIn()">LOG IN</button>
             </div>
 
         <div id="welcUsuar"></div>
         <div id="divLogOut">
-        <button onclick="funcionLogOut()">LOG OUT</button>
+        <button class="btn btn-warning" onclick="funcionLogOut()">LOG OUT</button>
         </div>
 
         <div id="usarCreatID"></div>
@@ -48,30 +44,26 @@
             <span>password</span>
             <input type="text" name="passwordSignIng" id="passwSignInID">
             <!--<button id="botonLogIn">LOG IN</button>-->
-            <button onclick="funcionSingIn()">SIGN UP</button>
+            <button class="btn btn-success" onclick="funcionSingIn()">SIGN UP</button>
         </div>
         </div>
 
         <H2>GAMES</H2>
-        <table>
+        <table class="table table-striped">
             <thead>
             <tr>
                 <td>Game</td>
                 <td>Created_date</td>
                 <td>Player 1</td>
                 <td>Player 2</td>
-                <!--<td>Link</td>-->
             </tr>
             </thead>
             <tbody id="tablaGamesID"></tbody>
         </table>
-        <button id="crearGameID" onclick="crearGame()">CREATE NEW GAME</button>
-
-
+        <button class="btn btn-success" id="crearGameID" onclick="crearGame()">CREATE NEW GAME</button>
 
         <H2>LEADERBOARD</H2>
-
-        <table>
+        <table class="table table-striped">
             <thead>
             <tr>
                 <td>Name</td>
@@ -97,8 +89,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
 
     <script src="games.js"></script>
-
-
 </body>
-
 </html>

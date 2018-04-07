@@ -8,7 +8,6 @@ $.getJSON("http://localhost:8080/api/games", function (data) {
 function ocultarSiLog(data){
     if (data.playerLogueado.name!="NombreSinLog"){
         loginCorrecto(data.playerLogueado.name);
-        console.log("ya logueado");
     }
 }
 
@@ -19,8 +18,6 @@ function funcionLogIn(){
         location.reload();
         loginCorrecto(usuarInput);
     }).fail(function(response) {
-        // console.log("fallo login");
-        // console.log(response);
         alert("Log in error: "+response.responseJSON.error);
     });
 }
@@ -39,13 +36,13 @@ function funcionSingIn(){
 }
 
 function loginCorrecto(nombLogPar) {
-
     console.log("logged in!");
     document.getElementById("divLogin").style.display = "none";
     document.getElementById("divLogOut").style.display = "block";
     document.getElementById("welcUsuar").innerHTML = "<p>Welcome "+nombLogPar+"</p>";
     $("#usarCreatID").hide();
     $("#crearGameID").show();
+    $("#signIn").hide();
 }
 
 function funcionLogOut(){
@@ -69,16 +66,13 @@ function crearGame(){
 
 function joinGameBoton(botGameID){
     $.post("/api/game/"+botGameID+"/players").done(function(response) {
-        // console.log(response);
         window.location.assign("/web/game.html?gp="+response);
     }).fail(function(response) {
-        // alert(response.responseJSON.error);
         alert(response.responseText);
     })
 }
 
 function tablaLeaderBoard(data) {
-
     var contenidoLeaderBoard = "";
     var nombresJugadores = [];
 
@@ -95,19 +89,13 @@ function tablaLeaderBoard(data) {
     $.each(nombresJugadores, function(i, el){
         if($.inArray(el, nomJugNoRepetidos) === -1) nomJugNoRepetidos.push(el);
     });
-    // console.log(nomJugNoRepetidos);
 
     arrayObjJugadores = [];
     for (var j=0; j<nomJugNoRepetidos.length; j++) {
-
         arrayObjJugadores.push(cogerPuntosJugador(data, nomJugNoRepetidos[j]));
-
     }
     ordenarMembers(arrayObjJugadores);
-    console.log(arrayObjJugadores);
-
     rellenarTabla(arrayObjJugadores);
-
 }
 
 function crearTablaGames(data){
@@ -121,10 +109,8 @@ function crearTablaGames(data){
         var horaConSubstring = horaSinSubstring.substring(0, 21);
         var boton1 = "";
         var boton2 = "";
-        // var gameplayerLog = .games["0"].gamePlayers["0"].gamePlayerID
         var playerEmail1 = "NO_PLAYER";
         var playerEmail2 = "NO_PLAYER";
-        // console.log(data.games[p].gamePlayers[1].player.playerEmail);
         if (data.games[p].gamePlayers[0] != null){
             playerEmail1 = data.games[p].gamePlayers[0].player.playerEmail;
         }
@@ -140,15 +126,13 @@ function crearTablaGames(data){
             gameplayerGP2 = data.games[p].gamePlayers[1].gamePlayerID;
         }
         if (playerEmail1==data.playerLogueado.name){
-            // console.log("boton");
             boton1 = '<a class="btn btn-primary" href="/web/game.html?gp='+gamePlayerGP1+'">GO TO GAME</a></td>';
         }
         if (playerEmail2==data.playerLogueado.name){
-            // console.log("boton");
             boton2 = '<a class="btn btn-primary" href="/web/game.html?gp='+gameplayerGP2+'">GO TO GAME</a></td>';
         }
         if (playerEmail2=="NO_PLAYER" && data.playerLogueado.name !="NombreSinLog" && data.playerLogueado.name != playerEmail1) {
-            boton2 = '<button id="" onclick="joinGameBoton('+data.games[p].gameID+')">JOIN GAME</button>';
+            boton2 = '<button class="btn btn-info" id="" onclick="joinGameBoton('+data.games[p].gameID+')">JOIN GAME</button>';
         }
         tablaGames += "<tr>"+
             "<td>"+data.games[p].gameID+"</td>"+
@@ -158,11 +142,9 @@ function crearTablaGames(data){
             "</tr>";
     }
     document.getElementById("tablaGamesID").innerHTML =tablaGames;
-
 }
 
 function cogerPuntosJugador(data, nombreJugador){
-
     objetosJugadores = {};
     objetosJugadores.name = nombreJugador;
     objetosJugadores.points = 0.0;
@@ -170,17 +152,14 @@ function cogerPuntosJugador(data, nombreJugador){
     objetosJugadores.lost = 0;
     objetosJugadores.tied = 0;
 
-    var puntosJugador = 0.0;
-    var won = 0;
+    // var puntosJugador = 0.0;
+    // var won = 0;
 
     for (var k=0; k<data.games.length; k++) {
         for (var l=0; l<2; l++) {
-            // console.log(nombreJugador);
             if (data.games[k].gamePlayers[l] != null) {
-
                 if (data.games[k].gamePlayers[l].player.playerEmail == nombreJugador) {
                     if (data.games[k].gamePlayers[l].score != "null") {
-                        // console.log("diferente");
                         objetosJugadores.points += data.games[k].gamePlayers[l].score;
                     }
                     if (data.games[k].gamePlayers[l].score == "1") {
@@ -199,7 +178,6 @@ function cogerPuntosJugador(data, nombreJugador){
     return objetosJugadores;
 }
 
-
 function ordenarMembers(data) {
     return data.sort(function (a, b) {
         if (a.points < b.points) {
@@ -216,7 +194,6 @@ function ordenarMembers(data) {
         else
             return 0;
     });
-
 }
 
 function rellenarTabla(parArrayObj){
@@ -225,7 +202,6 @@ function rellenarTabla(parArrayObj){
     varTablaLeader = "";
 
     for (var m=0; m<parArrayObj.length; m++) {
-        console.log("long");
         varTablaLeader += '<tr>'+
             '<td>'+parArrayObj[m].name+'</td>'+
             '<td>'+parArrayObj[m].points+'</td>'+
@@ -236,7 +212,3 @@ function rellenarTabla(parArrayObj){
     }
     document.getElementById("tablaID").innerHTML = varTablaLeader;
 }
-
-// $.post("/api/login", { username: "j.bauer@ctu.gov", password: "24" }).done(function() { console.log("logged in!"); })
-
-// $.post("/api/logout").done(function() { console.log("logged out"); })

@@ -1,9 +1,7 @@
 .bodyGameCl{
     background-image: url("images/fondo.jpg");
     background-size: cover;
-    /*background-color: orange;*/
 }
-
 
 #jugadoresGamesviewID{
     background-color: black;
@@ -14,8 +12,6 @@
 }
 
 #statusID{
-    /*background-color: black;*/
-    /*opacity: 0.7;*/
     color: white;
     text-align: center;
 }
@@ -45,15 +41,10 @@
     border: 0.1rem solid cadetblue;
 }
 
-/*.botCreBarc{*/
-
-/*}*/
-
 #Carrier, #Battleship, #Submarine, #Destroyer, #PatrolBoat{
     background-color: gray;
     border: 0.1rem solid black;
     position: absolute;
-    /*z-index: 3 !important;*/
     margin-top: -0.85rem;
 }
 
@@ -124,7 +115,6 @@
 
 #rejillaBarcosID{
     display: inline;
-    /*background-color: grey;*/
 }
 
 #rejillaSalvosID{
@@ -135,7 +125,6 @@
     display: inline;
     margin-top: -3rem;
     width: 15rem;
-    /*background-color: cyan;*/
 }
 
 .nomShips{
@@ -154,11 +143,6 @@
     display: inline;
 }
 
-.table{
-    color: white;
-    /*border-color: orange;*/
-}
-
 .cajaTablasHits{
     margin-top: 1rem;
     display: flex;
@@ -173,16 +157,9 @@
 
 .hitOpponentCl {
     display: inline;
-    /*float: right;*/
     margin-left: 2rem;
-    /*border-color: aqua;*/
 }
 
 .sinksOnOpponCl{
     display: inline;
-    /*float: right;*/
 }
-
-
-
-
