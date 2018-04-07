@@ -20,31 +20,29 @@
     text-align: center;
 }
 
-/*td{*/
-    /*!*width: 2rem;*!*/
-    /*!*height: 2rem;*!*/
-    /*border: 0.1rem solid black;*/
-    /*!*background-color: aqua;*!*/
-/*}*/
-
 .celdaNormal {
     width: 2rem;
     height: 2rem;
     text-align: center;
+    background-color: darkblue;
+    color: aquamarine;
+    opacity: 0.7;
 }
 
 .celdaSinBarco, .celdaSinSalvo{
-    background-color: aqua;
+    background-color: blue;
     width: 2rem;
     height: 2rem;
     border: 0.1rem solid black;
+    border-color: cadetblue;
+    opacity: 0.5;
 }
 
 .celdaBarco {
     background-color: gray;
     width: 2rem;
     height: 2rem;
-    border: 0.1rem solid black;
+    border: 0.1rem solid cadetblue;
 }
 
 /*.botCreBarc{*/
@@ -99,13 +97,19 @@
     height: 3.8rem;
 }
 
-
 .celdaSalvo{
     background-color: blue;
+    border: 0.1rem solid cadetblue;
+    text-align: center;
+    color: cadetblue;
 }
 
 .celdaSalvoTocado{
     background-color: orange;
+    border: 0.1rem solid cadetblue;
+    color: darkslateblue;
+    text-align: center;
+    color: cadetblue;
 }
 
 .celdaTocado{
@@ -156,6 +160,7 @@
 }
 
 .cajaTablasHits{
+    margin-top: 1rem;
     display: flex;
     justify-content: space-around;
     background-color: black;
