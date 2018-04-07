@@ -37,9 +37,6 @@ public class GamePlayer {
     public Player getPlayer() {
         return playerEnGameplayer;
     }
-//    public void setGamePlayerUserName(Player gamePlayerUserName) {
-//        this.playerEnGameplayer = gamePlayerUserName;
-//    }
 
     public Game getGame() {
         return gameEnGamePlayer;
@@ -48,10 +45,6 @@ public class GamePlayer {
     public Set<Ship> getShips() {
         return ships;
     }
-
-//    public void setGameEnGamePlayers(Game argGameNiIdea) {
-//        this.gameEnGamePlayer = argGameNiIdea;
-//    }
 
     public long getId() {
         return id;

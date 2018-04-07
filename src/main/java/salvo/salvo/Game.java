@@ -26,7 +26,6 @@ public class Game {
 
     public Game(Date fechaP) {
         this.fechaV = fechaP;
-
     }
 
     public long getId() {
@@ -41,18 +40,12 @@ public class Game {
         return gamePlayers;
     }
 
-//    public void setFechaV(Date fechaV) {
-//        this.fechaV = fechaV;
-//    }
 
     public void addScore(Score scoreP) {
         scoreP.setGameEnScore(this);
         this.scores.add(scoreP);
     }
 
-//    public Set<Score> getScores() {
-//        return scores;
-//    }
 
     public String toString() {
         return ""+ fechaV;

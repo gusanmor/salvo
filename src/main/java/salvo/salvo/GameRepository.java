@@ -9,5 +9,3 @@ public interface GameRepository extends JpaRepository<Game, Long> {
 //    Player findOneBy();
 //    Player findOneByGamePlayers();
 }
-
-

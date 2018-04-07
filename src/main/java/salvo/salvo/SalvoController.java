@@ -55,7 +55,6 @@ public class SalvoController {
                     .collect(Collectors.toList()));
 
             IDyCreatedList.add(IDyCreatedMap);
-//            IDyCreatedMap.put("scores","hola");
         }
         Map<String, String> playerLogueado = new HashMap<>();
 
@@ -184,7 +183,6 @@ public class SalvoController {
             return true;
         }
         else return false;
-
     }
 
     public List<Map<Object, String>> sinksOnDTO(Long gamePlayerP, Long GPContP) {
@@ -204,15 +202,12 @@ public class SalvoController {
         for (Ship barco : barcos) {
             Map<Object, String> barcHund = new HashMap<>();
             barcHund.put(barco.getTipoBarcoV(), shipIsSunk(locTodSalv, barco));
-
             listBarcHund.add(barcHund);
         }
         return listBarcHund;
-
     }
 
     public List<Map<String, Object>> hitsAndSinksDTO(Long gamePlaPar , Long GPContID) {
-
         List<Map<String, Object>> tocadosArrayMap = new ArrayList<>();
         List<String> todasLocalTodosMisSalvos = new ArrayList<>();
 
@@ -266,7 +261,6 @@ public class SalvoController {
         boolean shipIsSunk = ship.getLocBarcoV().stream()
                 .allMatch(locations -> playerSalvos.contains(locations));
         if (shipIsSunk == true) {
-//            shipIsSunk = false;
             return "sink";
         }
         else return "noSink";
@@ -342,7 +336,6 @@ public class SalvoController {
     }
 
     @RequestMapping(path = "api/games", method = RequestMethod.POST)
-//    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<String> createGame(Authentication authentication) {
         Date datePrV = new Date();
         Game gameprueb = new Game(datePrV);
