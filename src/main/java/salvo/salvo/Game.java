@@ -13,7 +13,7 @@ public class Game {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
-    public Date fechaV;
+    private Date fechaV;
 
     @JsonIgnore
     @OneToMany(mappedBy="gameEnGamePlayer", fetch=FetchType.EAGER)
