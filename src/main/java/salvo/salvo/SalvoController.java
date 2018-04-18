@@ -82,7 +82,7 @@ public class SalvoController {
         String nameGPID = repoGamePlayer.getOne(gamePlayerId).getPlayer().getUserName();
         if (nameLogued != nameGPID){
             Map<String, Object> errorGP = new HashMap<>();
-            errorGP.put("error","this is not your game");
+            errorGP.put("gameStatus","0-error");
             return errorGP;
         }
 

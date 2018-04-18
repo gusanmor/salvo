@@ -4,7 +4,7 @@ $.getJSON("http://localhost:8080/api/game_view/"+limpiarURL(document.location.se
     crearRejiBarcosYsalvos(data);
     pintarMisHits(data);
     crearJugadoresGV(data);
-    crearStatus(data);
+    // crearStatus(data);
     crearTablaHitsOnYou(data);
     crearTablaHitsOpp(data);
     crearTablaSinksOn(data , "sinksOnMe");
@@ -14,14 +14,20 @@ $.getJSON("http://localhost:8080/api/game_view/"+limpiarURL(document.location.se
 
 function verPorStatus(data) {
     var status = data.gameStatus;
-    if (status == "1-startPlaceShips") {
+    if (status == "0-error") {
+        $("#statusID").show();
+        $("#jugadoresGamesviewID, #rejillaBarcosID, .allShips, #crearShipsID,.hitOnYouCl,.sinksOnYouCl,.hitOpponentCl,.sinksOnOpponCl,#rejillaSalvosID, #crearSalvosID").hide();
+        document.getElementById("statusID").innerText="ERROR";
+    }
+    else if (status == "1-startPlaceShips") {
         $("#statusID, #jugadoresGamesviewID, #rejillaBarcosID, .allShips, #crearShipsID").show();
         $(".hitOnYouCl,.sinksOnYouCl,.hitOpponentCl,.sinksOnOpponCl,#rejillaSalvosID, #crearSalvosID").hide();
-
+        document.getElementById("statusID").innerText="PLEASE, PLACE THE SHIPS";
     }
     else if (status == "2-noOpponent") {
         $("#statusID, #jugadoresGamesviewID, #rejillaBarcosID").show();
         $(".hitOnYouCl,.sinksOnYouCl,.hitOpponentCl,.sinksOnOpponCl,#rejillaSalvosID, #crearShipsID, #crearSalvosID, .allShips").hide();
+        document.getElementById("statusID").innerText="WAITING FOR THE OPPONENT";
         setInterval(function () {
             reloadPage("2-noOpponent");
         }, 10000);
@@ -29,6 +35,7 @@ function verPorStatus(data) {
     else if (status == "3-opponentNoShips") {
         $("#statusID, #jugadoresGamesviewID, #rejillaBarcosID").show();
         $(".hitOnYouCl,.sinksOnYouCl,.hitOpponentCl,.sinksOnOpponCl,#rejillaSalvosID, #crearShipsID, #crearSalvosID, .allShips").hide();
+        document.getElementById("statusID").innerText="WAITING FOR THE OPPONENT TO PLACE THEIR SHIPS";
         setInterval(function () {
             reloadPage("3-opponentNoShips");
         }, 10000);
@@ -36,22 +43,27 @@ function verPorStatus(data) {
     else if (status == "4-addSalvos" || status == "4-addSalvosMismoTurno") {
         $("#statusID, #jugadoresGamesviewID, #rejillaBarcosID, #rejillaSalvosID, #crearSalvosID, .hitOnYouCl,.sinksOnYouCl,.hitOpponentCl,.sinksOnOpponCl").show();
         $("#crearShipsID, .allShips").hide();
+        document.getElementById("statusID").innerText="PLEASE PLACE YOUR SALVO (5 SHOTS)";
     }
     else if (status == "5-whaitOppSalvo") {
         $("#statusID, #jugadoresGamesviewID, #rejillaBarcosID, #rejillaSalvosID, .hitOnYouCl,.sinksOnYouCl,.hitOpponentCl,.sinksOnOpponCl").show();
+        document.getElementById("statusID").innerText="WAITING FOR THE OPPONENT TO PLACE HIS SALVO";
         $("#crearShipsID, .allShips, #crearSalvosID").hide();
         setInterval(function () {
             reloadPage("5-whaitOppSalvo");
         }, 10000);
     }
     else if (status == "6-Tie") {
+        document.getElementById("statusID").innerText="GAME OVER, TIE";
         tieWinLose();
     }
 
     else if (status == "7-YouLose") {
+        document.getElementById("statusID").innerText="YOU LOSE";
         tieWinLose();
     }
     else if (status == "8-YouWin") {
+        document.getElementById("statusID").innerText="YOU WIN";
         tieWinLose();
     }
 }
