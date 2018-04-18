@@ -76,7 +76,15 @@ public class SalvoController {
     }
 
     @RequestMapping("api/game_view/{gamePlayerId}")
-    public Map<String, Object> metodoGameView(@PathVariable Long gamePlayerId) {
+    public Map<String, Object> metodoGameView(@PathVariable Long gamePlayerId, Authentication auth) {
+
+        String nameLogued = auth.getName();
+        String nameGPID = repoGamePlayer.getOne(gamePlayerId).getPlayer().getUserName();
+        if (nameLogued != nameGPID){
+            Map<String, Object> errorGP = new HashMap<>();
+            errorGP.put("error","this is not your game");
+            return errorGP;
+        }
 
         //        -----CONSEGUIR EL GAMEPLAYER CONTRARIO----------
         Set<GamePlayer> gamePlayers = repoGamePlayer.getOne(gamePlayerId).getGame().getGamePlayers();
