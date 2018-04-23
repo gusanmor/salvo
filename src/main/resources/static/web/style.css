@@ -125,6 +125,7 @@
     display: inline;
     margin-top: -3rem;
     width: 15rem;
+    color: white;
 }
 
 .nomShips{
@@ -169,4 +170,9 @@
     margin-top: 1rem;
     display: flex;
     justify-content: center;
+}
+
+.instruCl{
+    text-align: center;
+    color: white;
 }
