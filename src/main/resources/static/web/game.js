@@ -1,10 +1,11 @@
 $.getJSON("http://localhost:8080/api/game_view/"+limpiarURL(document.location.search), function (data) {
     console.log(data);
     verPorStatus(data);
-    crearRejiBarcosYsalvos("Barco");
-    crearRejiBarcosYsalvos("Salvo");
+    crearRejiBarcosYsalvos("Barco","");
+    crearRejiBarcosYsalvos("Salvo","s");
     pintarBarcos(data);
     pintarHitsOnMe(data);
+    pintarTusSalvos(data);
     pintarMisHits(data);
     crearJugadoresGV(data);
     // crearStatus(data);
@@ -107,7 +108,7 @@ function limpiarURL(search) {
     return obj2;
 }
 
-function crearRejiBarcosYsalvos(barcoOsalvo) {
+function crearRejiBarcosYsalvos(barcoOsalvo, celdaS) {
     var contenidoRejilla = "";
     arrayNumerosTabla = [" ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
     arrayLetrasTabla = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
@@ -123,7 +124,7 @@ function crearRejiBarcosYsalvos(barcoOsalvo) {
 
         for (var k = 1; k < arrayNumerosTabla.length; k++) {
             var idCelda = arrayLetrasTabla[j] + arrayNumerosTabla[k];
-            contenidoRejilla += '<td id="' + idCelda + '" class="celdaSin' + barcoOsalvo + '"ondrop="drop(event)" ondragover="allowDrop(event)"></td>';
+            contenidoRejilla += '<td id="' + idCelda + celdaS +'" class="celdaSin' + barcoOsalvo + '"ondrop="drop(event)" ondragover="allowDrop(event)"></td>';
         }
 
         document.getElementById("rejilla"+barcoOsalvo+"sID").innerHTML = contenidoRejilla;
@@ -141,14 +142,40 @@ function pintarBarcos(data) {
 }
 
 function pintarHitsOnMe(data) {
-    var keyTuJugador = 0;
     var keyContrario = 1;
 
     if (data.gameplayers[1] != null && data.gameplayers[1].gamePlayerID == limpiarURL(document.location.search)) {
-        keyTuJugador = 1;
         keyContrario = 0;
     }
 
+    var idCeldaSalCon="";
+
+    for (var p = 0; p < data.salvoes[keyContrario].locations.length; p++) {
+        for (var q = 0; q < data.salvoes[keyContrario].locations[p].length; q++) {
+            idCeldaSalCon = data.salvoes[keyContrario].locations[p][q].substring(0,2);
+            if (document.getElementById(idCeldaSalCon).getAttribute("class") == "celdaBarco"){
+                document.getElementById(idCeldaSalCon).setAttribute("class","celdaTocado");
+            }
+        }
+    }
+}
+
+// -------------PINTAR CELDAS CON TUS SALVOS------------
+function pintarTusSalvos(data) {
+
+    var keyTuJugador = 0;
+
+    if (data.gameplayers[1] != null && data.gameplayers[1].gamePlayerID == limpiarURL(document.location.search)) {
+        keyTuJugador = 1;
+    }
+
+    for (var n = 0; n < data.salvoes[keyTuJugador].locations.length; n++) {
+        for (var o = 0; o < data.salvoes[keyTuJugador].locations[n].length; o++) {
+
+            document.getElementById(data.salvoes[keyTuJugador].locations[n][o]).setAttribute("class","celdaSalvo");
+            document.getElementById(data.salvoes[keyTuJugador].locations[n][o]).innerText = data.salvoes[keyTuJugador].turn[n];
+        }
+    }
 }
 
 
