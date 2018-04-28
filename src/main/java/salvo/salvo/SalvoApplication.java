@@ -252,7 +252,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("https://**/web/games.html","https://**/web/style.css","https://**/web/games.js","https://**/api/games","https://**/api/players","https://**/api/game/**","https://**/games/players/**","https://**/web/images/**").permitAll()
+                .antMatchers("https://morning-everglades-77103.herokuapp.com/web/games.html","https://morning-everglades-77103.herokuapp.com/web/style.css","https://morning-everglades-77103.herokuapp.com/web/games.js","https://morning-everglades-77103.herokuapp.com/api/games","https://morning-everglades-77103.herokuapp.com/api/players","https://morning-everglades-77103.herokuapp.com/api/game/**","https://morning-everglades-77103.herokuapp.com/games/players/**","https://morning-everglades-77103.herokuapp.com/web/images/**").permitAll()
                 .anyRequest().fullyAuthenticated();
 
         http.formLogin()
