@@ -159,9 +159,6 @@ function cogerPuntosJugador(data, nombreJugador){
     objetosJugadores.lost = 0;
     objetosJugadores.tied = 0;
 
-    // var puntosJugador = 0.0;
-    // var won = 0;
-
     for (var k=0; k<data.games.length; k++) {
         for (var l=0; l<2; l++) {
             if (data.games[k].gamePlayers[l] != null) {

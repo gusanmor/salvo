@@ -125,7 +125,6 @@ function crearRejiBarcosYsalvos(barcoOsalvo) {
 
 // --------PINTAR CELDAS CON BARCOS-----------
 function pintarBarcos(data) {
-
     for (var l = 0; l < data.ships.length; l++) {
         for (var m = 0; m < data.ships[l].locations.length; m++) {
             document.getElementById(data.ships[l].locations[m]).setAttribute("class", "celdaBarco");
@@ -154,7 +153,6 @@ function pintarHitsOnMe(data) {
 
 // -------------PINTAR CELDAS CON TUS SALVOS------------
 function pintarTusSalvos(data) {
-
     var keyTuJugador = 0;
 
     if (data.gameplayers[1] != null && data.gameplayers[1].gamePlayerID == limpiarURL(document.location.search)) {
