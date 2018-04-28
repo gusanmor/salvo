@@ -33,7 +33,7 @@ function funcionSingIn() {
     else {
         $.post("/api/players", {username: usuarInput, password: passInput}).done(function () {
             console.log("sign in");
-            document.getElementById("usarCreatID").innerHTML = "<p>User " + usuarInput + " has been created, please Log In</p>";
+            document.getElementById("usarCreatID").innerHTML = "<h3>User " + usuarInput + " has been created, please Log In</h3>";
             $("#signIn").hide();
         }).fail(function (response) {
             console.log(response);

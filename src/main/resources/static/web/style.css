@@ -36,6 +36,11 @@
     text-align: center;
 }
 
+#usarCreatID{
+    text-align: center;
+    color: white;
+}
+
 .celdaNormal {
     width: 2rem;
     height: 2rem;
