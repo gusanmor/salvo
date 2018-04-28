@@ -23,12 +23,12 @@
     <header>
         <div id="divLogin">
             <H3 class="titGames">LOG IN</H3>
-            <span>username</span>
-            <input type="text" name="username" id="usernameID">
-            <span>password</span>
-            <input type="text" name="password" id="passwordID">
-            <button class="btn btn-success" onclick="funcionLogIn()">LOG IN</button>
+            <div class="usersClFl">
+                <input type="text" placeholder="Username" name="username" id="usernameID">
+                <input type="text" placeholder="Password" name="password" id="passwordID">
+                <button class="btn btn-success" onclick="funcionLogIn()">LOG IN</button>
             </div>
+        </div>
 
         <div id="welcUsuar"></div>
         <div id="divLogOut">
@@ -39,12 +39,11 @@
 
         <div id="signIn">
             <H3 class="titGames">SIGN UP (create a new player)</H3>
-            <span>username</span>
-            <input type="text" name="usernameSignIng" id="usernSignInID">
-            <span>password</span>
-            <input type="text" name="passwordSignIng" id="passwSignInID">
-            <!--<button id="botonLogIn">LOG IN</button>-->
-            <button class="btn btn-success" onclick="funcionSingIn()">SIGN UP</button>
+            <div class="usersClFl">
+                <input type="text" placeholder="Username" name="usernameSignIng" id="usernSignInID">
+                <input type="text" placeholder="Password" name="passwordSignIng" id="passwSignInID">
+                <button class="btn btn-success" onclick="funcionSingIn()">SIGN UP</button>
+            </div>
         </div>
         </div>
 
@@ -60,7 +59,10 @@
             </thead>
             <tbody id="tablaGamesID"></tbody>
         </table>
-        <button class="btn btn-success" id="crearGameID" onclick="crearGame()">CREATE NEW GAME</button>
+
+        <div class="createGameCe">
+            <button class="btn btn-success" id="crearGameID" onclick="crearGame()">CREATE NEW GAME</button>
+        </div>
 
         <H3 class="titGames">LEADERBOARD</H3>
         <table class="table tablaGames">

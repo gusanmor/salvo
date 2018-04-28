@@ -14,6 +14,15 @@
     margin-top: 1rem;
 }
 
+.usersClFl{
+    display: flex;
+    justify-content: center;
+}
+
+#passwordID , #passwSignInID{
+    margin-left: 2rem;
+}
+
 #jugadoresGamesviewID{
     background-color: black;
     margin-top: 1rem;
@@ -145,8 +154,19 @@
 }
 
 #divLogOut{
+    text-align: center;
     display: none;
 }
+
+.createGameCe{
+    text-align: center;
+}
+
+#welcUsuar{
+    text-align: center;
+    color: white;
+}
+
 #crearGameID{
     display: none;
 }

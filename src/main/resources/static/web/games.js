@@ -18,28 +18,35 @@ function funcionLogIn(){
         location.reload();
         loginCorrecto(usuarInput);
     }).fail(function(response) {
+        document.getElementById("usernameID").value = "";
+        document.getElementById("passwordID").value = "";
         alert("Log in error: "+response.responseJSON.error);
     });
 }
 
-function funcionSingIn(){
+function funcionSingIn() {
     var usuarInput = document.getElementById("usernSignInID").value;
     var passInput = document.getElementById("passwSignInID").value;
-    $.post("/api/players", { username: usuarInput, password: passInput }).done(function() {
-        console.log("sign in");
-        document.getElementById("usarCreatID").innerHTML = "<p>User "+usuarInput+ " has been created, please Log In</p>";
-        $("#signIn").hide();
-}).fail(function(response) {
-    console.log(response);
-        alert("Sign in error: "+response.responseJSON.error);
-    });
+    if (usuarInput == "" || passInput == "") {
+        alert("User or Password empty")
+    }
+    else {
+        $.post("/api/players", {username: usuarInput, password: passInput}).done(function () {
+            console.log("sign in");
+            document.getElementById("usarCreatID").innerHTML = "<p>User " + usuarInput + " has been created, please Log In</p>";
+            $("#signIn").hide();
+        }).fail(function (response) {
+            console.log(response);
+            alert("Sign in error: " + response.responseJSON.error);
+        });
+    }
 }
 
 function loginCorrecto(nombLogPar) {
     console.log("logged in!");
     document.getElementById("divLogin").style.display = "none";
     document.getElementById("divLogOut").style.display = "block";
-    document.getElementById("welcUsuar").innerHTML = "<p>Welcome "+nombLogPar+"</p>";
+    document.getElementById("welcUsuar").innerHTML = "<H3>Welcome "+nombLogPar+"</H3>";
     $("#usarCreatID").hide();
     $("#crearGameID").show();
     $("#signIn").hide();
