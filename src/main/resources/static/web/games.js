@@ -1,4 +1,4 @@
-$.getJSON("http://localhost:8080/api/games", function (data) {
+$.getJSON("/api/games", function (data) {
     console.log(data);
     crearTablaGames(data);
     tablaLeaderBoard(data);

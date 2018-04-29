@@ -1,4 +1,4 @@
-$.getJSON("http://localhost:8080/api/game_view/"+limpiarURL(document.location.search), function (data) {
+$.getJSON("/api/game_view/"+limpiarURL(document.location.search), function (data) {
     console.log(data);
     verPorStatus(data);
     crearRejiBarcosYsalvos("Barco");
