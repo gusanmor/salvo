@@ -72,7 +72,7 @@ function verPorStatus(data) {
 }
 
 function reloadPage(statusP) {
-    $.getJSON("http://localhost:8080/api/game_view/"+limpiarURL(document.location.search), function (data) {
+    $.getJSON("/api/game_view/"+limpiarURL(document.location.search), function (data) {
         if (statusP != data.gameStatus){
             window.location.reload();
         }
